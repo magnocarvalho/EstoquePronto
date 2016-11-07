@@ -24,7 +24,7 @@ public class HibernateUtil {
         if (cfg == null) {
             cfg = new AnnotationConfiguration();
             cfg.setProperty("hibernate.connection.driver", "org.postgresql.Driver");
-            cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/dbestoque");
+            cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/dbloja");
             cfg.setProperty("hibernate.connection.username", user);
             cfg.setProperty("hibernate.connection.password", pass);
             cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");

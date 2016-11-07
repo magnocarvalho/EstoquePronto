@@ -17,7 +17,7 @@ public class Conexao {
     private static org.postgresql.Driver mysqlDriver;
     private static Statement stm;
     public static java.sql.Connection getConnection() throws SQLException {
-        String conecaoMysql = "jdbc:postgresql://localhost:5432/dbestoque";
+        String conecaoMysql = "jdbc:postgresql://localhost:5432/dbloja";
         if (conexao == null) {
             mysqlDriver = new org.postgresql.Driver();
             //conexao = DriverManager.getConnection(conecaoMysql);
