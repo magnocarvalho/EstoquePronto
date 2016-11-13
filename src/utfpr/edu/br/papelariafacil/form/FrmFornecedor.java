@@ -9,8 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utfpr.edu.br.papelariafacil.conexao.TransactionUtil;
 
 import utfpr.edu.br.papelariafacil.model.Fornecedor;
+import utfpr.edu.br.papelariafacil.dao.DaoFornecedor;
 
 import utfpr.edu.br.papelariafacil.util.Util;
 
@@ -22,7 +24,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
     
     
     private DefaultTableModel model;
-    private String dadosFornecedor[] = new String[]{"CNPJ","Razao Social","Telefone","Cep","Rua","Numero","Bairro","Cidade","Estado","ID fornecedor" };
+    private String dadosFornecedor[] = new String[]{ "CNPJ","FORNECEDOR","RAZÃO SOCIAL","EMAIL","CELULAR","TELEFONE","CEP","ENDEREÇO","NUMERO","COMPLEMENTO","BAIRRO","CIDADE","ESTADO","ID" };
     private List<Fornecedor> forne;
 
     /**
@@ -309,13 +311,14 @@ public class FrmFornecedor extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 4, Short.MAX_VALUE)
                                 .addComponent(jLabel5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel14)
-                                .addComponent(jLabel15))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel15))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
@@ -457,6 +460,8 @@ public class FrmFornecedor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private void preenchertabela()
     {
+        
+        //METODO DE PREENCHIMENDO DA TABELA DO FORMULARIO DE FORNECEDOR 
         model = new DefaultTableModel();
 
         model.setColumnIdentifiers(dadosFornecedor);
@@ -467,21 +472,21 @@ public class FrmFornecedor extends javax.swing.JFrame {
             {
                
                 model.addRow(new Object[]{
-                   "CNPJ","FORNECEDOR","RAZÃO SOCIAL","EMAIL","CELULAR","TELEFONE",
+                  
                    f.getCnpjpessoajuridica(),
                    f.getNomefornecedor(),
                    f.getRazaosocialpessoajuridica(),
                    f.getEmailcontato(),
                    f.getCelularcontato(),
                    f.getTelefonecontato(),
-                   f.getEmailcontato(),
+                   f.getCep(),
                    f.getEndereco(),
+                   f.getNumeroendereco(),
                    f.getComplemento(),
                    f.getBairro(),
-                   f.getCep(),
                    f.getCidade(),
                    f.getEstado(),
-                   f.ge
+                   f.getIdfornecedor()
                     
                 });
             }
@@ -520,18 +525,21 @@ public class FrmFornecedor extends javax.swing.JFrame {
         Fornecedor f = new Fornecedor();
         if (!txtID.getText().isEmpty()) 
         {  //verifica se o campo Codigo esta vazio
-                f.setId(Integer.parseInt(txtID.getText().trim()));
+                f.setIdfornecedor(Integer.parseInt(txtID.getText().trim()));
         }
-        f.setCnpj(txtCnpj.getText().trim());
-        f.setRazaoSocial(txtRazao.getText());
+        f.setCnpjpessoajuridica(txtCnpj.getText().trim());
+        f.setRazaosocialpessoajuridica(txtRazao.getText());
         f.setCep(txtCep.getText().trim());
-        f.setLogradouro(txtRua.getText());
-        f.setTelefone(txtTelefone.getText());
-        f.setNumero(txtNumero.getText().trim());
+        f.setEndereco(txtRua.getText());
+        f.setTelefonecontato(txtTelefone.getText());
+        f.setCelularcontato(txtCelular.getText());
+        f.setEmailcontato(txtEmail.getText().trim());
+        f.setNumeroendereco(txtNumero.getText().trim());
+        f.setComplemento(txtComplemento.getText());
         f.setBairro(txtBairro.getText());
         f.setCidade(txtCidade.getText());
-        f.setFkEstado(cbxEstado.getSelectedIndex());  // numero do index do combo box e e mesmo do banco
-        f.setRegistro(false);
+        f.setEstado(cbxEstado.getName());  // numero do index do combo box e e mesmo do banco
+        
         
         TransactionUtil.beginTransaction();
             try {
@@ -540,7 +548,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
         
             } catch (Exception ex) {
                 TransactionUtil.rollback();
-                Logger.getLogger(FrmSetor.class.getName()).log(Level.SEVERE, null, ex);//erro
+                
                 JOptionPane.showMessageDialog(null, "Erro ao atualizar." + ex.getMessage(),"Messagem", JOptionPane.ERROR_MESSAGE, null);
         
             }
@@ -549,14 +557,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
             
         
     }
-    private Estado preencherestado(int z)
-    {
-        DaoEstado a = new DaoEstado();
-        Estado e = new Estado();
-        e = a.obterId(z);
-        return e;
-        
-    }
+   
     private void obterPorRazao() 
     {
         try {
@@ -588,18 +589,18 @@ public class FrmFornecedor extends javax.swing.JFrame {
       
         if (!txtCnpj.getText().isEmpty() && !txtRazao.getText().isEmpty()) 
         {  //verifica se o campo Codigo esta vazio
-                f.setCnpj((txtCnpj.getText()));
-                f.setRazaoSocial(txtRazao.getText());
+                f.setCnpjpessoajuridica((txtCnpj.getText()));
+                f.setRazaosocialpessoajuridica(txtRazao.getText());
         
         f.setCep(txtCep.getText().trim());
-        f.setLogradouro(txtRua.getText());
-        f.setTelefone(txtTelefone.getText());
-        f.setNumero(txtNumero.getText().trim());
+        f.setEndereco(txtRua.getText());
+        f.setTelefonecontato(txtTelefone.getText());
+        f.setCelularcontato(txtCelular.getText());
+        f.setNumeroendereco(txtNumero.getText().trim());
         f.setBairro(txtBairro.getText());
         f.setCidade(txtCidade.getText());
-        f.setFkEstado(cbxEstado.getSelectedIndex());  // numero do index do combo box e e mesmo do banco
-        f.setRegistro(false);
-        
+        f.setEstado(cbxEstado.getName());  // numero do index do combo box e e mesmo do banco
+               
         
         TransactionUtil.beginTransaction();
             try {
@@ -653,7 +654,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
     }
     public void selecionarPorId()
     {
-        
+        //preenche text box com o valor selecionado. 
         int i = tbF.getSelectedRow();
         limpeza();
         
@@ -733,10 +734,7 @@ public class FrmFornecedor extends javax.swing.JFrame {
    
     }
 
-    private String p_estado(Integer fkEstado) {
-        String r = cbxEstado.getItemAt(fkEstado);
-        return r;
-    }
+   
     
     
 }
