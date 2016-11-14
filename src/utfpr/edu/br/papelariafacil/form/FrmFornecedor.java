@@ -277,9 +277,9 @@ public class FrmFornecedor extends javax.swing.JFrame {
                                             .addComponent(jLabel10)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(69, 69, 69)
+                                                .addGap(75, 75, 75)
                                                 .addComponent(jButton4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
@@ -598,6 +598,9 @@ public class FrmFornecedor extends javax.swing.JFrame {
         f.setCelularcontato(txtCelular.getText());
         f.setNumeroendereco(txtNumero.getText().trim());
         f.setBairro(txtBairro.getText());
+        f.setComplemento(txtComplemento.getText());
+        f.setEmailcontato(txtEmail.getText());
+        f.set
         f.setCidade(txtCidade.getText());
         f.setEstado(cbxEstado.getName());  // numero do index do combo box e e mesmo do banco
                
