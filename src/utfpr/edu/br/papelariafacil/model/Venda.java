@@ -34,11 +34,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "venda")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Venda.findAll", query = "SELECT v FROM Venda v"),
-    @NamedQuery(name = "Venda.findByIdvenda", query = "SELECT v FROM Venda v WHERE v.idvenda = :idvenda"),
-    @NamedQuery(name = "Venda.findByValorvenda", query = "SELECT v FROM Venda v WHERE v.valorvenda = :valorvenda"),
-    @NamedQuery(name = "Venda.findByCriacaovenda", query = "SELECT v FROM Venda v WHERE v.criacaovenda = :criacaovenda"),
-    @NamedQuery(name = "Venda.findByAtualizacaovenda", query = "SELECT v FROM Venda v WHERE v.atualizacaovenda = :atualizacaovenda")})
+    @NamedQuery(name = "Venda.findAll", query = "SELECT v FROM Venda v")
+    , @NamedQuery(name = "Venda.findByIdvenda", query = "SELECT v FROM Venda v WHERE v.idvenda = :idvenda")
+    , @NamedQuery(name = "Venda.findByValor", query = "SELECT v FROM Venda v WHERE v.valor = :valor")
+    , @NamedQuery(name = "Venda.findByCriacaovenda", query = "SELECT v FROM Venda v WHERE v.criacaovenda = :criacaovenda")
+    , @NamedQuery(name = "Venda.findByAtualizacaovenda", query = "SELECT v FROM Venda v WHERE v.atualizacaovenda = :atualizacaovenda")})
 public class Venda implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,8 +48,8 @@ public class Venda implements Serializable {
     @Column(name = "idvenda")
     private Integer idvenda;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorvenda")
-    private BigDecimal valorvenda;
+    @Column(name = "valor")
+    private BigDecimal valor;
     @Column(name = "criacaovenda")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaovenda;
@@ -79,12 +79,12 @@ public class Venda implements Serializable {
         this.idvenda = idvenda;
     }
 
-    public BigDecimal getValorvenda() {
-        return valorvenda;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValorvenda(BigDecimal valorvenda) {
-        this.valorvenda = valorvenda;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Date getCriacaovenda() {
@@ -151,7 +151,7 @@ public class Venda implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Venda[ idvenda=" + idvenda + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Venda[ idvenda=" + idvenda + " ]";
     }
     
 }

@@ -35,17 +35,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "produto")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
-    @NamedQuery(name = "Produto.findByIdproduto", query = "SELECT p FROM Produto p WHERE p.idproduto = :idproduto"),
-    @NamedQuery(name = "Produto.findByDescricaoproduto", query = "SELECT p FROM Produto p WHERE p.descricaoproduto = :descricaoproduto"),
-    @NamedQuery(name = "Produto.findByCodigoproduto", query = "SELECT p FROM Produto p WHERE p.codigoproduto = :codigoproduto"),
-    @NamedQuery(name = "Produto.findByCustoproduto", query = "SELECT p FROM Produto p WHERE p.custoproduto = :custoproduto"),
-    @NamedQuery(name = "Produto.findByVendaproduto", query = "SELECT p FROM Produto p WHERE p.vendaproduto = :vendaproduto"),
-    @NamedQuery(name = "Produto.findByMinimoproduto", query = "SELECT p FROM Produto p WHERE p.minimoproduto = :minimoproduto"),
-    @NamedQuery(name = "Produto.findByMaximoproduto", query = "SELECT p FROM Produto p WHERE p.maximoproduto = :maximoproduto"),
-    @NamedQuery(name = "Produto.findByEstoqueproduto", query = "SELECT p FROM Produto p WHERE p.estoqueproduto = :estoqueproduto"),
-    @NamedQuery(name = "Produto.findByCriacaoproduto", query = "SELECT p FROM Produto p WHERE p.criacaoproduto = :criacaoproduto"),
-    @NamedQuery(name = "Produto.findByAtualizacaoproduto", query = "SELECT p FROM Produto p WHERE p.atualizacaoproduto = :atualizacaoproduto")})
+    @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p")
+    , @NamedQuery(name = "Produto.findByIdproduto", query = "SELECT p FROM Produto p WHERE p.idproduto = :idproduto")
+    , @NamedQuery(name = "Produto.findByDescricaoproduto", query = "SELECT p FROM Produto p WHERE p.descricaoproduto = :descricaoproduto")
+    , @NamedQuery(name = "Produto.findByCodigoproduto", query = "SELECT p FROM Produto p WHERE p.codigoproduto = :codigoproduto")
+    , @NamedQuery(name = "Produto.findByCustoproduto", query = "SELECT p FROM Produto p WHERE p.custoproduto = :custoproduto")
+    , @NamedQuery(name = "Produto.findByVendaproduto", query = "SELECT p FROM Produto p WHERE p.vendaproduto = :vendaproduto")
+    , @NamedQuery(name = "Produto.findByMinimoproduto", query = "SELECT p FROM Produto p WHERE p.minimoproduto = :minimoproduto")
+    , @NamedQuery(name = "Produto.findByMaximoproduto", query = "SELECT p FROM Produto p WHERE p.maximoproduto = :maximoproduto")
+    , @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade")
+    , @NamedQuery(name = "Produto.findByCriacaoproduto", query = "SELECT p FROM Produto p WHERE p.criacaoproduto = :criacaoproduto")})
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -67,14 +66,11 @@ public class Produto implements Serializable {
     private BigInteger minimoproduto;
     @Column(name = "maximoproduto")
     private BigInteger maximoproduto;
-    @Column(name = "estoqueproduto")
-    private String estoqueproduto;
+    @Column(name = "quantidade")
+    private BigInteger quantidade;
     @Column(name = "criacaoproduto")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaoproduto;
-    @Column(name = "atualizacaoproduto")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaoproduto;
     @OneToMany(mappedBy = "produtoitemvenda")
     private Collection<Itemvenda> itemvendaCollection;
     @JoinColumn(name = "categoriaproduto", referencedColumnName = "idcategoria")
@@ -149,12 +145,12 @@ public class Produto implements Serializable {
         this.maximoproduto = maximoproduto;
     }
 
-    public String getEstoqueproduto() {
-        return estoqueproduto;
+    public BigInteger getQuantidade() {
+        return quantidade;
     }
 
-    public void setEstoqueproduto(String estoqueproduto) {
-        this.estoqueproduto = estoqueproduto;
+    public void setQuantidade(BigInteger quantidade) {
+        this.quantidade = quantidade;
     }
 
     public Date getCriacaoproduto() {
@@ -163,14 +159,6 @@ public class Produto implements Serializable {
 
     public void setCriacaoproduto(Date criacaoproduto) {
         this.criacaoproduto = criacaoproduto;
-    }
-
-    public Date getAtualizacaoproduto() {
-        return atualizacaoproduto;
-    }
-
-    public void setAtualizacaoproduto(Date atualizacaoproduto) {
-        this.atualizacaoproduto = atualizacaoproduto;
     }
 
     @XmlTransient
@@ -229,7 +217,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Produto[ idproduto=" + idproduto + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Produto[ idproduto=" + idproduto + " ]";
     }
     
 }

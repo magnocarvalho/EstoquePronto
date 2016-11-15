@@ -31,12 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "recebimento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Recebimento.findAll", query = "SELECT r FROM Recebimento r"),
-    @NamedQuery(name = "Recebimento.findByIdrecebimento", query = "SELECT r FROM Recebimento r WHERE r.idrecebimento = :idrecebimento"),
-    @NamedQuery(name = "Recebimento.findByDescricaorecebimento", query = "SELECT r FROM Recebimento r WHERE r.descricaorecebimento = :descricaorecebimento"),
-    @NamedQuery(name = "Recebimento.findByValorrecebimento", query = "SELECT r FROM Recebimento r WHERE r.valorrecebimento = :valorrecebimento"),
-    @NamedQuery(name = "Recebimento.findByCriacaorecebimento", query = "SELECT r FROM Recebimento r WHERE r.criacaorecebimento = :criacaorecebimento"),
-    @NamedQuery(name = "Recebimento.findByAtualizacaorecebimento", query = "SELECT r FROM Recebimento r WHERE r.atualizacaorecebimento = :atualizacaorecebimento")})
+    @NamedQuery(name = "Recebimento.findAll", query = "SELECT r FROM Recebimento r")
+    , @NamedQuery(name = "Recebimento.findByIdrecebimento", query = "SELECT r FROM Recebimento r WHERE r.idrecebimento = :idrecebimento")
+    , @NamedQuery(name = "Recebimento.findByDescricao", query = "SELECT r FROM Recebimento r WHERE r.descricao = :descricao")
+    , @NamedQuery(name = "Recebimento.findByValor", query = "SELECT r FROM Recebimento r WHERE r.valor = :valor")
+    , @NamedQuery(name = "Recebimento.findByCriacaorecebimento", query = "SELECT r FROM Recebimento r WHERE r.criacaorecebimento = :criacaorecebimento")})
 public class Recebimento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,17 +44,14 @@ public class Recebimento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idrecebimento")
     private Integer idrecebimento;
-    @Column(name = "descricaorecebimento")
-    private String descricaorecebimento;
+    @Column(name = "descricao")
+    private String descricao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorrecebimento")
-    private BigDecimal valorrecebimento;
+    @Column(name = "valor")
+    private BigDecimal valor;
     @Column(name = "criacaorecebimento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaorecebimento;
-    @Column(name = "atualizacaorecebimento")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaorecebimento;
     @JoinColumn(name = "funcionariorecebimento", referencedColumnName = "idfuncionario")
     @ManyToOne
     private Funcionario funcionariorecebimento;
@@ -78,20 +74,20 @@ public class Recebimento implements Serializable {
         this.idrecebimento = idrecebimento;
     }
 
-    public String getDescricaorecebimento() {
-        return descricaorecebimento;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescricaorecebimento(String descricaorecebimento) {
-        this.descricaorecebimento = descricaorecebimento;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public BigDecimal getValorrecebimento() {
-        return valorrecebimento;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValorrecebimento(BigDecimal valorrecebimento) {
-        this.valorrecebimento = valorrecebimento;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Date getCriacaorecebimento() {
@@ -100,14 +96,6 @@ public class Recebimento implements Serializable {
 
     public void setCriacaorecebimento(Date criacaorecebimento) {
         this.criacaorecebimento = criacaorecebimento;
-    }
-
-    public Date getAtualizacaorecebimento() {
-        return atualizacaorecebimento;
-    }
-
-    public void setAtualizacaorecebimento(Date atualizacaorecebimento) {
-        this.atualizacaorecebimento = atualizacaorecebimento;
     }
 
     public Funcionario getFuncionariorecebimento() {
@@ -148,7 +136,7 @@ public class Recebimento implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Recebimento[ idrecebimento=" + idrecebimento + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Recebimento[ idrecebimento=" + idrecebimento + " ]";
     }
     
 }

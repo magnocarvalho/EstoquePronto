@@ -7,7 +7,6 @@ package utfpr.edu.br.papelariafacil.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -31,24 +28,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "fornecedor")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f"),
-    @NamedQuery(name = "Fornecedor.findByIdfornecedor", query = "SELECT f FROM Fornecedor f WHERE f.idfornecedor = :idfornecedor"),
-    @NamedQuery(name = "Fornecedor.findByNomefornecedor", query = "SELECT f FROM Fornecedor f WHERE f.nomefornecedor = :nomefornecedor"),
-    @NamedQuery(name = "Fornecedor.findByRazaosocialpessoajuridica", query = "SELECT f FROM Fornecedor f WHERE f.razaosocialpessoajuridica = :razaosocialpessoajuridica"),
-    @NamedQuery(name = "Fornecedor.findByNomefantasiapessoajuridica", query = "SELECT f FROM Fornecedor f WHERE f.nomefantasiapessoajuridica = :nomefantasiapessoajuridica"),
-    @NamedQuery(name = "Fornecedor.findByCnpjpessoajuridica", query = "SELECT f FROM Fornecedor f WHERE f.cnpjpessoajuridica = :cnpjpessoajuridica"),
-    @NamedQuery(name = "Fornecedor.findByEndereco", query = "SELECT f FROM Fornecedor f WHERE f.endereco = :endereco"),
-    @NamedQuery(name = "Fornecedor.findByCep", query = "SELECT f FROM Fornecedor f WHERE f.cep = :cep"),
-    @NamedQuery(name = "Fornecedor.findByComplemento", query = "SELECT f FROM Fornecedor f WHERE f.complemento = :complemento"),
-    @NamedQuery(name = "Fornecedor.findByNumeroendereco", query = "SELECT f FROM Fornecedor f WHERE f.numeroendereco = :numeroendereco"),
-    @NamedQuery(name = "Fornecedor.findByCidade", query = "SELECT f FROM Fornecedor f WHERE f.cidade = :cidade"),
-    @NamedQuery(name = "Fornecedor.findByBairro", query = "SELECT f FROM Fornecedor f WHERE f.bairro = :bairro"),
-    @NamedQuery(name = "Fornecedor.findByEstado", query = "SELECT f FROM Fornecedor f WHERE f.estado = :estado"),
-    @NamedQuery(name = "Fornecedor.findByEmailcontato", query = "SELECT f FROM Fornecedor f WHERE f.emailcontato = :emailcontato"),
-    @NamedQuery(name = "Fornecedor.findByTelefonecontato", query = "SELECT f FROM Fornecedor f WHERE f.telefonecontato = :telefonecontato"),
-    @NamedQuery(name = "Fornecedor.findByCelularcontato", query = "SELECT f FROM Fornecedor f WHERE f.celularcontato = :celularcontato"),
-    @NamedQuery(name = "Fornecedor.findByCriacaofornecedor", query = "SELECT f FROM Fornecedor f WHERE f.criacaofornecedor = :criacaofornecedor"),
-    @NamedQuery(name = "Fornecedor.findByAtualizacaofornecedor", query = "SELECT f FROM Fornecedor f WHERE f.atualizacaofornecedor = :atualizacaofornecedor")})
+    @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f")
+    , @NamedQuery(name = "Fornecedor.findByIdfornecedor", query = "SELECT f FROM Fornecedor f WHERE f.idfornecedor = :idfornecedor")
+    , @NamedQuery(name = "Fornecedor.findByNomefornecedor", query = "SELECT f FROM Fornecedor f WHERE f.nomefornecedor = :nomefornecedor")
+    , @NamedQuery(name = "Fornecedor.findByRazaosocialpessoajuridica", query = "SELECT f FROM Fornecedor f WHERE f.razaosocialpessoajuridica = :razaosocialpessoajuridica")
+    , @NamedQuery(name = "Fornecedor.findByCnpjpessoajuridica", query = "SELECT f FROM Fornecedor f WHERE f.cnpjpessoajuridica = :cnpjpessoajuridica")
+    , @NamedQuery(name = "Fornecedor.findByEndereco", query = "SELECT f FROM Fornecedor f WHERE f.endereco = :endereco")
+    , @NamedQuery(name = "Fornecedor.findByCep", query = "SELECT f FROM Fornecedor f WHERE f.cep = :cep")
+    , @NamedQuery(name = "Fornecedor.findByComplemento", query = "SELECT f FROM Fornecedor f WHERE f.complemento = :complemento")
+    , @NamedQuery(name = "Fornecedor.findByNumeroendereco", query = "SELECT f FROM Fornecedor f WHERE f.numeroendereco = :numeroendereco")
+    , @NamedQuery(name = "Fornecedor.findByCidade", query = "SELECT f FROM Fornecedor f WHERE f.cidade = :cidade")
+    , @NamedQuery(name = "Fornecedor.findByBairro", query = "SELECT f FROM Fornecedor f WHERE f.bairro = :bairro")
+    , @NamedQuery(name = "Fornecedor.findByEstado", query = "SELECT f FROM Fornecedor f WHERE f.estado = :estado")
+    , @NamedQuery(name = "Fornecedor.findByEmailcontato", query = "SELECT f FROM Fornecedor f WHERE f.emailcontato = :emailcontato")
+    , @NamedQuery(name = "Fornecedor.findByTelefonecontato", query = "SELECT f FROM Fornecedor f WHERE f.telefonecontato = :telefonecontato")
+    , @NamedQuery(name = "Fornecedor.findByCelularcontato", query = "SELECT f FROM Fornecedor f WHERE f.celularcontato = :celularcontato")})
 public class Fornecedor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,8 +55,6 @@ public class Fornecedor implements Serializable {
     private String nomefornecedor;
     @Column(name = "razaosocialpessoajuridica")
     private String razaosocialpessoajuridica;
-    @Column(name = "nomefantasiapessoajuridica")
-    private String nomefantasiapessoajuridica;
     @Column(name = "cnpjpessoajuridica")
     private String cnpjpessoajuridica;
     @Column(name = "endereco")
@@ -85,12 +77,6 @@ public class Fornecedor implements Serializable {
     private String telefonecontato;
     @Column(name = "celularcontato")
     private String celularcontato;
-    @Column(name = "criacaofornecedor")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date criacaofornecedor;
-    @Column(name = "atualizacaofornecedor")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaofornecedor;
     @OneToMany(mappedBy = "fornecedorcompra")
     private Collection<Compra> compraCollection;
     @OneToMany(mappedBy = "fornecedorproduto")
@@ -125,14 +111,6 @@ public class Fornecedor implements Serializable {
 
     public void setRazaosocialpessoajuridica(String razaosocialpessoajuridica) {
         this.razaosocialpessoajuridica = razaosocialpessoajuridica;
-    }
-
-    public String getNomefantasiapessoajuridica() {
-        return nomefantasiapessoajuridica;
-    }
-
-    public void setNomefantasiapessoajuridica(String nomefantasiapessoajuridica) {
-        this.nomefantasiapessoajuridica = nomefantasiapessoajuridica;
     }
 
     public String getCnpjpessoajuridica() {
@@ -223,22 +201,6 @@ public class Fornecedor implements Serializable {
         this.celularcontato = celularcontato;
     }
 
-    public Date getCriacaofornecedor() {
-        return criacaofornecedor;
-    }
-
-    public void setCriacaofornecedor(Date criacaofornecedor) {
-        this.criacaofornecedor = criacaofornecedor;
-    }
-
-    public Date getAtualizacaofornecedor() {
-        return atualizacaofornecedor;
-    }
-
-    public void setAtualizacaofornecedor(Date atualizacaofornecedor) {
-        this.atualizacaofornecedor = atualizacaofornecedor;
-    }
-
     @XmlTransient
     public Collection<Compra> getCompraCollection() {
         return compraCollection;
@@ -279,7 +241,7 @@ public class Fornecedor implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Fornecedor[ idfornecedor=" + idfornecedor + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Fornecedor[ idfornecedor=" + idfornecedor + " ]";
     }
     
 }

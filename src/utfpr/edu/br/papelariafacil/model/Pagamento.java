@@ -31,14 +31,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "pagamento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p"),
-    @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento"),
-    @NamedQuery(name = "Pagamento.findByDescricaopagamento", query = "SELECT p FROM Pagamento p WHERE p.descricaopagamento = :descricaopagamento"),
-    @NamedQuery(name = "Pagamento.findByValorpagamento", query = "SELECT p FROM Pagamento p WHERE p.valorpagamento = :valorpagamento"),
-    @NamedQuery(name = "Pagamento.findByDatapagamento", query = "SELECT p FROM Pagamento p WHERE p.datapagamento = :datapagamento"),
-    @NamedQuery(name = "Pagamento.findByStatuspagamento", query = "SELECT p FROM Pagamento p WHERE p.statuspagamento = :statuspagamento"),
-    @NamedQuery(name = "Pagamento.findByCriacaopagamento", query = "SELECT p FROM Pagamento p WHERE p.criacaopagamento = :criacaopagamento"),
-    @NamedQuery(name = "Pagamento.findByAtualizacaopagamento", query = "SELECT p FROM Pagamento p WHERE p.atualizacaopagamento = :atualizacaopagamento")})
+    @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
+    , @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento")
+    , @NamedQuery(name = "Pagamento.findByDescricao", query = "SELECT p FROM Pagamento p WHERE p.descricao = :descricao")
+    , @NamedQuery(name = "Pagamento.findByValorpagamento", query = "SELECT p FROM Pagamento p WHERE p.valorpagamento = :valorpagamento")
+    , @NamedQuery(name = "Pagamento.findByDatapagamento", query = "SELECT p FROM Pagamento p WHERE p.datapagamento = :datapagamento")
+    , @NamedQuery(name = "Pagamento.findByCriacaopagamento", query = "SELECT p FROM Pagamento p WHERE p.criacaopagamento = :criacaopagamento")})
 public class Pagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,22 +45,17 @@ public class Pagamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idpagamento")
     private Integer idpagamento;
-    @Column(name = "descricaopagamento")
-    private String descricaopagamento;
+    @Column(name = "descricao")
+    private String descricao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorpagamento")
     private BigDecimal valorpagamento;
     @Column(name = "datapagamento")
     @Temporal(TemporalType.DATE)
     private Date datapagamento;
-    @Column(name = "statuspagamento")
-    private Short statuspagamento;
     @Column(name = "criacaopagamento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaopagamento;
-    @Column(name = "atualizacaopagamento")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaopagamento;
     @JoinColumn(name = "comprapagamento", referencedColumnName = "idcompra")
     @ManyToOne
     private Compra comprapagamento;
@@ -85,12 +78,12 @@ public class Pagamento implements Serializable {
         this.idpagamento = idpagamento;
     }
 
-    public String getDescricaopagamento() {
-        return descricaopagamento;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescricaopagamento(String descricaopagamento) {
-        this.descricaopagamento = descricaopagamento;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public BigDecimal getValorpagamento() {
@@ -109,28 +102,12 @@ public class Pagamento implements Serializable {
         this.datapagamento = datapagamento;
     }
 
-    public Short getStatuspagamento() {
-        return statuspagamento;
-    }
-
-    public void setStatuspagamento(Short statuspagamento) {
-        this.statuspagamento = statuspagamento;
-    }
-
     public Date getCriacaopagamento() {
         return criacaopagamento;
     }
 
     public void setCriacaopagamento(Date criacaopagamento) {
         this.criacaopagamento = criacaopagamento;
-    }
-
-    public Date getAtualizacaopagamento() {
-        return atualizacaopagamento;
-    }
-
-    public void setAtualizacaopagamento(Date atualizacaopagamento) {
-        this.atualizacaopagamento = atualizacaopagamento;
     }
 
     public Compra getComprapagamento() {
@@ -171,7 +148,7 @@ public class Pagamento implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Pagamento[ idpagamento=" + idpagamento + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Pagamento[ idpagamento=" + idpagamento + " ]";
     }
     
 }

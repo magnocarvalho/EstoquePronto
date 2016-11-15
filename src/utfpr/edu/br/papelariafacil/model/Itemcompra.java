@@ -31,12 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "itemcompra")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Itemcompra.findAll", query = "SELECT i FROM Itemcompra i"),
-    @NamedQuery(name = "Itemcompra.findByIditemcompra", query = "SELECT i FROM Itemcompra i WHERE i.iditemcompra = :iditemcompra"),
-    @NamedQuery(name = "Itemcompra.findByQuantidadeitemcompra", query = "SELECT i FROM Itemcompra i WHERE i.quantidadeitemcompra = :quantidadeitemcompra"),
-    @NamedQuery(name = "Itemcompra.findByValoritemcompra", query = "SELECT i FROM Itemcompra i WHERE i.valoritemcompra = :valoritemcompra"),
-    @NamedQuery(name = "Itemcompra.findByCriacaoitemcompra", query = "SELECT i FROM Itemcompra i WHERE i.criacaoitemcompra = :criacaoitemcompra"),
-    @NamedQuery(name = "Itemcompra.findByAtualizacaoitemcompra", query = "SELECT i FROM Itemcompra i WHERE i.atualizacaoitemcompra = :atualizacaoitemcompra")})
+    @NamedQuery(name = "Itemcompra.findAll", query = "SELECT i FROM Itemcompra i")
+    , @NamedQuery(name = "Itemcompra.findByIditemcompra", query = "SELECT i FROM Itemcompra i WHERE i.iditemcompra = :iditemcompra")
+    , @NamedQuery(name = "Itemcompra.findByQuantidadeitemcompra", query = "SELECT i FROM Itemcompra i WHERE i.quantidadeitemcompra = :quantidadeitemcompra")
+    , @NamedQuery(name = "Itemcompra.findByValoritemcompra", query = "SELECT i FROM Itemcompra i WHERE i.valoritemcompra = :valoritemcompra")
+    , @NamedQuery(name = "Itemcompra.findByCriacaoitemcompra", query = "SELECT i FROM Itemcompra i WHERE i.criacaoitemcompra = :criacaoitemcompra")})
 public class Itemcompra implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,9 +52,6 @@ public class Itemcompra implements Serializable {
     @Column(name = "criacaoitemcompra")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaoitemcompra;
-    @Column(name = "atualizacaoitemcompra")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaoitemcompra;
     @JoinColumn(name = "compraitemcompra", referencedColumnName = "idcompra")
     @ManyToOne
     private Compra compraitemcompra;
@@ -102,14 +98,6 @@ public class Itemcompra implements Serializable {
         this.criacaoitemcompra = criacaoitemcompra;
     }
 
-    public Date getAtualizacaoitemcompra() {
-        return atualizacaoitemcompra;
-    }
-
-    public void setAtualizacaoitemcompra(Date atualizacaoitemcompra) {
-        this.atualizacaoitemcompra = atualizacaoitemcompra;
-    }
-
     public Compra getCompraitemcompra() {
         return compraitemcompra;
     }
@@ -148,7 +136,7 @@ public class Itemcompra implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Itemcompra[ iditemcompra=" + iditemcompra + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Itemcompra[ iditemcompra=" + iditemcompra + " ]";
     }
     
 }

@@ -7,7 +7,6 @@ package utfpr.edu.br.papelariafacil.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -31,11 +28,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "categoria")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
-    @NamedQuery(name = "Categoria.findByIdcategoria", query = "SELECT c FROM Categoria c WHERE c.idcategoria = :idcategoria"),
-    @NamedQuery(name = "Categoria.findByDescricaocategoria", query = "SELECT c FROM Categoria c WHERE c.descricaocategoria = :descricaocategoria"),
-    @NamedQuery(name = "Categoria.findByCriacaocategoria", query = "SELECT c FROM Categoria c WHERE c.criacaocategoria = :criacaocategoria"),
-    @NamedQuery(name = "Categoria.findByAtualizacaocategoria", query = "SELECT c FROM Categoria c WHERE c.atualizacaocategoria = :atualizacaocategoria")})
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
+    , @NamedQuery(name = "Categoria.findByIdcategoria", query = "SELECT c FROM Categoria c WHERE c.idcategoria = :idcategoria")
+    , @NamedQuery(name = "Categoria.findByDescricaocategoria", query = "SELECT c FROM Categoria c WHERE c.descricaocategoria = :descricaocategoria")})
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,12 +41,6 @@ public class Categoria implements Serializable {
     private Integer idcategoria;
     @Column(name = "descricaocategoria")
     private String descricaocategoria;
-    @Column(name = "criacaocategoria")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date criacaocategoria;
-    @Column(name = "atualizacaocategoria")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaocategoria;
     @OneToMany(mappedBy = "categoriaproduto")
     private Collection<Produto> produtoCollection;
 
@@ -76,22 +65,6 @@ public class Categoria implements Serializable {
 
     public void setDescricaocategoria(String descricaocategoria) {
         this.descricaocategoria = descricaocategoria;
-    }
-
-    public Date getCriacaocategoria() {
-        return criacaocategoria;
-    }
-
-    public void setCriacaocategoria(Date criacaocategoria) {
-        this.criacaocategoria = criacaocategoria;
-    }
-
-    public Date getAtualizacaocategoria() {
-        return atualizacaocategoria;
-    }
-
-    public void setAtualizacaocategoria(Date atualizacaocategoria) {
-        this.atualizacaocategoria = atualizacaocategoria;
     }
 
     @XmlTransient
@@ -125,7 +98,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Categoria[ idcategoria=" + idcategoria + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Categoria[ idcategoria=" + idcategoria + " ]";
     }
     
 }

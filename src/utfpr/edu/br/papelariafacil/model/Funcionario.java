@@ -31,15 +31,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "funcionario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f"),
-    @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario"),
-    @NamedQuery(name = "Funcionario.findByNomefuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomefuncionario = :nomefuncionario"),
-    @NamedQuery(name = "Funcionario.findByCargofuncionario", query = "SELECT f FROM Funcionario f WHERE f.cargofuncionario = :cargofuncionario"),
-    @NamedQuery(name = "Funcionario.findByEmailcontato", query = "SELECT f FROM Funcionario f WHERE f.emailcontato = :emailcontato"),
-    @NamedQuery(name = "Funcionario.findByTelefonecontato", query = "SELECT f FROM Funcionario f WHERE f.telefonecontato = :telefonecontato"),
-    @NamedQuery(name = "Funcionario.findByCelularcontato", query = "SELECT f FROM Funcionario f WHERE f.celularcontato = :celularcontato"),
-    @NamedQuery(name = "Funcionario.findByCriacaofuncionario", query = "SELECT f FROM Funcionario f WHERE f.criacaofuncionario = :criacaofuncionario"),
-    @NamedQuery(name = "Funcionario.findByAtualizacaofuncionario", query = "SELECT f FROM Funcionario f WHERE f.atualizacaofuncionario = :atualizacaofuncionario")})
+    @NamedQuery(name = "Funcionario.findAll", query = "SELECT f FROM Funcionario f")
+    , @NamedQuery(name = "Funcionario.findByIdfuncionario", query = "SELECT f FROM Funcionario f WHERE f.idfuncionario = :idfuncionario")
+    , @NamedQuery(name = "Funcionario.findByNomefuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomefuncionario = :nomefuncionario")
+    , @NamedQuery(name = "Funcionario.findByCargofuncionario", query = "SELECT f FROM Funcionario f WHERE f.cargofuncionario = :cargofuncionario")
+    , @NamedQuery(name = "Funcionario.findByEmailcontato", query = "SELECT f FROM Funcionario f WHERE f.emailcontato = :emailcontato")
+    , @NamedQuery(name = "Funcionario.findByTelefone", query = "SELECT f FROM Funcionario f WHERE f.telefone = :telefone")
+    , @NamedQuery(name = "Funcionario.findByCelular", query = "SELECT f FROM Funcionario f WHERE f.celular = :celular")
+    , @NamedQuery(name = "Funcionario.findByCriacaofuncionario", query = "SELECT f FROM Funcionario f WHERE f.criacaofuncionario = :criacaofuncionario")})
 public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,16 +53,13 @@ public class Funcionario implements Serializable {
     private String cargofuncionario;
     @Column(name = "emailcontato")
     private String emailcontato;
-    @Column(name = "telefonecontato")
-    private String telefonecontato;
-    @Column(name = "celularcontato")
-    private String celularcontato;
+    @Column(name = "telefone")
+    private String telefone;
+    @Column(name = "celular")
+    private String celular;
     @Column(name = "criacaofuncionario")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaofuncionario;
-    @Column(name = "atualizacaofuncionario")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaofuncionario;
     @OneToMany(mappedBy = "funcionariocompra")
     private Collection<Compra> compraCollection;
     @OneToMany(mappedBy = "funcionariovenda")
@@ -112,20 +108,20 @@ public class Funcionario implements Serializable {
         this.emailcontato = emailcontato;
     }
 
-    public String getTelefonecontato() {
-        return telefonecontato;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefonecontato(String telefonecontato) {
-        this.telefonecontato = telefonecontato;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getCelularcontato() {
-        return celularcontato;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setCelularcontato(String celularcontato) {
-        this.celularcontato = celularcontato;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
     public Date getCriacaofuncionario() {
@@ -134,14 +130,6 @@ public class Funcionario implements Serializable {
 
     public void setCriacaofuncionario(Date criacaofuncionario) {
         this.criacaofuncionario = criacaofuncionario;
-    }
-
-    public Date getAtualizacaofuncionario() {
-        return atualizacaofuncionario;
-    }
-
-    public void setAtualizacaofuncionario(Date atualizacaofuncionario) {
-        this.atualizacaofuncionario = atualizacaofuncionario;
     }
 
     @XmlTransient
@@ -202,7 +190,7 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Funcionario[ idfuncionario=" + idfuncionario + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Funcionario[ idfuncionario=" + idfuncionario + " ]";
     }
     
 }

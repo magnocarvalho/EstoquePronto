@@ -31,12 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "itemvenda")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Itemvenda.findAll", query = "SELECT i FROM Itemvenda i"),
-    @NamedQuery(name = "Itemvenda.findByIditemvenda", query = "SELECT i FROM Itemvenda i WHERE i.iditemvenda = :iditemvenda"),
-    @NamedQuery(name = "Itemvenda.findByQuantidadeitemvenda", query = "SELECT i FROM Itemvenda i WHERE i.quantidadeitemvenda = :quantidadeitemvenda"),
-    @NamedQuery(name = "Itemvenda.findByValoritemvenda", query = "SELECT i FROM Itemvenda i WHERE i.valoritemvenda = :valoritemvenda"),
-    @NamedQuery(name = "Itemvenda.findByCriacaoitemvenda", query = "SELECT i FROM Itemvenda i WHERE i.criacaoitemvenda = :criacaoitemvenda"),
-    @NamedQuery(name = "Itemvenda.findByAtualizacaoitemvenda", query = "SELECT i FROM Itemvenda i WHERE i.atualizacaoitemvenda = :atualizacaoitemvenda")})
+    @NamedQuery(name = "Itemvenda.findAll", query = "SELECT i FROM Itemvenda i")
+    , @NamedQuery(name = "Itemvenda.findByIditemvenda", query = "SELECT i FROM Itemvenda i WHERE i.iditemvenda = :iditemvenda")
+    , @NamedQuery(name = "Itemvenda.findByQuantidade", query = "SELECT i FROM Itemvenda i WHERE i.quantidade = :quantidade")
+    , @NamedQuery(name = "Itemvenda.findByValor", query = "SELECT i FROM Itemvenda i WHERE i.valor = :valor")
+    , @NamedQuery(name = "Itemvenda.findByCriacaoitemvenda", query = "SELECT i FROM Itemvenda i WHERE i.criacaoitemvenda = :criacaoitemvenda")})
 public class Itemvenda implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,17 +44,14 @@ public class Itemvenda implements Serializable {
     @Basic(optional = false)
     @Column(name = "iditemvenda")
     private Integer iditemvenda;
-    @Column(name = "quantidadeitemvenda")
-    private Integer quantidadeitemvenda;
+    @Column(name = "quantidade")
+    private Integer quantidade;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valoritemvenda")
-    private BigDecimal valoritemvenda;
+    @Column(name = "valor")
+    private BigDecimal valor;
     @Column(name = "criacaoitemvenda")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaoitemvenda;
-    @Column(name = "atualizacaoitemvenda")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaoitemvenda;
     @JoinColumn(name = "produtoitemvenda", referencedColumnName = "idproduto")
     @ManyToOne
     private Produto produtoitemvenda;
@@ -78,20 +74,20 @@ public class Itemvenda implements Serializable {
         this.iditemvenda = iditemvenda;
     }
 
-    public Integer getQuantidadeitemvenda() {
-        return quantidadeitemvenda;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuantidadeitemvenda(Integer quantidadeitemvenda) {
-        this.quantidadeitemvenda = quantidadeitemvenda;
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public BigDecimal getValoritemvenda() {
-        return valoritemvenda;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setValoritemvenda(BigDecimal valoritemvenda) {
-        this.valoritemvenda = valoritemvenda;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
     public Date getCriacaoitemvenda() {
@@ -100,14 +96,6 @@ public class Itemvenda implements Serializable {
 
     public void setCriacaoitemvenda(Date criacaoitemvenda) {
         this.criacaoitemvenda = criacaoitemvenda;
-    }
-
-    public Date getAtualizacaoitemvenda() {
-        return atualizacaoitemvenda;
-    }
-
-    public void setAtualizacaoitemvenda(Date atualizacaoitemvenda) {
-        this.atualizacaoitemvenda = atualizacaoitemvenda;
     }
 
     public Produto getProdutoitemvenda() {
@@ -148,7 +136,7 @@ public class Itemvenda implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Itemvenda[ iditemvenda=" + iditemvenda + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Itemvenda[ iditemvenda=" + iditemvenda + " ]";
     }
     
 }

@@ -9,6 +9,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import utfpr.edu.br.papelariafacil.model.Categoria;
+import utfpr.edu.br.papelariafacil.model.Compra;
+import utfpr.edu.br.papelariafacil.model.Fornecedor;
+import utfpr.edu.br.papelariafacil.model.Funcionario;
+import utfpr.edu.br.papelariafacil.model.Itemcompra;
+import utfpr.edu.br.papelariafacil.model.Itemvenda;
+import utfpr.edu.br.papelariafacil.model.Pagamento;
+import utfpr.edu.br.papelariafacil.model.Produto;
+import utfpr.edu.br.papelariafacil.model.Recebimento;
+import utfpr.edu.br.papelariafacil.model.Venda;
+
 
 /**
  *
@@ -31,26 +42,19 @@ public class HibernateUtil {
             cfg.setProperty("hibernate.show_sql", "true");
             cfg.setProperty("hibernate.format_sql", "true");
             cfg.setProperty("hibernate.hbm2ddl.auto", "update");
-               /*
-            cfg.addAnnotatedClass(Cliente.class);
-            cfg.addAnnotatedClass(Municipio.class);
-            cfg.addAnnotatedClass(Estado.class);
-            cfg.addAnnotatedClass(Telefone.class);
-            cfg.addAnnotatedClass(Endereco.class);
             cfg.addAnnotatedClass(Fornecedor.class);
-            cfg.addAnnotatedClass(GrupoDeProduto.class);
+            cfg.addAnnotatedClass(Compra.class);
+            cfg.addAnnotatedClass(Itemcompra.class);
+            cfg.addAnnotatedClass(Funcionario.class);
+            cfg.addAnnotatedClass(Itemvenda.class);
+            cfg.addAnnotatedClass(Pagamento.class);
+            cfg.addAnnotatedClass(Venda.class);
             cfg.addAnnotatedClass(Produto.class);
-            cfg.addAnnotatedClass(Reserva.class);
-            cfg.addAnnotatedClass(Apartamento.class);
+            cfg.addAnnotatedClass(Recebimento.class);
+            cfg.addAnnotatedClass(Categoria.class);
             
             
-            cfg.addAnnotatedClass(Setor.class);
-            cfg.addAnnotatedClass(Produto.class);
-            cfg.addAnnotatedClass(Estado.class);
-            cfg.addAnnotatedClass(Familia.class);
-            cfg.addAnnotatedClass(Fornecedor.class);
-            cfg.addAnnotatedClass(Unidade.class);
-            */
+              
                
             sessionFactory = cfg.buildSessionFactory();
             

@@ -34,11 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "compra")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c"),
-    @NamedQuery(name = "Compra.findByIdcompra", query = "SELECT c FROM Compra c WHERE c.idcompra = :idcompra"),
-    @NamedQuery(name = "Compra.findByValorcompra", query = "SELECT c FROM Compra c WHERE c.valorcompra = :valorcompra"),
-    @NamedQuery(name = "Compra.findByCriacaocompra", query = "SELECT c FROM Compra c WHERE c.criacaocompra = :criacaocompra"),
-    @NamedQuery(name = "Compra.findByAtualizacaocompra", query = "SELECT c FROM Compra c WHERE c.atualizacaocompra = :atualizacaocompra")})
+    @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c")
+    , @NamedQuery(name = "Compra.findByIdcompra", query = "SELECT c FROM Compra c WHERE c.idcompra = :idcompra")
+    , @NamedQuery(name = "Compra.findByValorcompra", query = "SELECT c FROM Compra c WHERE c.valorcompra = :valorcompra")
+    , @NamedQuery(name = "Compra.findByCriacaocompra", query = "SELECT c FROM Compra c WHERE c.criacaocompra = :criacaocompra")})
 public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,9 +52,6 @@ public class Compra implements Serializable {
     @Column(name = "criacaocompra")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaocompra;
-    @Column(name = "atualizacaocompra")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date atualizacaocompra;
     @JoinColumn(name = "fornecedorcompra", referencedColumnName = "idfornecedor")
     @ManyToOne
     private Fornecedor fornecedorcompra;
@@ -96,14 +92,6 @@ public class Compra implements Serializable {
 
     public void setCriacaocompra(Date criacaocompra) {
         this.criacaocompra = criacaocompra;
-    }
-
-    public Date getAtualizacaocompra() {
-        return atualizacaocompra;
-    }
-
-    public void setAtualizacaocompra(Date atualizacaocompra) {
-        this.atualizacaocompra = atualizacaocompra;
     }
 
     public Fornecedor getFornecedorcompra() {
@@ -162,7 +150,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.dao.Compra[ idcompra=" + idcompra + " ]";
+        return "utfpr.edu.br.papelariafacil.model.Compra[ idcompra=" + idcompra + " ]";
     }
     
 }
