@@ -23,7 +23,7 @@ public class DaoFornecedor extends DaoGenerics<Fornecedor> {
 
             Query query = session.createQuery("From "
                     + alvo.getSimpleName()
-                    + " where razao_social LIKE '%"
+                    + " where nomefornecedor LIKE '%"
                     + descricao + "%'");
             lista = query.list();
         }
@@ -35,7 +35,19 @@ public class DaoFornecedor extends DaoGenerics<Fornecedor> {
 
             Query query = session.createQuery("From "
                     + alvo.getSimpleName()
-                    + " where cnpj LIKE '"
+                    + " where cnpjpessoajuridica LIKE '"
+                    + descricao + "%'");
+            lista = query.list();
+        }
+        return lista;
+    }
+    public List<Fornecedor> obterRazao(String descricao) {
+        List<Fornecedor> lista = null;
+        if (descricao != null || !"".equals(descricao)) {
+
+            Query query = session.createQuery("From "
+                    + alvo.getSimpleName()
+                    + " where razaosocialpessoajuridica LIKE '%"
                     + descricao + "%'");
             lista = query.list();
         }
