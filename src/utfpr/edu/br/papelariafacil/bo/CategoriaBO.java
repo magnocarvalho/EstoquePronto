@@ -1,7 +1,7 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Categoria;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Categoria;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Date;
