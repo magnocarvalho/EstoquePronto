@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="br.com.models.vo.Categoria" table="categoria" catalog="dbloja" optimistic-lock="version">
+        <id name="idCategoria" type="java.lang.Long">
+            <column name="idCategoria" />
+            <generator class="identity" />
+        </id>
+        <property name="descricaoCategoria" type="string">
+            <column name="descricaoCategoria" length="50" />
+        </property>
+        <property name="criacaoCategoria" type="timestamp">
+            <column name="criacaoCategoria" length="19" />
+        </property>
+        <property name="atualizacaoCategoria" type="timestamp">
+            <column name="atualizacaoCategoria" length="19" />
+        </property>
+        <set name="produtos" table="produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="categoriaProduto" />
+            </key>
+            <one-to-many class="br.com.models.vo.Produto" />
+        </set>
+    </class>
+</hibernate-mapping>

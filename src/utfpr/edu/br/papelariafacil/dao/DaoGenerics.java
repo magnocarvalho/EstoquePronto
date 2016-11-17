@@ -12,7 +12,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author JoaoPaulo
+ * @author magno
  */
 public abstract class DaoGenerics<T> {
 

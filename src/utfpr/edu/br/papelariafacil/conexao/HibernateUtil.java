@@ -28,8 +28,8 @@ import utfpr.edu.br.papelariafacil.model.Venda;
 public class HibernateUtil {
     private static AnnotationConfiguration cfg;
     private static SessionFactory sessionFactory;
-    private static String pass;
-    private static String user;
+    private static String pass = null;
+    private static String user = null;
 
     public static Session openConnect() {
         if (cfg == null) {

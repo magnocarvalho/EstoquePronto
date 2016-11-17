@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="utfpr.edu.br.papelariafacil.vo.Funcionario" optimistic-lock="version" table="funcionario">
+    <id name="idFuncionario" type="java.lang.Long">
+      <column name="idFuncionario"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Contato" fetch="select" name="contato">
+      <column name="contatoFuncionario"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Endereco" fetch="select" name="endereco">
+      <column name="enderecoFuncionario"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Pessoa" fetch="select" name="pessoa">
+      <column name="pessoaFuncionario"/>
+    </many-to-one>
+    <property name="nomeFuncionario" type="string">
+      <column length="50" name="nomeFuncionario"/>
+    </property>
+    <property name="cargoFuncionario" type="string">
+      <column length="20" name="cargoFuncionario"/>
+    </property>
+    <property name="usuarioFuncionario" type="string">
+      <column length="30" name="usuarioFuncionario"/>
+    </property>
+    <property name="senhaFuncionario" type="string">
+      <column length="30" name="senhaFuncionario"/>
+    </property>
+    <property name="criacaoFuncionario" type="timestamp">
+      <column length="19" name="criacaoFuncionario"/>
+    </property>
+    <property name="atualizacaoFuncionario" type="timestamp">
+      <column length="19" name="atualizacaoFuncionario"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="recebimentos" table="recebimento">
+      <key>
+        <column name="funcionarioRecebimento"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Recebimento"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="compras" table="compra">
+      <key>
+        <column name="funcionarioCompra"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Compra"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="vendas" table="venda">
+      <key>
+        <column name="funcionarioVenda"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Venda"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pagamentos" table="pagamento">
+      <key>
+        <column name="funcionarioPagamento"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Pagamento"/>
+    </set>
+  </class>
+</hibernate-mapping>

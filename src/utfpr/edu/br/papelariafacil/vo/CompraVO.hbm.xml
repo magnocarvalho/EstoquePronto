@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="utfpr.edu.br.papelariafacil.vo.Compra" optimistic-lock="version" table="compra">
+    <id name="idCompra" type="java.lang.Long">
+      <column name="idCompra"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Fornecedor" fetch="select" name="fornecedor">
+      <column name="fornecedorCompra"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Funcionario" fetch="select" name="funcionario">
+      <column name="funcionarioCompra"/>
+    </many-to-one>
+    <property name="valorCompra" type="big_decimal">
+      <column name="valorCompra" precision="10"/>
+    </property>
+    <property name="parcelasCompra" type="java.lang.Integer">
+      <column name="parcelasCompra"/>
+    </property>
+    <property name="vencimentoCompra" type="date">
+      <column length="10" name="vencimentoCompra"/>
+    </property>
+    <property name="criacaoCompra" type="timestamp">
+      <column length="19" name="criacaoCompra"/>
+    </property>
+    <property name="atualizacaoCompra" type="timestamp">
+      <column length="19" name="atualizacaoCompra"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="itemcompras" table="itemcompra">
+      <key>
+        <column name="compraItemCompra"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Itemcompra"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="pagamentos" table="pagamento">
+      <key>
+        <column name="compraPagamento"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Pagamento"/>
+    </set>
+  </class>
+</hibernate-mapping>

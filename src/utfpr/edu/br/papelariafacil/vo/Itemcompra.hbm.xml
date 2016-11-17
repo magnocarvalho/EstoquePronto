@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="utfpr.edu.br.papelariafacil.vo.Itemcompra" optimistic-lock="version" table="itemcompra">
+    <id name="idItemCompra" type="java.lang.Long">
+      <column name="idItemCompra"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Compra" fetch="select" name="compra">
+      <column name="compraItemCompra"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Produto" fetch="select" name="produto">
+      <column name="produtoItemCompra"/>
+    </many-to-one>
+    <property name="quantidadeItemCompra" type="java.lang.Integer">
+      <column name="quantidadeItemCompra"/>
+    </property>
+    <property name="valorItemCompra" type="big_decimal">
+      <column name="valorItemCompra" precision="10"/>
+    </property>
+    <property name="criacaoItemCompra" type="timestamp">
+      <column length="19" name="criacaoItemCompra"/>
+    </property>
+    <property name="atualizacaoItemCompra" type="timestamp">
+      <column length="19" name="atualizacaoItemCompra"/>
+    </property>
+  </class>
+</hibernate-mapping>

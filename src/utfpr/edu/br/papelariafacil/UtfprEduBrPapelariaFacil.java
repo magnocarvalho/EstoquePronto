@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package utfpr.edu.br.papelariafacil;
+import utfpr.edu.br.papelariafacil.form.FrmAcessoLogin;
+import utfpr.edu.br.papelariafacil.form.FrmBase;
+import utfpr.edu.br.papelariafacil.form.FrmFornecedora;
 import utfpr.edu.br.papelariafacil.form.FrmLogin;
-import utfpr.edu.br.papelariafacil.form.FrmPrincipal;
+import utfpr.edu.br.papelariafacil.util.Util;
 
 /**
  *
@@ -18,12 +21,21 @@ public class UtfprEduBrPapelariaFacil {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       FrmPrincipal fp = new FrmPrincipal();
-       FrmLogin l = new FrmLogin(fp, true);
-       l.setVisible(true);
-           
-       
-        
+     
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        FrmAcessoLogin f = new FrmAcessoLogin();
+        Util.abrirJFrameCentralizado(f);
+        f.setVisible(true);
+     
     }
     
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/06/2015 16:48:09 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="dbloja" name="utfpr.edu.br.papelariafacil.vo.Fornecedor" optimistic-lock="version" table="fornecedor">
+    <id name="idFornecedor" type="java.lang.Long">
+      <column name="idFornecedor"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Contato" fetch="select" name="contato">
+      <column name="contatoFornecedor"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Endereco" fetch="select" name="endereco">
+      <column name="enderecoFornecedor"/>
+    </many-to-one>
+    <many-to-one class="utfpr.edu.br.papelariafacil.vo.Pessoa" fetch="select" name="pessoa">
+      <column name="pessoaFornecedor"/>
+    </many-to-one>
+    <property name="nomeFornecedor" type="string">
+      <column length="50" name="nomeFornecedor"/>
+    </property>
+    <property name="criacaoFornecedor" type="timestamp">
+      <column length="19" name="criacaoFornecedor"/>
+    </property>
+    <property name="atualizacaoFornecedor" type="timestamp">
+      <column length="19" name="atualizacaoFornecedor"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="compras" table="compra">
+      <key>
+        <column name="fornecedorCompra"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Compra"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="produtos" table="produto">
+      <key>
+        <column name="fornecedorProduto"/>
+      </key>
+      <one-to-many class="utfpr.edu.br.papelariafacil.vo.Produto"/>
+    </set>
+  </class>
+</hibernate-mapping>

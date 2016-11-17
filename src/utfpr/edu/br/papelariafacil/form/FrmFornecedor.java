@@ -43,11 +43,10 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
 
         //Inicialização dos componentes padrões do JFrame.
         initComponents();
-       
-        txtID.setEditable(false);
         
+      
         this.frmBase = frmBase;
-        iniciarTabela();
+    
     }
 
     /**

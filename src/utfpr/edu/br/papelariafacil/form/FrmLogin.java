@@ -142,7 +142,7 @@ public class FrmLogin extends javax.swing.JDialog {
         
         try {
             Connection conexao = Conexao.getConnection();
-            Util.abrirJFrameCentralizado(new FrmPrincipal());
+            Util.abrirJFrameCentralizado(new FrmBase());
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
