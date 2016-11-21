@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,8 +31,9 @@ public class FrmBase extends javax.swing.JFrame {
         
         
         dpnCorpo.add(frmFornecedor = new FrmFornecedor(this));
-//        dpnCorpo.add(frmEstoque = new FrmEstoque(this));
-//        dpnCorpo.add(frmCompra = new FrmCompra(this));
+        dpnCorpo.add(frmEstoque = new FrmEstoque(this));
+        dpnCorpo.add(frmRelatorios = new FrmRelatorios(this));
+        dpnCorpo.add(frmVendas = new FrmVendas(this));
         
 
      
@@ -65,15 +67,19 @@ public class FrmBase extends javax.swing.JFrame {
         menu4 = new java.awt.Menu();
         jMenu1 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
         btnFornecedor = new javax.swing.JButton();
         dpnCorpo = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         btnCompras = new javax.swing.JButton();
         pnRodape = new javax.swing.JPanel();
         sprRodape = new javax.swing.JSeparator();
         lbRodape = new javax.swing.JLabel();
         btnVendas = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
+        btnRelatorio = new javax.swing.JButton();
+        btnVisaoGeral = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -100,10 +106,12 @@ public class FrmBase extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/fornecedor.png"))); // NOI18N
-        btnFornecedor.setText("FORNECEDOR");
+        btnFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fornecedor.png"))); // NOI18N
+        btnFornecedor.setText("PAINEL DE CONTROLE");
         btnFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFornecedorActionPerformed(evt);
@@ -112,28 +120,29 @@ public class FrmBase extends javax.swing.JFrame {
 
         dpnCorpo.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/lista-escolar.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/prototipo/1.VisaoGeral.png"))); // NOI18N
+        jLabel2.setAutoscrolls(true);
 
-        dpnCorpo.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dpnCorpo.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout dpnCorpoLayout = new javax.swing.GroupLayout(dpnCorpo);
         dpnCorpo.setLayout(dpnCorpoLayout);
         dpnCorpoLayout.setHorizontalGroup(
             dpnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dpnCorpoLayout.createSequentialGroup()
+            .addGroup(dpnCorpoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dpnCorpoLayout.setVerticalGroup(
             dpnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dpnCorpoLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/compras.png"))); // NOI18N
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/compras.png"))); // NOI18N
         btnCompras.setText("COMPRAS");
         btnCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +175,7 @@ public class FrmBase extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/vendasCliente.png"))); // NOI18N
+        btnVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/vendasCliente.png"))); // NOI18N
         btnVendas.setText("VENDAS");
         btnVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,8 +183,36 @@ public class FrmBase extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/historico.png"))); // NOI18N
-        jButton1.setText("ESTOQUE");
+        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/inventario.png"))); // NOI18N
+        btnEstoque.setText("ESTOQUE");
+        btnEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstoqueActionPerformed(evt);
+            }
+        });
+
+        btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/fluxoCaixaAnual.png"))); // NOI18N
+        btnRelatorio.setText("RELATORIO");
+        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorioActionPerformed(evt);
+            }
+        });
+
+        btnVisaoGeral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/analiseDespesas.png"))); // NOI18N
+        btnVisaoGeral.setText("INICIO");
+        btnVisaoGeral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaoGeralActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Sair");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,19 +222,26 @@ public class FrmBase extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnFornecedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dpnCorpo, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(btnVisaoGeral)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCompras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVendas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnRodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dpnCorpo, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                        .addComponent(btnEstoque)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRelatorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFornecedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,10 +251,13 @@ public class FrmBase extends javax.swing.JFrame {
                     .addComponent(btnFornecedor)
                     .addComponent(btnCompras)
                     .addComponent(btnVendas)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEstoque)
+                    .addComponent(btnRelatorio)
+                    .addComponent(btnVisaoGeral)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(dpnCorpo)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 23, Short.MAX_VALUE)
                 .addComponent(pnRodape, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -238,11 +285,61 @@ public class FrmBase extends javax.swing.JFrame {
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         // TODO add your handling code here:
+       if (!frmVendas.isVisible()) {
+            LimparDesktop();
+            frmVendas.setVisible(true);
+            try {
+                frmVendas.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnComprasActionPerformed
+
+    private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
+        // TODO add your handling code here:
+        if (!frmEstoque.isVisible()) {
+            LimparDesktop();
+            frmEstoque.setVisible(true);
+            try {
+                frmEstoque.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnEstoqueActionPerformed
+
+    private void btnVisaoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaoGeralActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnVisaoGeralActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Alerta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            LimparDesktop();
+            ocultarMenu();
+            frmAcessologin.setVisible(true);
+           
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+        // TODO add your handling code here:
+        if (!frmRelatorios.isVisible()) {
+            LimparDesktop();
+            frmRelatorios.setVisible(true);
+            try {
+                frmRelatorios.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,12 +388,16 @@ public class FrmBase extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnFornecedor;
+    private javax.swing.JButton btnRelatorio;
     private javax.swing.JButton btnVendas;
+    private javax.swing.JButton btnVisaoGeral;
     private javax.swing.JDesktopPane dpnCorpo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JLabel lbRodape;
     private java.awt.Menu menu1;
@@ -310,11 +411,13 @@ public class FrmBase extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
 
-    private FrmFornecedor frmFornecedor;
+    private FrmPainelControle frmFornecedor;
     private FrmVenda frmVenda;
     private FrmVendas frmVendas;
     private FrmEstoque frmEstoque;
     private FrmCompra frmCompra;
+    private FrmRelatorios frmRelatorios;
+    private FrmAcessoLogin frmAcessologin;
    
     public final void mostrarMenu()
     {
@@ -333,6 +436,19 @@ public class FrmBase extends javax.swing.JFrame {
     {
        
         frmFornecedor.setVisible(false);
+        frmEstoque.setVisible(false);
+        frmRelatorios.setVisible(false);
+        frmVendas.setVisible(false);
+        
         
     }
+//    public final void LimparDesktop() {
+//        viewAcesso.setVisible(false);
+//        viewEstoque.setVisible(false);
+//        viewFinanceiro.setVisible(false);
+//        viewPainelControle.setVisible(false);
+//        viewRelatorios.setVisible(false);
+//        viewVendas.setVisible(false);
+//        viewVisaoGeral.setVisible(false);
+//    }
 }
