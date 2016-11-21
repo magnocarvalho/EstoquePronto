@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import utfpr.edu.br.papelariafacil.dao.GenericDAO;
 import utfpr.edu.br.papelariafacil.vo.Categoria;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.vo.Produto;
 
 /**
@@ -61,18 +62,18 @@ public class ProdutoBO {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
             try {
                 Categoria categoriaVO = buscarCategoria(idCategoria - 1);
-                produtoV0.setCategoria(categoriaVO);
+                produtoV0.setCategoriaproduto(categoriaVO);
             } catch (Exception e) {
                 Categoria categoriaVO = null;
-                produtoV0.setCategoria(categoriaVO);
+                produtoV0.setCategoriaproduto(categoriaVO);
             }
             GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
             try {
                 Fornecedor fornecedorVO = buscarFornecedor(idFornecedor - 1);
-                produtoV0.setFornecedor(fornecedorVO);
+                produtoV0.setFornecedorproduto(fornecedorVO);
             } catch (Exception e) {
                 Fornecedor fornecedorVO = null;
-                produtoV0.setFornecedor(fornecedorVO);
+                produtoV0.setFornecedorproduto(fornecedorVO);
             }
 
             if (produtoDAO.inserir(produtoV0)) {
@@ -100,54 +101,52 @@ public class ProdutoBO {
      * @param maximo
      * @return true/false.
      */
-    public Boolean alterarProduto(Long idProduto, Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo, String estoque) {
+    public Boolean alterarProduto(Long idProduto, Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo) {
         try {
             GenericDAO<Produto> produtoDAO = new GenericDAO<>();
             Produto produtoV0 = produtoDAO.consultar("idProduto", idProduto, new Produto());
-            produtoV0.setDescricaoProduto(descricao);
-            produtoV0.setCodigoProduto(codigo);
+            produtoV0.setDescricaoproduto(descricao);
+            produtoV0.setCodigoproduto(codigo);
             try {
-                produtoV0.setCustoProduto(new BigDecimal(custo));
+                produtoV0.setCustoproduto(new BigDecimal(custo));
             } catch (Exception e) {
-                produtoV0.setCustoProduto(new BigDecimal(0));
+                produtoV0.setCustoproduto(new BigDecimal(0));
             }
             try {
-                produtoV0.setVendaProduto(new BigDecimal(venda));
+                produtoV0.setVendaproduto(new BigDecimal(venda));
             } catch (Exception e) {
-                produtoV0.setVendaProduto(new BigDecimal(0));
+                produtoV0.setVendaproduto(new BigDecimal(0));
             }
             try {
-                produtoV0.setMinimoProduto(new Long(minimo));
+                produtoV0.setMinimoproduto(new BigInteger(minimo));
             } catch (Exception e) {
-                produtoV0.setMinimoProduto(new Long(0));
+                BigInteger bi = BigInteger.ZERO;
+                produtoV0.setMinimoproduto(bi);
             }
             try {
-                produtoV0.setMaximoProduto(new Long(maximo));
+                produtoV0.setMaximoproduto(new BigInteger(maximo));
             } catch (Exception e) {
-                produtoV0.setMaximoProduto(new Long(0));
+                BigInteger bi = BigInteger.ZERO;
+                produtoV0.setMaximoproduto(bi);
             }
-            try {
-                produtoV0.setEstoqueProduto(new Long(estoque));
-            } catch (Exception e) {
-                produtoV0.setEstoqueProduto(new Long(0));
-            }
-            produtoV0.setAtualizacaoProduto(new Date());
+            
+            
 
             GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
             try {
                 Categoria categoriaVO = buscarCategoria(idCategoria - 1);
-                produtoV0.setCategoria(categoriaVO);
+                produtoV0.setCategoriaproduto(categoriaVO);
             } catch (Exception e) {
                 Categoria categoriaVO = null;
-                produtoV0.setCategoria(categoriaVO);
+                produtoV0.setCategoriaproduto(categoriaVO);
             }
             GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
             try {
                 Fornecedor fornecedorVO = buscarFornecedor(idFornecedor - 1);
-                produtoV0.setFornecedor(fornecedorVO);
+                produtoV0.setFornecedorproduto(fornecedorVO);
             } catch (Exception e) {
                 Fornecedor fornecedorVO = null;
-                produtoV0.setFornecedor(fornecedorVO);
+                produtoV0.setFornecedorproduto(fornecedorVO);
             }
 
             if (produtoDAO.atualizar(produtoV0)) {
@@ -172,7 +171,7 @@ public class ProdutoBO {
         ArrayList<String> array = new ArrayList<>();
         array.add("CATEGORIA");
         categoriasVO.stream().forEach((categoriasVO1) -> {
-            array.add(categoriasVO1.getDescricaoCategoria());
+            array.add(categoriasVO1.getDescricaocategoria());
         });
         String[] Arr = new String[array.size()];
         Arr = array.toArray(Arr);
@@ -191,7 +190,7 @@ public class ProdutoBO {
         ArrayList<String> array = new ArrayList<>();
         array.add("FORNENEDOR");
         fornecedoresVO.stream().forEach((fornecedoresVO1) -> {
-            array.add(fornecedoresVO1.getNomeFornecedor());
+            array.add(fornecedoresVO1.getNomefornecedor());
         });
         String[] Arr = new String[array.size()];
         Arr = array.toArray(Arr);
