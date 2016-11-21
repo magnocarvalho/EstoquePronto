@@ -2,6 +2,7 @@ package utfpr.edu.br.papelariafacil.tabelas;
 
 import utfpr.edu.br.papelariafacil.vo.Produto;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -9,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Inventario.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author magno
  */
 public class TableModelInventario extends AbstractTableModel {
 
@@ -82,15 +83,15 @@ public class TableModelInventario extends AbstractTableModel {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
             case descricaoProduto:
-                return produto.getDescricaoProduto();
+                return produto.getDescricaoproduto();
             case valorProduto:
-                return produto.getVendaProduto();
+                return produto.getVendaproduto();
             case minimoProduto:
-                return produto.getMinimoProduto();
+                return produto.getMinimoproduto();
             case maximoProduto:
-                return produto.getMaximoProduto();
+                return produto.getMaximoproduto();
             case estoqueProduto:
-                return produto.getEstoqueProduto();
+                return produto.getQuantidade();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -101,19 +102,19 @@ public class TableModelInventario extends AbstractTableModel {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
             case descricaoProduto:
-                produto.setDescricaoProduto((String) aValue);
+                produto.setDescricaoproduto((String) aValue);
                 break;
             case valorProduto:
-                produto.setVendaProduto((BigDecimal) aValue);
+                produto.setVendaproduto((BigDecimal) aValue);
                 break;
             case minimoProduto:
-                produto.setMinimoProduto((Long) aValue);
+                produto.setMinimoproduto((BigInteger) aValue);
                 break;
             case maximoProduto:
-                produto.setMaximoProduto((Long) aValue);
+                produto.setMaximoproduto((BigInteger) aValue);
                 break;
             case estoqueProduto:
-                produto.setEstoqueProduto((Long) (aValue));
+                produto.setQuantidade((BigInteger) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

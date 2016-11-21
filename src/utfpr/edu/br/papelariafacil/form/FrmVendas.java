@@ -25,7 +25,7 @@ public class FrmVendas extends javax.swing.JInternalFrame {
      * JFrame principal.
      * @param viewPrincipal
      */
-    public FrmVendas(ViewPrincipal viewPrincipal) {
+    public FrmVendas(FrmBase viewPrincipal) {
         //Esconde barra de título padrão do JInternalFrama.
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
@@ -279,14 +279,14 @@ public class FrmVendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbVendasMouseClicked
 
     private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
-        viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this);
+        viewVenda = new FrmVenda(viewPrincipal, true, viewPrincipal, this);
         viewVenda.setVisible(true);
     }//GEN-LAST:event_btnNovaVendaActionPerformed
 
     private void btnVisualizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVendaActionPerformed
         if (tbVendas.getSelectedRow() != -1) {
             TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
-            viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), false);
+            viewVenda = new FrmVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), false);
             viewVenda.setVisible(true);
         }
     }//GEN-LAST:event_btnVisualizarVendaActionPerformed
@@ -294,7 +294,7 @@ public class FrmVendas extends javax.swing.JInternalFrame {
     private void btnAlterarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarVendaActionPerformed
         if (tbVendas.getSelectedRow() != -1) {
             TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
-            viewVenda = new ViewVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), true);
+            viewVenda = new FrmVenda(viewPrincipal, true, viewPrincipal, this, modelo.getVenda(tbVendas.getSelectedRow()), true);
             viewVenda.setVisible(true);
         }
     }//GEN-LAST:event_btnAlterarVendaActionPerformed
@@ -302,15 +302,18 @@ public class FrmVendas extends javax.swing.JInternalFrame {
     private void btnExcluirVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirVendaActionPerformed
         if (tbVendas.getSelectedRow() != -1) {
             TableModelVenda modelo = (TableModelVenda) tbVendas.getModel();
-            if (vendaBO.excluirVenda(modelo.getVenda(tbVendas.getSelectedRow()).getIdVenda())) {
+            int i = modelo.getVenda(tbVendas.getSelectedRow()).getIdvenda();
+            Long l = Long.valueOf(i);
+            if (vendaBO.excluirVenda(l))
+            {
                 atualizarTabelas();
             }
         }
     }//GEN-LAST:event_btnExcluirVendaActionPerformed
 
     //Declaração de variáveis(View).
-    private ViewPrincipal viewPrincipal;
-    private ViewVenda viewVenda;
+    private FrmBase viewPrincipal;
+    private FrmVenda viewVenda;
 
     //Declaração de variáveis(Business Object).
     private VendaBO vendaBO;

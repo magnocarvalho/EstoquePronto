@@ -11,7 +11,7 @@ import java.awt.Cursor;
  * funcionalidades de Inventário(lista de produto e suas quantidades),
  * Compras(lista de pedidos de compras), Lançamentos(histórico de etidade de
  * produtos).
- * @author Familia
+ * @author Magno
  */
 public class FrmEstoque extends javax.swing.JInternalFrame {
 
@@ -29,7 +29,7 @@ public class FrmEstoque extends javax.swing.JInternalFrame {
      * JFrame principal.
      * @param viewPrincipal
      */
-    public FrmEstoque(ViewPrincipal viewPrincipal) {
+    public FrmEstoque(FrmBase viewPrincipal) {
         //Esconde barra de título padrão do JInternalFrama.
         setRootPaneCheckingEnabled(false);
         javax.swing.plaf.InternalFrameUI frame = this.getUI();
@@ -438,7 +438,7 @@ public class FrmEstoque extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaCompraActionPerformed
-        viewCompra = new ViewCompra(viewPrincipal, true, viewPrincipal, this);
+        viewCompra = new FrmCompra(viewPrincipal, true, viewPrincipal, this);
         viewCompra.setVisible(true);
     }//GEN-LAST:event_btnNovaCompraActionPerformed
 
@@ -461,7 +461,7 @@ public class FrmEstoque extends javax.swing.JInternalFrame {
     private void btnVisualizarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarComprasActionPerformed
         if (tbCompras.getSelectedRow() != -1) {
             TableModelCompra modelo = (TableModelCompra) tbCompras.getModel();
-            viewCompra = new ViewCompra(viewPrincipal, true, viewPrincipal, this, modelo.getCompra(tbCompras.getSelectedRow()), false);
+            viewCompra = new FrmCompra(viewPrincipal, true, viewPrincipal, this, modelo.getCompra(tbCompras.getSelectedRow()), false);
             viewCompra.setVisible(true);
         }
     }//GEN-LAST:event_btnVisualizarComprasActionPerformed
@@ -469,7 +469,7 @@ public class FrmEstoque extends javax.swing.JInternalFrame {
     private void btnAlterarComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarComprasActionPerformed
         if (tbCompras.getSelectedRow() != -1) {
             TableModelCompra modelo = (TableModelCompra) tbCompras.getModel();
-            viewCompra = new ViewCompra(viewPrincipal, true, viewPrincipal, this, modelo.getCompra(tbCompras.getSelectedRow()), true);
+            viewCompra = new FrmCompra(viewPrincipal, true, viewPrincipal, this, modelo.getCompra(tbCompras.getSelectedRow()), true);
             viewCompra.setVisible(true);
         }
     }//GEN-LAST:event_btnAlterarComprasActionPerformed
@@ -477,15 +477,18 @@ public class FrmEstoque extends javax.swing.JInternalFrame {
     private void btnExcluirComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirComprasActionPerformed
         if (tbCompras.getSelectedRow() != -1) {
             TableModelCompra modelo = (TableModelCompra) tbCompras.getModel();
-            if (compraBO.excluirCompra(modelo.getCompra(tbCompras.getSelectedRow()).getIdCompra())) {
+            Integer b = modelo.getCompra(tbCompras.getSelectedRow()).getIdcompra();
+            Long c = Long.valueOf(b);
+            if (compraBO.excluirCompra(c))
+            {
                 atualizarTabelas();
             }
         }
     }//GEN-LAST:event_btnExcluirComprasActionPerformed
 
     //Declaração de variáveis(View).
-    private ViewPrincipal viewPrincipal;
-    private ViewCompra viewCompra;
+    private FrmBase viewPrincipal;
+    private FrmCompra viewCompra;
 
     //Declaração de variáveis(Business Object).
     private CompraBO compraBO;

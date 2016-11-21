@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utfpr.edu.br.papelariafacil.model;
+package utfpr.edu.br.papelariafacil.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,33 +25,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author magno
  */
-@Entity
-@Table(name = "pagamento")
+@MappedSuperclass
+@Table(catalog = "dbloja", schema = "public")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
-    , @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento")
-    , @NamedQuery(name = "Pagamento.findByDescricao", query = "SELECT p FROM Pagamento p WHERE p.descricao = :descricao")
-    , @NamedQuery(name = "Pagamento.findByValorpagamento", query = "SELECT p FROM Pagamento p WHERE p.valorpagamento = :valorpagamento")
-    , @NamedQuery(name = "Pagamento.findByDatapagamento", query = "SELECT p FROM Pagamento p WHERE p.datapagamento = :datapagamento")
-    , @NamedQuery(name = "Pagamento.findByCriacaopagamento", query = "SELECT p FROM Pagamento p WHERE p.criacaopagamento = :criacaopagamento")})
 public class Pagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idpagamento")
+    @Column(nullable = false)
     private Integer idpagamento;
-    @Column(name = "descricao")
+    @Column(length = 50)
     private String descricao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorpagamento")
+    @Column(precision = 10, scale = 2)
     private BigDecimal valorpagamento;
-    @Column(name = "datapagamento")
     @Temporal(TemporalType.DATE)
     private Date datapagamento;
-    @Column(name = "criacaopagamento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaopagamento;
     @JoinColumn(name = "comprapagamento", referencedColumnName = "idcompra")
@@ -148,7 +137,7 @@ public class Pagamento implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.model.Pagamento[ idpagamento=" + idpagamento + " ]";
+        return "utfpr.edu.br.papelariafacil.vo.Pagamento[ idpagamento=" + idpagamento + " ]";
     }
     
 }

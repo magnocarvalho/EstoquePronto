@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utfpr.edu.br.papelariafacil.model;
+package utfpr.edu.br.papelariafacil.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,26 +28,20 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author magno
  */
-@Entity
-@Table(name = "compra")
+@MappedSuperclass
+@Table(catalog = "dbloja", schema = "public")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c")
-    , @NamedQuery(name = "Compra.findByIdcompra", query = "SELECT c FROM Compra c WHERE c.idcompra = :idcompra")
-    , @NamedQuery(name = "Compra.findByValorcompra", query = "SELECT c FROM Compra c WHERE c.valorcompra = :valorcompra")
-    , @NamedQuery(name = "Compra.findByCriacaocompra", query = "SELECT c FROM Compra c WHERE c.criacaocompra = :criacaocompra")})
 public class Compra implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcompra")
+    @Column(nullable = false)
     private Integer idcompra;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorcompra")
+    @Column(precision = 10, scale = 2)
     private BigDecimal valorcompra;
-    @Column(name = "criacaocompra")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacaocompra;
     @JoinColumn(name = "fornecedorcompra", referencedColumnName = "idfornecedor")
@@ -59,9 +51,9 @@ public class Compra implements Serializable {
     @ManyToOne
     private Funcionario funcionariocompra;
     @OneToMany(mappedBy = "comprapagamento")
-    private Collection<Pagamento> pagamentoCollection;
+    private Set<Pagamento> pagamentoSet;
     @OneToMany(mappedBy = "compraitemcompra")
-    private Collection<Itemcompra> itemcompraCollection;
+    private Set<Itemcompra> itemcompraSet;
 
     public Compra() {
     }
@@ -111,21 +103,21 @@ public class Compra implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Pagamento> getPagamentoCollection() {
-        return pagamentoCollection;
+    public Set<Pagamento> getPagamentoSet() {
+        return pagamentoSet;
     }
 
-    public void setPagamentoCollection(Collection<Pagamento> pagamentoCollection) {
-        this.pagamentoCollection = pagamentoCollection;
+    public void setPagamentoSet(Set<Pagamento> pagamentoSet) {
+        this.pagamentoSet = pagamentoSet;
     }
 
     @XmlTransient
-    public Collection<Itemcompra> getItemcompraCollection() {
-        return itemcompraCollection;
+    public Set<Itemcompra> getItemcompraSet() {
+        return itemcompraSet;
     }
 
-    public void setItemcompraCollection(Collection<Itemcompra> itemcompraCollection) {
-        this.itemcompraCollection = itemcompraCollection;
+    public void setItemcompraSet(Set<Itemcompra> itemcompraSet) {
+        this.itemcompraSet = itemcompraSet;
     }
 
     @Override
@@ -150,7 +142,7 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "utfpr.edu.br.papelariafacil.model.Compra[ idcompra=" + idcompra + " ]";
+        return "utfpr.edu.br.papelariafacil.vo.Compra[ idcompra=" + idcompra + " ]";
     }
     
 }

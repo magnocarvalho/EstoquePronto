@@ -1,9 +1,6 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Itemvenda;
-import br.com.models.vo.Produto;
-import br.com.models.vo.Venda;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.math.BigDecimal;
@@ -13,6 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Itemvenda;
+import utfpr.edu.br.papelariafacil.vo.Produto;
+import utfpr.edu.br.papelariafacil.vo.Venda;
 
 public class ItemVendaBO {
 
@@ -40,7 +41,7 @@ public class ItemVendaBO {
         ArrayList<String> array = new ArrayList<>();
         array.add("PRODUTO");
         produtosVO.stream().forEach((aux) -> {
-            array.add(aux.getDescricaoProduto());
+            array.add(aux.getDescricaoproduto());
         });
         String[] Arr = new String[array.size()];
         Arr = array.toArray(Arr);
@@ -60,20 +61,20 @@ public class ItemVendaBO {
             GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
             Itemvenda itemVO = new Itemvenda();
 
-            itemVO.setVenda(venda);
-            itemVO.setProduto(produto);
+            itemVO.setVendaitemvenda(venda);
+            itemVO.setProdutoitemvenda(produto);
             try {
-                itemVO.setQuantidadeItemVenda(new Integer(quantidade));
+                itemVO.setQuantidade(new Integer(quantidade));
             } catch (Exception e) {
-                itemVO.setQuantidadeItemVenda(1);
+                itemVO.setQuantidade(1);
             }
             try {
-                itemVO.setValorItemVenda(new BigDecimal(valor));
+                itemVO.setValor(new BigDecimal(valor));
             } catch (Exception e) {
-                itemVO.setValorItemVenda(produto.getVendaProduto().multiply(new BigDecimal(itemVO.getQuantidadeItemVenda())));
+                itemVO.setValor(produto.getVendaproduto().multiply(new BigDecimal(itemVO.getQuantidade())));
             }
-            itemVO.setCriacaoItemVenda(new Date());
-            itemVO.setAtualizacaoItemVenda(new Date());
+            itemVO.setCriacaoitemvenda(new Date());
+           
 
             return itemVO;
         } catch (Exception e) {
@@ -92,16 +93,16 @@ public class ItemVendaBO {
     public Boolean alterarItem(Itemvenda itemVO, String quantidade, String valor) {
         try {
             try {
-                itemVO.setQuantidadeItemVenda(new Integer(quantidade));
+                itemVO.setQuantidade(new Integer(quantidade));
             } catch (Exception e) {
-                itemVO.setQuantidadeItemVenda(1);
+                itemVO.setQuantidade(1);
             }
             try {
-                itemVO.setValorItemVenda(new BigDecimal(valor));
+                itemVO.setValor(new BigDecimal(valor));
             } catch (Exception e) {
-                itemVO.setValorItemVenda(itemVO.getProduto().getVendaProduto().multiply(new BigDecimal(itemVO.getQuantidadeItemVenda())));
+                itemVO.setValor(itemVO.getProdutoitemvenda().getVendaproduto().multiply(new BigDecimal(itemVO.getQuantidade())));
             }
-            itemVO.setAtualizacaoItemVenda(new Date());
+           
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);

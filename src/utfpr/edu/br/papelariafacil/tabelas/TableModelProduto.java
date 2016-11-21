@@ -1,5 +1,7 @@
 package utfpr.edu.br.papelariafacil.tabelas;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import utfpr.edu.br.papelariafacil.vo.Categoria;
 import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.vo.Produto;
@@ -24,8 +26,9 @@ public class TableModelProduto extends AbstractTableModel {
     private static final int categoriaProduto = 1;
     private static final int fornecedorProduto = 2;
     private static final int codigoProduto = 3;
-    private static final int criacaoProduto = 4;
-    private static final int atualizacaoProduto = 5;
+    private static final int custo = 4;
+    private static final int valor = 5;
+    private static final int quantidade = 6;
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -33,7 +36,7 @@ public class TableModelProduto extends AbstractTableModel {
      */
     public TableModelProduto() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo", "Criação", "Atualização"};
+        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo",  "Custo", "Valor" , "Quantidade"};
     }
 
     /**
@@ -43,7 +46,7 @@ public class TableModelProduto extends AbstractTableModel {
      */
     public TableModelProduto(List<Produto> produtos) {
         linhas = new ArrayList<>(produtos);
-        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo", "Criação", "Atualização"};
+        colunas = new String[]{"Produto", "Categoria", "Fornecedor", "Codigo",  "Custo", "Valor" , "Quantidade"};
     }
 
     //Gets and Sets
@@ -73,10 +76,13 @@ public class TableModelProduto extends AbstractTableModel {
                 return String.class;
             case codigoProduto:
                 return String.class;
-            case criacaoProduto:
-                return Date.class;
-            case atualizacaoProduto:
-                return Date.class;
+            
+            case custo:
+                return String.class;
+            case valor:
+                return String.class;
+            case quantidade:
+                return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -87,25 +93,29 @@ public class TableModelProduto extends AbstractTableModel {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
             case descricaoProduto:
-                return produto.getDescricaoProduto();
+                return produto.getDescricaoproduto();
             case categoriaProduto:
-                if (produto.getCategoria() != null) {
-                    return produto.getCategoria().getDescricaoCategoria();
+                if (produto.getCategoriaproduto()!= null) {
+                    return produto.getCategoriaproduto().getDescricaocategoria();
                 } else {
                     return null;
                 }
             case fornecedorProduto:
-                if (produto.getFornecedor() != null) {
-                    return produto.getFornecedor().getNomeFornecedor();
+                if (produto.getFornecedorproduto()!= null) {
+                    return produto.getFornecedorproduto().getNomefornecedor();
                 } else {
                     return null;
                 }
             case codigoProduto:
-                return produto.getCodigoProduto();
-            case criacaoProduto:
-                return produto.getCriacaoProduto();
-            case atualizacaoProduto:
-                return produto.getAtualizacaoProduto();
+                return produto.getCodigoproduto();
+            case custo:
+                return produto.getCustoproduto();
+            case valor:
+                return produto.getVendaproduto();
+            case quantidade:
+                return produto.getQuantidade();
+           
+           
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -116,23 +126,27 @@ public class TableModelProduto extends AbstractTableModel {
         Produto produto = linhas.get(rowIndex);
         switch (columnIndex) {
             case descricaoProduto:
-                produto.setDescricaoProduto((String) aValue);
+                produto.setDescricaoproduto((String) aValue);
                 break;
             case categoriaProduto:
-                produto.setCategoria((Categoria) aValue);
+                produto.setCategoriaproduto((Categoria) aValue);
                 break;
             case fornecedorProduto:
-                produto.setFornecedor((Fornecedor) aValue);
+                produto.setFornecedorproduto((Fornecedor) aValue);
                 break;
             case codigoProduto:
-                produto.setCodigoProduto((String) aValue);
+                produto.setCodigoproduto((String) aValue);
                 break;
-            case criacaoProduto:
-                produto.setCriacaoProduto((Date) (aValue));
+           case custo:
+                produto.setCustoproduto((BigDecimal) aValue);
                 break;
-            case atualizacaoProduto:
-                produto.setAtualizacaoProduto((Date) (aValue));
+            case valor:
+                produto.setVendaproduto((BigDecimal) aValue);
                 break;
+            case quantidade:
+                produto.setQuantidade((BigInteger) aValue);
+                break;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

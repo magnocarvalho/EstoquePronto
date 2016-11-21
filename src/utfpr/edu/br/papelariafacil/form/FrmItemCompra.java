@@ -20,7 +20,7 @@ public class FrmItemCompra extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public FrmItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra, ArrayList<Itemcompra> itens) {
+    public FrmItemCompra(java.awt.Frame parent, boolean modal, FrmCompra viewCompra, ArrayList<Itemcompra> itens) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         this.viewCompra = viewCompra;
@@ -39,7 +39,7 @@ public class FrmItemCompra extends javax.swing.JDialog {
      * @param modal
      * @param viewCompra
      */
-    public FrmItemCompra(java.awt.Frame parent, boolean modal, ViewCompra viewCompra, Itemcompra item, Boolean alterar) {
+    public FrmItemCompra(java.awt.Frame parent, boolean modal, FrmCompra viewCompra, Itemcompra item, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         this.viewCompra = viewCompra;
@@ -53,8 +53,8 @@ public class FrmItemCompra extends javax.swing.JDialog {
         //Definindo Modelo com Produto para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
         String[] Arr = new String[array.size()];
-        if (item.getProduto() != null) {
-            array.add(item.getProduto().getDescricaoProduto());
+        if (item.getProdutoitemcompra()!= null) {
+            array.add(item.getProdutoitemcompra().getDescricaoproduto());
         } else {
             array.add("PRODUTO");
         }
@@ -63,9 +63,9 @@ public class FrmItemCompra extends javax.swing.JDialog {
         cbProduto.setEnabled(false);
 
         //Definindo valores quantidade e valor
-        tfQuantidade.setText(item.getQuantidadeItemCompra().toString());
-        tfValor.setText(item.getValorItemCompra().toString());
-        tfBuscarProduto.setText(item.getProduto().getCodigoProduto());
+        tfQuantidade.setText(item.getQuantidadeitemcompra().toString());
+        tfValor.setText(item.getValoritemcompra().toString());
+        tfBuscarProduto.setText(item.getProdutoitemcompra().getCodigoproduto());
         tfBuscarProduto.setEditable(false);
         btnBuscarProduto.setEnabled(false);
         if (alterar) {
@@ -339,7 +339,7 @@ public class FrmItemCompra extends javax.swing.JDialog {
     private void tfQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuantidadeKeyReleased
         try {
             if (tfValor.getText().length() > 0 && cbProduto.getSelectedIndex() > 0) {
-                tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1).getVendaProduto()).toString());
+                tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1).getVendaproduto()).toString());
             } else {
                 tfValor.setText("0.0");
             }
@@ -360,7 +360,7 @@ public class FrmItemCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_tfQuantidadeKeyReleased
 
     //Declaração de variáveis(View).
-    private final ViewCompra viewCompra;
+    private final FrmCompra viewCompra;
 
     //Declaração de variáveis(Value Object).
     private Itemcompra itemVO;

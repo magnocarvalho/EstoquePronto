@@ -73,9 +73,9 @@ public class TableModelItemCompra extends AbstractTableModel {
         Itemcompra item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
-                return item.getProduto().getDescricaoProduto();
+                return item.getProdutoitemcompra().getDescricaoproduto();
             case valorItem:
-                return item.getValorItemCompra();
+                return item.getValoritemcompra();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -86,10 +86,10 @@ public class TableModelItemCompra extends AbstractTableModel {
         Itemcompra item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
-                item.getProduto().setDescricaoProduto((String) aValue);
+                item.getProdutoitemcompra().setDescricaoproduto((String) aValue);
                 break;
             case valorItem:
-                item.setValorItemCompra((BigDecimal) (aValue));
+                item.setValoritemcompra((BigDecimal) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

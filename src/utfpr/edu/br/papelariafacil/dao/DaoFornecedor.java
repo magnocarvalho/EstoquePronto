@@ -6,7 +6,7 @@
 package utfpr.edu.br.papelariafacil.dao;
 import java.util.List;
 import org.hibernate.Query;
-import utfpr.edu.br.papelariafacil.model.Fornecedor;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 /**
  *
  * @author Magno

@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Funcionario.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * 
  */
 public class TableModelFuncionario extends AbstractTableModel {
 
@@ -22,8 +22,8 @@ public class TableModelFuncionario extends AbstractTableModel {
     private static final int cargoFuncionario = 1;
     private static final int emailFuncionario = 2;
     private static final int telefoneFuncionario = 3;
-    private static final int criacaoFuncionario = 4;
-    private static final int atualizacaoFuncionario = 5;
+    private static final int celular = 4;
+   
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -31,7 +31,7 @@ public class TableModelFuncionario extends AbstractTableModel {
      */
     public TableModelFuncionario() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Celular"};
     }
 
     /**
@@ -71,10 +71,8 @@ public class TableModelFuncionario extends AbstractTableModel {
                 return String.class;
             case telefoneFuncionario:
                 return String.class;
-            case criacaoFuncionario:
-                return Date.class;
-            case atualizacaoFuncionario:
-                return Date.class;
+            case celular:
+                return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -85,17 +83,15 @@ public class TableModelFuncionario extends AbstractTableModel {
         Funcionario funcionario = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFuncionario:
-                return funcionario.getNomeFuncionario();
+                return funcionario.getNomefuncionario();
             case cargoFuncionario:
-                return funcionario.getCargoFuncionario();
+                return funcionario.getCargofuncionario();
             case emailFuncionario:
-                return funcionario.getContato().getEmailContato();
+                return funcionario.getEmailcontato();
             case telefoneFuncionario:
-                return funcionario.getContato().getTelefoneContato();
-            case criacaoFuncionario:
-                return funcionario.getCriacaoFuncionario();
-            case atualizacaoFuncionario:
-                return funcionario.getAtualizacaoFuncionario();
+                return funcionario.getTelefone();
+            case celular:
+                return funcionario.getCelular();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -106,23 +102,21 @@ public class TableModelFuncionario extends AbstractTableModel {
         Funcionario funcionario = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFuncionario:
-                funcionario.setNomeFuncionario((String) aValue);
+                funcionario.setNomefuncionario((String) aValue);
                 break;
             case cargoFuncionario:
-                funcionario.setCargoFuncionario((String) aValue);
+                funcionario.setCargofuncionario((String) aValue);
                 break;
             case emailFuncionario:
-                funcionario.getContato().setEmailContato((String) aValue);
+                funcionario.setEmailcontato((String) aValue);
                 break;
             case telefoneFuncionario:
-                funcionario.getContato().setTelefoneContato((String) aValue);
+                funcionario.setTelefone((String) aValue);
                 break;
-            case criacaoFuncionario:
-                funcionario.setCriacaoFuncionario((Date) (aValue));
+            case celular:
+                funcionario.setCelular((String) (aValue));
                 break;
-            case atualizacaoFuncionario:
-                funcionario.setAtualizacaoFuncionario((Date) (aValue));
-                break;
+             
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

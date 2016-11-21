@@ -135,6 +135,11 @@ public class FrmBase extends javax.swing.JFrame {
 
         btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utfpr/edu/br/papelariafacil/resources/img/compras.png"))); // NOI18N
         btnCompras.setText("COMPRAS");
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
 
         sprRodape.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -215,25 +220,29 @@ public class FrmBase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
-//        // TODO add your handling code here:
-//         if (!frmFornecedor.isVisible()) {
-//            LimparDesktop();
-//            frmFornecedor.setVisible(true);
-//            try {
-//                frmFornecedor.setMaximum(true);
-//            } catch (PropertyVetoException ex) {
-//                Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-
-            FrmFornecedora f = new FrmFornecedora();
-            f.setVisible(true);
-            this.dispose();
+        // TODO add your handling code here:
+         if (!frmFornecedor.isVisible()) {
+            LimparDesktop();
+            frmFornecedor.setVisible(true);
+            try {
+                frmFornecedor.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+//
+//            FrmFornecedora f = new FrmFornecedora();
+//            f.setVisible(true);
+//            this.dispose();
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVendasActionPerformed
+
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnComprasActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,7 +20,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
      * @param modal
      * @param viewVenda
      */
-    public FrmItemVenda(java.awt.Frame parent, boolean modal, ViewVenda viewVenda, ArrayList<Itemvenda> itens) {
+    public FrmItemVenda(java.awt.Frame parent, boolean modal, FrmVenda viewVenda, ArrayList<Itemvenda> itens) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         this.viewVenda = viewVenda;
@@ -39,7 +39,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
      * @param modal
      * @param viewVenda
      */
-    public FrmItemVenda(java.awt.Frame parent, boolean modal, ViewVenda viewVenda, Itemvenda item, Boolean alterar) {
+    public FrmItemVenda(java.awt.Frame parent, boolean modal, FrmVenda viewVenda, Itemvenda item, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         this.viewVenda = viewVenda;
@@ -53,8 +53,8 @@ public class FrmItemVenda extends javax.swing.JDialog {
         //Definindo Modelo com Produto para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
         String[] Arr = new String[array.size()];
-        if (item.getProduto() != null) {
-            array.add(item.getProduto().getDescricaoProduto());
+        if (item.getProdutoitemvenda()!= null) {
+            array.add(item.getProdutoitemvenda().getDescricaoproduto());
         } else {
             array.add("PRODUTO");
         }
@@ -63,9 +63,9 @@ public class FrmItemVenda extends javax.swing.JDialog {
         cbProduto.setEnabled(false);
 
         //Definindo valores quantidade e valor
-        tfQuantidade.setText(item.getQuantidadeItemVenda().toString());
-        tfValor.setText(item.getValorItemVenda().toString());
-        tfBuscarProduto.setText(item.getProduto().getCodigoProduto());
+        tfQuantidade.setText(item.getQuantidade().toString());
+        tfValor.setText(item.getValor().toString());
+        tfBuscarProduto.setText(item.getProdutoitemvenda().getCodigoproduto());
         tfBuscarProduto.setEditable(false);
         btnBuscarProduto.setEnabled(false);
         if (alterar) {
@@ -311,7 +311,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
     private void tfQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuantidadeKeyReleased
         try {
             if (tfValor.getText().length() > 0 && cbProduto.getSelectedIndex() > 0) {
-                tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1).getVendaProduto()).toString());
+                tfValor.setText(new BigDecimal(tfQuantidade.getText()).multiply(itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1).getVendaproduto()).toString());
             } else {
                 tfValor.setText("0,0");
             }
@@ -360,7 +360,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     //Declaração de variáveis(View).
-    private final ViewVenda viewVenda;
+    private final FrmVenda viewVenda;
 
     //Declaração de variáveis(Value Object).
     private Itemvenda itemVO;

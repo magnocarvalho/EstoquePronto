@@ -1,21 +1,22 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Cliente;
-import br.com.models.vo.Funcionario;
-import br.com.models.vo.Itemvenda;
-import br.com.models.vo.Venda;
+
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import javax.swing.JOptionPane;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Funcionario;
+import utfpr.edu.br.papelariafacil.vo.Itemvenda;
+import utfpr.edu.br.papelariafacil.vo.Venda;
 
 /**
  * @see Classe de objetos de negócios. Métodos:
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class VendaBO {
 
@@ -25,11 +26,7 @@ public class VendaBO {
      * @return Lista de Categorias composta por todas as linhas da tabela
      * categoria do banco de dados.
      */
-    public Cliente buscarCliente(Integer idCliente) {
-        GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
-        ArrayList<Cliente> clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
-        return clientesVO.get(idCliente);
-    }
+   
 
     /**
      * @see Método que realiza consulta ao banco de dados por todos as
@@ -37,18 +34,7 @@ public class VendaBO {
      * @return Lista de Categorias composta por todas as linhas da tabela
      * categoria do banco de dados.
      */
-    public String[] buscarNomeClientes() {
-        GenericDAO<Cliente> clienteDAO = new GenericDAO<>();
-        ArrayList<Cliente> clientesVO = new ArrayList<>(clienteDAO.consultar(new Cliente()));
-        ArrayList<String> array = new ArrayList<>();
-        array.add("CLIENTE");
-        clientesVO.stream().forEach((categoriasVO1) -> {
-            array.add(categoriasVO1.getNomeCliente());
-        });
-        String[] Arr = new String[array.size()];
-        Arr = array.toArray(Arr);
-        return Arr;
-    }
+    
 
     /**
      * @see Método que realiza consulta ao banco de dados por todos as
@@ -100,24 +86,18 @@ public class VendaBO {
             Venda vendaVO = new Venda();
 
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            vendaVO.setFuncionario(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
-            if (idCliente > 0) {
-                vendaVO.setCliente(buscarCliente(idCliente - 1));
-            }
-            vendaVO.setValorVenda(new BigDecimal(valor));
-            vendaVO.setParcelasVenda(parcelas);
-            try {
-                vendaVO.setVencimentoVenda(new SimpleDateFormat("yyyy/MM/dd").parse(vencimento));
-            } catch (Exception e) {
-                vendaVO.setVencimentoVenda(new Date());
-            }
-            vendaVO.setCriacaoVenda(new Date());
-            vendaVO.setAtualizacaoVenda(new Date());
+            vendaVO.setFuncionariovenda(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
+            
+            vendaVO.setValor(new BigDecimal(valor));
+            
+            
+            vendaVO.setCriacaovenda(new Date());
+            vendaVO.setAtualizacaovenda(new Date());
             vendaDAO.inserir(vendaVO);
 
             GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
             itens.stream().forEach((iten) -> {
-                iten.setVenda(vendaVO);
+                iten.setVendaitemvenda(vendaVO);
                 itemDAO.inserir(iten);
             });
             JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -133,8 +113,11 @@ public class VendaBO {
             GenericDAO<Venda> vendaDAO = new GenericDAO<>();
             vendaDAO.apagar(vendaDAO.consultar("idVenda", idVenda, new Venda()));
             GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
-            itens.stream().forEach((iten) -> {
-                itemDAO.apagar(itemDAO.consultar("idItem", iten.getIdItemVenda(), new Itemvenda()));
+            itens.stream().forEach(new Consumer<Itemvenda>() {
+                @Override
+                public void accept(Itemvenda iten) {
+                    itemDAO.apagar(itemDAO.consultar("idItem", (long)iten.getIditemvenda(), new Itemvenda()));
+                }
             });
         } catch (Exception e) {
 
@@ -145,7 +128,7 @@ public class VendaBO {
         GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
         List<Itemvenda> itens = itemDAO.consultar(new Itemvenda());
         ArrayList<Itemvenda> itensVenda = new ArrayList<>();
-        itens.stream().filter((iten) -> (Objects.equals(iten.getVenda().getIdVenda(), idVenda))).forEach((iten) -> {
+        itens.stream().filter((iten) -> (Objects.equals(iten.getVendaitemvenda().getIdvenda(), idVenda))).forEach((iten) -> {
             itensVenda.add(iten);
         });
         return itensVenda;

@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 public class GenericDAO<T> {
 
     //Declaração da sessão de conexão ao banco de dados.
-    private final Session session = (Session) HibernateUtil.getSession();
+    private final Session session = (Session) HibernateUtil.openConnect();
 
     /**
      * @see Método INSERT INTO.

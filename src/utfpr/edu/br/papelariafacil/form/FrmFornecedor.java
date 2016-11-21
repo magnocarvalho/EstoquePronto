@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utfpr.edu.br.papelariafacil.conexao.TransactionUtil;
 import utfpr.edu.br.papelariafacil.dao.DaoFornecedor;
-import utfpr.edu.br.papelariafacil.model.Fornecedor;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.util.Util;
 
 /**
@@ -651,7 +651,7 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
             forne = new DaoFornecedor().obterRazao(txtRazao.getText());
             preenchertabela();
         } catch (Exception e) {
-            Logger.getLogger(FrmFornecedora.class.getName()).log(Level.SEVERE, null, e);//erro
+            Logger.getLogger(FrmFornecedor.class.getName()).log(Level.SEVERE, null, e);//erro
             Util.dispayMsg("Erro ao Pesquisar Por Nome/Razao social!");
 
         }
@@ -663,7 +663,7 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
             forne = new DaoFornecedor().obterNome(txtNome.getText());
             preenchertabela();
         } catch (Exception e) {
-            Logger.getLogger(FrmFornecedora.class.getName()).log(Level.SEVERE, null, e);//erro
+            Logger.getLogger(FrmFornecedor.class.getName()).log(Level.SEVERE, null, e);//erro
             Util.dispayMsg("Erro ao Pesquisar Por Nome/Razao social!");
 
         }
@@ -675,7 +675,7 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
             forne = new DaoFornecedor().obterCnpj(txtCnpj.getText());
             preenchertabela();
         } catch (Exception e) {
-            Logger.getLogger(FrmFornecedora.class.getName()).log(Level.SEVERE, null, e);//erro
+            Logger.getLogger(FrmFornecedor.class.getName()).log(Level.SEVERE, null, e);//erro
             Util.dispayMsg("Erro ao Pesquisar Por Nome/Razao social!");
 
         }
@@ -711,7 +711,7 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao persistir no banco","Messagem", JOptionPane.ERROR_MESSAGE, null);
                 TransactionUtil.rollback();
-                Logger.getLogger(FrmFornecedora.class.getName()).log(Level.SEVERE, null, ex);//erro
+                Logger.getLogger(FrmFornecedor.class.getName()).log(Level.SEVERE, null, ex);//erro
                
             }
             
@@ -738,7 +738,7 @@ public class FrmFornecedor extends javax.swing.JInternalFrame {
                 } catch (Exception e) {
                     TransactionUtil.rollback();
                     Util.dispayMsg("erro Inesperado!");
-                    Logger.getLogger(FrmFornecedora.class.getName()).log(Level.SEVERE, null, e);//erro
+                    Logger.getLogger(FrmFornecedor.class.getName()).log(Level.SEVERE, null, e);//erro
                     JOptionPane.showMessageDialog(null, "Erro ao persistir no banco" + e.getMessage(),"Messagem", JOptionPane.ERROR_MESSAGE, null);
                     
                 }

@@ -1,11 +1,8 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Compra;
-import br.com.models.vo.Fornecedor;
-import br.com.models.vo.Funcionario;
-import br.com.models.vo.Itemcompra;
-import br.com.models.vo.Produto;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+
+import utfpr.edu.br.papelariafacil.vo.Produto;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
@@ -14,6 +11,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import utfpr.edu.br.papelariafacil.vo.Compra;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
+import utfpr.edu.br.papelariafacil.vo.Funcionario;
+import utfpr.edu.br.papelariafacil.vo.Itemcompra;
+
 
 public class CompraBO {
 
@@ -43,18 +45,7 @@ public class CompraBO {
         return clientesVO.get(idCliente);
     }
 
-    public String[] buscarNomeFornecedores() {
-        GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
-        ArrayList<Fornecedor> fornecedoresVO = new ArrayList<>(fornecedorDAO.consultar(new Fornecedor()));
-        ArrayList<String> array = new ArrayList<>();
-        array.add("FORNECEDOR");
-        fornecedoresVO.stream().forEach((categoriasVO1) -> {
-            array.add(categoriasVO1.getNomeFornecedor());
-        });
-        String[] Arr = new String[array.size()];
-        Arr = array.toArray(Arr);
-        return Arr;
-    }
+   
 
     public Boolean excluirCompra(Long idCompra) {
         try {
@@ -81,31 +72,24 @@ public class CompraBO {
             return false;
         }
     }
-
-    public Boolean finalizarCompra(Long idFuncionario, Integer idFornecedor, String valor, Integer parcelas, String vencimento, ArrayList<Itemcompra> itens) {
+   public Boolean finalizarCompra(Long idFuncionario, Integer idFornecedor, String valor, Integer parcelas, String vencimento, ArrayList<Itemcompra> itens) {
         try {
             GenericDAO<Compra> compraDAO = new GenericDAO<>();
             Compra compraVO = new Compra();
 
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            compraVO.setFuncionario(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
+            compraVO.setFuncionariocompra(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
             if (idFornecedor > 0) {
-                compraVO.setFornecedor(buscarFornecedor(idFornecedor - 1));
+                compraVO.setFornecedorcompra(buscarFornecedor(idFornecedor - 1));
             }
-            compraVO.setValorCompra(new BigDecimal(valor));
-            compraVO.setParcelasCompra(parcelas);
-            try {
-                compraVO.setVencimentoCompra(new SimpleDateFormat("yyyy/MM/dd").parse(vencimento));
-            } catch (Exception e) {
-                compraVO.setVencimentoCompra(new Date());
-            }
-            compraVO.setCriacaoCompra(new Date());
-            compraVO.setAtualizacaoCompra(new Date());
+            compraVO.setValorcompra(new BigDecimal(valor));
+           
+            compraVO.setCriacaocompra(new Date());
             compraDAO.inserir(compraVO);
 
             GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
             itens.stream().forEach((iten) -> {
-                iten.setCompra(compraVO);
+                iten.setCompraitemcompra(compraVO);
                 itemDAO.inserir(iten);
             });
             JOptionPane.showMessageDialog(null, "Compra finalizada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -122,7 +106,7 @@ public class CompraBO {
             compraDAO.apagar(compraDAO.consultar("idCompra", idCompra, new Compra()));
             GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
             itens.stream().forEach((iten) -> {
-                itemDAO.apagar(itemDAO.consultar("idItem", iten.getIdItemCompra(), new Itemcompra()));
+                itemDAO.apagar(itemDAO.consultar("idItem", (long)iten.getIditemcompra(), new Itemcompra()));
             });
         } catch (Exception e) {
 
@@ -133,7 +117,7 @@ public class CompraBO {
         GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
         List<Itemcompra> itens = itemDAO.consultar(new Itemcompra());
         ArrayList<Itemcompra> itensVenda = new ArrayList<>();
-        itens.stream().filter((iten) -> (Objects.equals(iten.getCompra().getIdCompra(), idVenda))).forEach((iten) -> {
+        itens.stream().filter((iten) -> (Objects.equals(iten.getCompraitemcompra().getIdcompra(), idVenda))).forEach((iten) -> {
             itensVenda.add(iten);
         });
         return itensVenda;
@@ -142,11 +126,19 @@ public class CompraBO {
     public Boolean verificarEstoque(ArrayList<Itemcompra> itens){
         Boolean retorno = true;
         for (Itemcompra iten : itens) {
-            BigDecimal aux = new BigDecimal(iten.getProduto().getEstoqueProduto()).add(new BigDecimal(iten.getQuantidadeItemCompra()));
-            if (aux.compareTo(new BigDecimal(iten.getProduto().getMaximoProduto())) > 0) {
+            BigDecimal aux = new BigDecimal(iten.getProdutoitemcompra().getQuantidade()).add(new BigDecimal(iten.getQuantidadeitemcompra()));
+            if (aux.compareTo(new BigDecimal(iten.getProdutoitemcompra().getMaximoproduto())) > 0) {
                 retorno = false;
             }
         }
         return retorno;
     }
+
+    public Object[] buscarNomeFornecedores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+   
 }

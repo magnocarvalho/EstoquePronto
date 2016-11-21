@@ -2,8 +2,7 @@ package utfpr.edu.br.papelariafacil.form;
 
 import utfpr.edu.br.papelariafacil.bo.CompraBO;
 import utfpr.edu.br.papelariafacil.tabelas.TableModelItemCompra;
-import utfpr.edu.br.papelariafacil.vo.CompraVO;
-import utfpr.edu.br.papelariafacil.vo.Itemcompra;
+
 
 import java.awt.Cursor;
 import java.math.BigDecimal;
@@ -16,10 +15,13 @@ import javax.swing.JOptionPane;
 import utfpr.edu.br.papelariafacil.form.FrmBase;
 import utfpr.edu.br.papelariafacil.form.FrmEstoque;
 import utfpr.edu.br.papelariafacil.form.FrmItemCompra;
+import utfpr.edu.br.papelariafacil.vo.Compra;
+import utfpr.edu.br.papelariafacil.vo.Itemcompra;
+import utfpr.edu.br.papelariafacil.vo.Pagamento;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar uma nova compra.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author Magno
  */
 public final class FrmCompra extends javax.swing.JDialog {
 
@@ -54,14 +56,16 @@ public final class FrmCompra extends javax.swing.JDialog {
      * @param viewPrincipal
      * @param viewEstoque
      */
-    public FrmCompra(java.awt.Frame parent, boolean modal, FrmBase viewPrincipal, FrmEstoque viewEstoque, CompraVO compra, Boolean alterar) {
+    public FrmCompra(java.awt.Frame parent, boolean modal, FrmBase viewPrincipal, FrmEstoque viewEstoque, Compra compra, Boolean alterar) {
         //Inicialização dos componentes padrões do JDialog.
         super(parent, modal);
         this.viewPrincipal = viewPrincipal;
         this.viewEstoque = viewEstoque;
         this.compraBO = new CompraBO();
         this.compraVO = compra;
-        this.itens = compraBO.buscarItens(compra.getIdCompra());;
+        int c = compra.getIdcompra();
+        Long d = Long.valueOf(c);
+        this.itens = compraBO.buscarItens(d);
         this.pagamentos = new ArrayList<>();
         initComponents();
       
@@ -70,8 +74,8 @@ public final class FrmCompra extends javax.swing.JDialog {
         //Definindo Modelo com Fornecedor para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
         String[] Arr = new String[array.size()];
-        if (compra.getFornecedor() != null) {
-            array.add(compra.getFornecedor().getNomeFornecedor());
+        if (compra.getFornecedorcompra()!= null) {
+            array.add(compra.getFornecedorcompra().getNomefornecedor());
         } else {
             array.add("FORNECEDOR");
         }
@@ -137,7 +141,7 @@ public final class FrmCompra extends javax.swing.JDialog {
         if (itens.size() > 0) {
             BigDecimal aux = new BigDecimal(0);
             for (Itemcompra iten : itens) {
-                aux = aux.add(iten.getValorItemCompra());
+                aux = aux.add(iten.getValoritemcompra());
             }
             tfTotalVenda.setText(aux.toString());
         }
@@ -222,6 +226,11 @@ public final class FrmCompra extends javax.swing.JDialog {
         cbFornecedor.setForeground(new java.awt.Color(102, 102, 102));
         cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel(compraBO.buscarNomeFornecedores()));
         cbFornecedor.setFocusable(false);
+        cbFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFornecedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnFornecedorLayout = new javax.swing.GroupLayout(pnFornecedor);
         pnFornecedor.setLayout(pnFornecedorLayout);
@@ -421,6 +430,7 @@ public final class FrmCompra extends javax.swing.JDialog {
             .addComponent(sprRodape)
             .addGroup(pnCorpoLayout.createSequentialGroup()
                 .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnCorpoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnCorpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,13 +438,11 @@ public final class FrmCompra extends javax.swing.JDialog {
                                 .addComponent(lbCategoria)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbOpcional1))
-                            .addComponent(lbPedido)))
-                    .addComponent(pnFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnCorpoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnFinalizarCompra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar)))
+                            .addComponent(lbPedido)
+                            .addGroup(pnCorpoLayout.createSequentialGroup()
+                                .addComponent(btnFinalizarCompra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAlterar)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(pnPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -492,10 +500,10 @@ public final class FrmCompra extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (tbItens.getModel().getRowCount() > 0) {
             if (compraBO.verificarEstoque(itens)) {
-                if (compraBO.finalizarCompra(viewPrincipal.getFuncionario().getIdFuncionario(), cbFornecedor.getSelectedIndex(), tfTotalVenda.getText(), sldParcelas.getValue(), null, itens)) {
+               
                     viewEstoque.atualizarTabelas();
                     this.dispose();
-                }
+                
             }else {
                 JOptionPane.showMessageDialog(null, "Quantidade maxima de produto no estoque.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -522,7 +530,7 @@ public final class FrmCompra extends javax.swing.JDialog {
 
     private void btnAlterarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarItemActionPerformed
         if (tbItens.getSelectedRow() != -1) {
-            viewItem = new ViewItemCompra(viewPrincipal, true, this, itens.get(tbItens.getSelectedRow()), true);
+            viewItem = new FrmItemCompra(viewPrincipal, true, this, itens.get(tbItens.getSelectedRow()), true);
             viewItem.setVisible(true);
         }
     }//GEN-LAST:event_btnAlterarItemActionPerformed
@@ -536,13 +544,17 @@ public final class FrmCompra extends javax.swing.JDialog {
         viewItem.setVisible(true);
     }//GEN-LAST:event_btnNovoItemActionPerformed
 
+    private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFornecedorActionPerformed
+
     //Declaração de variáveis(View).
     private final FrmBase viewPrincipal;
     private final FrmEstoque viewEstoque;
-    private final FrmItemCompra viewItem;
+    private FrmItemCompra viewItem;
 
     //Declaração de variáveis(Value Object).
-    private CompraVO compraVO;
+    private Compra compraVO;
     private final ArrayList<Itemcompra> itens;
     private final ArrayList<Pagamento> pagamentos;
 
@@ -551,7 +563,7 @@ public final class FrmCompra extends javax.swing.JDialog {
 
     //Declaração de variáveis(Tabelas).
     private TableModelItemCompra tabelaItens;
-    private TableModelPagamento tabelaPagamento;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

@@ -1,6 +1,7 @@
 package utfpr.edu.br.papelariafacil.tabelas;
 
-import utfpr.edu.br.papelariafacil.vo.Categoria;
+import utfpr.edu.br.papelariafacil.vo.Recebimento;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,37 +9,37 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
- * da Categoria.
- * 
+ * da classe Recebimento.
+ * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
-public class TableModelCategoria extends AbstractTableModel {
+public class TableModelRecebimento extends AbstractTableModel {
 
     //Declaração de variáveis.
-    private final List<Categoria> linhas;
+    private final List<Recebimento> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
-    private static final int descricaoCategoria = 0;
-    private static final int criacaoCategoria = 1;
-    private static final int atualizacaoCategoria = 2;
+    private static final int statusRecebimento = 0;
+    private static final int valorRecebimento = 1;
+    private static final int dataRecebimento = 2;
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
      * as colunas com os valores do objeto.
      */
-    public TableModelCategoria() {
+    public TableModelRecebimento() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Categoria", "Criação", "Atualização"};
+        colunas = new String[]{"Pago", "Valor", "Data"};
     }
 
     /**
      * @see Contrutor que inicializa as linhas da coluna com a lista recebida
      * pelo parâmetro e define as colunas com os valores do objeto.
-     * @param categorias
+     * @param recebimentos
      */
-    public TableModelCategoria(List<Categoria> categorias) {
-        linhas = new ArrayList<>(categorias);
-        colunas = new String[]{"Categoria", "Criação", "Atualização"};
+    public TableModelRecebimento(List<Recebimento> recebimentos) {
+        linhas = new ArrayList<>(recebimentos);
+        colunas = new String[]{"Pago", "Valor", "Data"};
     }
 
     //Gets and Sets
@@ -60,11 +61,11 @@ public class TableModelCategoria extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case descricaoCategoria:
-                return String.class;
-            case criacaoCategoria:
-                return Date.class;
-            case atualizacaoCategoria:
+            case statusRecebimento:
+                return Boolean.class;
+            case valorRecebimento:
+                return BigDecimal.class;
+            case dataRecebimento:
                 return Date.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -73,11 +74,14 @@ public class TableModelCategoria extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Categoria categoria = linhas.get(rowIndex);
+        Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case descricaoCategoria:
-                return categoria.getDescricaocategoria();
-            
+            case statusRecebimento:
+                return recebimento.getDescricao();
+            case valorRecebimento:
+                return recebimento.getValor();
+            case dataRecebimento:
+                return recebimento.getCriacaorecebimento();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -85,29 +89,34 @@ public class TableModelCategoria extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Categoria categoria = linhas.get(rowIndex);
+        Recebimento recebimento = linhas.get(rowIndex);
         switch (columnIndex) {
-            case descricaoCategoria:
-                categoria.setDescricaocategoria((String) aValue);
+            case statusRecebimento:
+                recebimento.setDescricao((String) aValue);
                 break;
-           
+            case valorRecebimento:
+                recebimento.setValor((BigDecimal) (aValue));
+                break;
+            case dataRecebimento:
+                recebimento.setCriacaorecebimento((Date) (aValue));
+                break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public Categoria getCategoria(int rowIndex) {
+    public Recebimento getRecebimento(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
     /**
      * @see Método que adiciona uma nova linha com os valores do objeto recebido
      * como parâmetro.
-     * @param categoria
+     * @param recebimento
      */
-    public void addCategoria(Categoria categoria) {
-        linhas.add(categoria);
+    public void addPagamento(Recebimento recebimento) {
+        linhas.add(recebimento);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
     }
@@ -115,12 +124,12 @@ public class TableModelCategoria extends AbstractTableModel {
     /**
      * @see Método que adiciona uma lista de linhas com a lista de objetos
      * recebida como parâmetro.
-     * @param categorias
+     * @param recebimentos
      */
-    public void addListaCategorias(List<Categoria> categorias) {
+    public void addListaPagamentos(List<Recebimento> recebimentos) {
         int indice = getRowCount();
-        linhas.addAll(categorias);
-        fireTableRowsInserted(indice, indice + categorias.size());
+        linhas.addAll(recebimentos);
+        fireTableRowsInserted(indice, indice + recebimentos.size());
     }
 
     /**
@@ -128,7 +137,7 @@ public class TableModelCategoria extends AbstractTableModel {
      * parâmetro.
      * @param rowIndex numero da linha da tabela.
      */
-    public void removeCategoria(int rowIndex) {
+    public void removeRecebimento(int rowIndex) {
         linhas.remove(rowIndex);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }

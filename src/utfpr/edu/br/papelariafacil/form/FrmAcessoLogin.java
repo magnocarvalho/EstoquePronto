@@ -140,7 +140,7 @@ public class FrmAcessoLogin extends javax.swing.JFrame {
             Util.abrirJFrameCentralizado(new FrmBase());
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(FrmLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAcessoLogin.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(rootPane, ex.toString());
         }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="utfpr.edu.br.papelariaFacilPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>utfpr.edu.br.papelariafacil.model.Itemvenda</class>
     <class>utfpr.edu.br.papelariafacil.model.Categoria</class>
     <class>utfpr.edu.br.papelariafacil.model.Recebimento</class>
@@ -12,6 +12,18 @@
     <class>utfpr.edu.br.papelariafacil.model.Fornecedor</class>
     <class>utfpr.edu.br.papelariafacil.model.Funcionario</class>
     <class>utfpr.edu.br.papelariafacil.model.Produto</class>
+    <class>utfpr.edu.br.papelariafacil.vo.CompraVO</class>
+    <class>utfpr.edu.br.papelariafacil.vo.FornecedorVO</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Funcionario</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Compra</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Fornecedor</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Categoria</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Itemcompra</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Itemvenda</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Recebimento</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Venda</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Pagamento</class>
+    <class>utfpr.edu.br.papelariafacil.vo.Produto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbloja"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

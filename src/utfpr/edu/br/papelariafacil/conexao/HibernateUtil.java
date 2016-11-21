@@ -9,16 +9,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
-import utfpr.edu.br.papelariafacil.model.Categoria;
-import utfpr.edu.br.papelariafacil.model.Compra;
-import utfpr.edu.br.papelariafacil.model.Fornecedor;
-import utfpr.edu.br.papelariafacil.model.Funcionario;
-import utfpr.edu.br.papelariafacil.model.Itemcompra;
-import utfpr.edu.br.papelariafacil.model.Itemvenda;
-import utfpr.edu.br.papelariafacil.model.Pagamento;
-import utfpr.edu.br.papelariafacil.model.Produto;
-import utfpr.edu.br.papelariafacil.model.Recebimento;
-import utfpr.edu.br.papelariafacil.model.Venda;
+import utfpr.edu.br.papelariafacil.vo.Categoria;
+import utfpr.edu.br.papelariafacil.vo.Compra;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
+import utfpr.edu.br.papelariafacil.vo.Funcionario;
+import utfpr.edu.br.papelariafacil.vo.Itemcompra;
+import utfpr.edu.br.papelariafacil.vo.Itemvenda;
+import utfpr.edu.br.papelariafacil.vo.Pagamento;
+import utfpr.edu.br.papelariafacil.vo.Produto;
+import utfpr.edu.br.papelariafacil.vo.Recebimento;
+import utfpr.edu.br.papelariafacil.vo.Venda;
 
 
 /**

@@ -1,6 +1,6 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.dao.DaoGenerics;
 import utfpr.edu.br.papelariafacil.vo.Categoria;
 import java.awt.Color;
 import java.awt.Component;
@@ -9,11 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
 
 /**
  * @see Classe de objetos de negócios. Métodos: alterarCategoria(),
  * inserirCategoria(), validarCampos().
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * 
  */
 public class CategoriaBO {
 
@@ -27,9 +28,8 @@ public class CategoriaBO {
         try {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO();
             Categoria categoriaVO = new Categoria();
-            categoriaVO.setDescricaoCategoria(descricao);
-            categoriaVO.setCriacaoCategoria(new Date());
-            categoriaVO.setAtualizacaoCategoria(new Date());
+            categoriaVO.setDescricaocategoria(descricao);
+            
             if (categoriaDAO.inserir(categoriaVO)) {
                 JOptionPane.showMessageDialog(null, "Categoria inserida com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -50,9 +50,11 @@ public class CategoriaBO {
     public Boolean alterarCategoria(Long idCategoria, String descricao) {
         try {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO();
-            Categoria categoriaVO = categoriaDAO.consultar("idCategoria", idCategoria, new Categoria());
-            categoriaVO.setDescricaoCategoria(descricao);
-            categoriaVO.setAtualizacaoCategoria(new Date());
+           
+             Categoria categoriaVO;
+            categoriaVO = categoriaDAO.consultar("idcategoria", idCategoria, new Categoria());
+            categoriaVO.setDescricaocategoria(descricao);
+            
             if (categoriaDAO.atualizar(categoriaVO)) {
                 JOptionPane.showMessageDialog(null, "Categoria alterada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }

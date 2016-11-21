@@ -21,10 +21,8 @@ public class TableModelVenda extends AbstractTableModel {
     //Declaração de variáveis que compoem os campos da tabela.
     private static final int clienteVenda = 0;
     private static final int valorVenda = 1;
-    private static final int parcelasVenda = 2;
-    private static final int vencimentoVenda = 3;
-    private static final int criacaoVenda = 4;
-    private static final int atualizacaoVenda = 5;
+    private static final int criacaoVenda = 2;
+    private static final int atualizacaoVenda = 3;
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -32,7 +30,7 @@ public class TableModelVenda extends AbstractTableModel {
      */
     public TableModelVenda() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Cliente", "Valor", "Parcelas", "Vencimento", "Criação", "Atualização"};
+        colunas = new String[]{"ID", "Valor",  "Criação", "Atualização"};
     }
 
     /**
@@ -42,7 +40,7 @@ public class TableModelVenda extends AbstractTableModel {
      */
     public TableModelVenda(List<Venda> vendas) {
         linhas = new ArrayList<>(vendas);
-        colunas = new String[]{"Cliente", "Valor", "Parcelas", "Vencimento", "Criação", "Atualização"};
+        colunas = new String[]{"ID", "Valor",  "Criação", "Atualização"};
     }
 
     //Gets and Sets
@@ -67,10 +65,7 @@ public class TableModelVenda extends AbstractTableModel {
             case clienteVenda:
                 return String.class;
             case valorVenda:
-                return BigDecimal.class;
-            case parcelasVenda:
-                return Integer.class;
-            case vencimentoVenda:
+                
                 return Date.class;
             case criacaoVenda:
                 return Date.class;
@@ -86,21 +81,13 @@ public class TableModelVenda extends AbstractTableModel {
         Venda venda = linhas.get(rowIndex);
         switch (columnIndex) {
             case clienteVenda:
-                if(venda.getCliente() != null){
-                    return venda.getCliente().getNomeCliente();
-                } else {
-                    return "CAIXA";
-                }
+                return venda.getIdvenda();
             case valorVenda:
-                return venda.getValorVenda();
-            case parcelasVenda:
-                return venda.getParcelasVenda();
-            case vencimentoVenda:
-                return venda.getVencimentoVenda();
+                return venda.getValor();
             case criacaoVenda:
-                return venda.getCriacaoVenda();
+                return venda.getCriacaovenda();
             case atualizacaoVenda:
-                return venda.getAtualizacaoVenda();
+                return venda.getAtualizacaovenda();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -111,22 +98,17 @@ public class TableModelVenda extends AbstractTableModel {
         Venda venda = linhas.get(rowIndex);
         switch (columnIndex) {
             case clienteVenda:
-                venda.getCliente().setNomeCliente((String) aValue);
+                venda.setIdvenda((Integer) aValue);
                 break;
             case valorVenda:
-                venda.setValorVenda((BigDecimal) (aValue));
+                venda.setValor((BigDecimal) (aValue));
                 break;
-            case parcelasVenda:
-                venda.setParcelasVenda((Integer) (aValue));
-                break;
-            case vencimentoVenda:
-                venda.setVencimentoVenda((Date) (aValue));
-                break;
+            
             case criacaoVenda:
-                venda.setCriacaoVenda((Date) (aValue));
+                venda.setCriacaovenda((Date) (aValue));
                 break;
             case atualizacaoVenda:
-                venda.setAtualizacaoVenda((Date) (aValue));
+                venda.setAtualizacaovenda((Date) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");

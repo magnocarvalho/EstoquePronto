@@ -1,6 +1,6 @@
 package utfpr.edu.br.papelariafacil.tabelas;
 
-import utfpr.edu.br.papelariafacil.vo.CompraVO;
+import utfpr.edu.br.papelariafacil.vo.Compra;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,12 +10,11 @@ import javax.swing.table.AbstractTableModel;
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Compra.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
  */
 public class TableModelCompra extends AbstractTableModel {
 
     //Declaração de variáveis.
-    private final List<CompraVO> linhas;
+    private final List<Compra> linhas;
     private final String[] colunas;
 
     //Declaração de variáveis que compoem os campos da tabela.
@@ -32,7 +31,7 @@ public class TableModelCompra extends AbstractTableModel {
      */
     public TableModelCompra() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Fornecedor", "Valor", "Parcelas", "Vencimento", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Valor"};
     }
 
     /**
@@ -40,9 +39,9 @@ public class TableModelCompra extends AbstractTableModel {
      * pelo parâmetro e define as colunas com os valores do objeto.
      * @param compras
      */
-    public TableModelCompra(List<CompraVO> compras) {
+    public TableModelCompra(List<Compra> compras) {
         linhas = new ArrayList<>(compras);
-        colunas = new String[]{"Fornecedor", "Valor", "Parcelas", "Vencimento", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Valor"};
     }
 
     //Gets and Sets
@@ -68,14 +67,7 @@ public class TableModelCompra extends AbstractTableModel {
                 return String.class;
             case valorCompra:
                 return BigDecimal.class;
-            case parcelasCompra:
-                return Integer.class;
-            case vencimentoCompra:
-                return Date.class;
-            case criacaoCompra:
-                return Date.class;
-            case atualizacaoCompra:
-                return Date.class;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -83,24 +75,17 @@ public class TableModelCompra extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        CompraVO compra = linhas.get(rowIndex);
+        Compra compra = linhas.get(rowIndex);
         switch (columnIndex) {
             case fornecedorCompra:
-                if(compra.getFornecedor() != null){
-                    return compra.getFornecedor().getNomeFornecedor();
+                if(compra.getFornecedorcompra()!= null){
+                    return compra.getFornecedorcompra().getNomefornecedor();
                 } else {
                     return "SEM FORNECEDOR";
                 }
             case valorCompra:
-                return compra.getValorCompra();
-            case parcelasCompra:
-                return compra.getParcelasCompra();
-            case vencimentoCompra:
-                return compra.getVencimentoCompra();
-            case criacaoCompra:
-                return compra.getCriacaoCompra();
-            case atualizacaoCompra:
-                return compra.getAtualizacaoCompra();
+                return compra.getValorcompra();
+
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -108,33 +93,22 @@ public class TableModelCompra extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        CompraVO compra = linhas.get(rowIndex);
+        Compra compra = linhas.get(rowIndex);
         switch (columnIndex) {
             case fornecedorCompra:
-                compra.getFornecedor().setNomeFornecedor((String) aValue);
+                compra.getFornecedorcompra().setNomefornecedor((String) aValue);
                 break;
             case valorCompra:
-                compra.setValorCompra((BigDecimal) (aValue));
+                compra.setValorcompra((BigDecimal) (aValue));
                 break;
-            case parcelasCompra:
-                compra.setParcelasCompra((Integer) (aValue));
-                break;
-            case vencimentoCompra:
-                compra.setVencimentoCompra((Date) (aValue));
-                break;
-            case criacaoCompra:
-                compra.setCriacaoCompra((Date) (aValue));
-                break;
-            case atualizacaoCompra:
-                compra.setAtualizacaoCompra((Date) (aValue));
-                break;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public CompraVO getCompra(int rowIndex) {
+    public Compra getCompra(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -143,7 +117,7 @@ public class TableModelCompra extends AbstractTableModel {
      * como parâmetro.
      * @param compra Usuario que compoe uma linha da tabela.
      */
-    public void addCompra(CompraVO compra) {
+    public void addCompra(Compra compra) {
         linhas.add(compra);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
@@ -154,7 +128,7 @@ public class TableModelCompra extends AbstractTableModel {
      * recebida como parâmetro.
      * @param compras
      */
-    public void addListaCompras(List<CompraVO> compras) {
+    public void addListaCompras(List<Compra> compras) {
         int indice = getRowCount();
         linhas.addAll(compras);
         fireTableRowsInserted(indice, indice + compras.size());

@@ -108,27 +108,22 @@ public class TableModelFornecedor extends AbstractTableModel {
                 fornecedor.setNomefornecedor((String) aValue);
                 break;
             case pessoaFornecedor:
-                fornecedor.getIdfornecedor((BigInt) aValue);
+                fornecedor.setIdfornecedor((Integer) aValue);
                 break;
             case emailFornecedor:
-                fornecedor.getContato().setEmailContato((String) aValue);
+                fornecedor.setEmailcontato((String) aValue);
                 break;
             case telefoneFornecedor:
-                fornecedor.getContato().setTelefoneContato((String) aValue);
+                fornecedor.setTelefonecontato((String) aValue);
                 break;
-            case criacaoFornecedor:
-                fornecedor.setCriacaoFornecedor((Date) (aValue));
-                break;
-            case atualizacaoFornecedor:
-                fornecedor.setAtualizacaoFornecedor((Date) (aValue));
-                break;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public FornecedorVO getFornecedor(int rowIndex) {
+    public Fornecedor getFornecedor(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -137,7 +132,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      * como parâmetro.
      * @param fornecedor Usuario que compoe uma linha da tabela.
      */
-    public void addFornecedor(FornecedorVO fornecedor) {
+    public void addFornecedor(Fornecedor fornecedor) {
         linhas.add(fornecedor);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
@@ -148,7 +143,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      * recebida como parâmetro.
      * @param fornecedores
      */
-    public void addListaFornecedores(List<FornecedorVO> fornecedores) {
+    public void addListaFornecedores(List<Fornecedor> fornecedores) {
         int indice = getRowCount();
         linhas.addAll(fornecedores);
         fireTableRowsInserted(indice, indice + fornecedores.size());
