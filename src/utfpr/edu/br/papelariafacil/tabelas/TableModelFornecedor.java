@@ -1,10 +1,11 @@
 package utfpr.edu.br.papelariafacil.tabelas;
 
-import utfpr.edu.br.papelariafacil.vo.Fornecedor;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
@@ -31,7 +32,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Fornecedor", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Razao social", "E-mail", "Telefone"};
     }
 
     /**
@@ -41,7 +42,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      */
     public TableModelFornecedor(List<Fornecedor> fornecedor) {
         linhas = new ArrayList<>(fornecedor);
-        colunas = new String[]{"Fornecedor", "Pessoa", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Fornecedor", "Razao social", "E-mail", "Telefone"};
     }
 
     //Gets and Sets
@@ -82,20 +83,18 @@ public class TableModelFornecedor extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Fornecedor fornecedor = linhas.get(rowIndex);
+        Fornecedor fornecedor;
+        fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFornecedor:
-                return fornecedor.getNomeFornecedor();
+                return fornecedor.getNomefornecedor();
             case pessoaFornecedor:
-                return fornecedor.getPessoa().getTipoPessoa();
+                return fornecedor.getIdfornecedor();
             case emailFornecedor:
-                return fornecedor.getContato().getEmailContato();
+                return fornecedor.getEmailcontato();
             case telefoneFornecedor:
-                return fornecedor.getContato().getTelefoneContato();
-            case criacaoFornecedor:
-                return fornecedor.getCriacaoFornecedor();
-            case atualizacaoFornecedor:
-                return fornecedor.getAtualizacaoFornecedor();
+                return fornecedor.getTelefonecontato();
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -106,10 +105,10 @@ public class TableModelFornecedor extends AbstractTableModel {
         Fornecedor fornecedor = linhas.get(rowIndex);
         switch (columnIndex) {
             case nomeFornecedor:
-                fornecedor.setNomeFornecedor((String) aValue);
+                fornecedor.setNomefornecedor((String) aValue);
                 break;
             case pessoaFornecedor:
-                fornecedor.getPessoa().setTipoPessoa((String) aValue);
+                fornecedor.getIdfornecedor((BigInt) aValue);
                 break;
             case emailFornecedor:
                 fornecedor.getContato().setEmailContato((String) aValue);
@@ -129,7 +128,7 @@ public class TableModelFornecedor extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public Fornecedor getFornecedor(int rowIndex) {
+    public FornecedorVO getFornecedor(int rowIndex) {
         return linhas.get(rowIndex);
     }
 
@@ -138,7 +137,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      * como parâmetro.
      * @param fornecedor Usuario que compoe uma linha da tabela.
      */
-    public void addFornecedor(Fornecedor fornecedor) {
+    public void addFornecedor(FornecedorVO fornecedor) {
         linhas.add(fornecedor);
         int ultimoIndice = getRowCount() - 1;
         fireTableRowsInserted(ultimoIndice, ultimoIndice);
@@ -149,7 +148,7 @@ public class TableModelFornecedor extends AbstractTableModel {
      * recebida como parâmetro.
      * @param fornecedores
      */
-    public void addListaFornecedores(List<Fornecedor> fornecedores) {
+    public void addListaFornecedores(List<FornecedorVO> fornecedores) {
         int indice = getRowCount();
         linhas.addAll(fornecedores);
         fireTableRowsInserted(indice, indice + fornecedores.size());
