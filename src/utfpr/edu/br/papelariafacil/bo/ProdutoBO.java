@@ -1,22 +1,23 @@
 package utfpr.edu.br.papelariafacil.bo;
 
-import br.com.models.dao.GenericDAO;
-import br.com.models.vo.Categoria;
-import br.com.models.vo.Fornecedor;
-import br.com.models.vo.Produto;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Categoria;
+import utfpr.edu.br.papelariafacil.vo.Produto;
 
 /**
  * @see Classe de objetos de negócios. Métodos:
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author 
  */
 public class ProdutoBO {
 
@@ -34,39 +35,28 @@ public class ProdutoBO {
      * @param maximo
      * @return true/false.
      */
-    public Boolean inserirProduto(Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo, String estoque) {
+    public Boolean inserirProduto(Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo) {
         try {
             GenericDAO<Produto> produtoDAO = new GenericDAO<>();
             Produto produtoV0 = new Produto();
-            produtoV0.setDescricaoProduto(descricao);
-            produtoV0.setCodigoProduto(codigo);
+            produtoV0.setDescricaoproduto(descricao);
+            produtoV0.setCodigoproduto(codigo);
             try {
-                produtoV0.setCustoProduto(new BigDecimal(custo));
+                produtoV0.setCustoproduto(new BigDecimal(custo));
             } catch (Exception e) {
-                produtoV0.setCustoProduto(new BigDecimal(0));
+                produtoV0.setCustoproduto(new BigDecimal(0));
             }
             try {
-                produtoV0.setVendaProduto(new BigDecimal(venda));
+                produtoV0.setVendaproduto(new BigDecimal(venda));
             } catch (Exception e) {
-                produtoV0.setVendaProduto(new BigDecimal(0));
+                produtoV0.setVendaproduto(new BigDecimal(0));
             }
-            try {
-                produtoV0.setMinimoProduto(new Long(minimo));
-            } catch (Exception e) {
-                produtoV0.setMinimoProduto(new Long(0));
-            }
-            try {
-                produtoV0.setMaximoProduto(new Long(maximo));
-            } catch (Exception e) {
-                produtoV0.setMaximoProduto(new Long(0));
-            }
-            try {
-                produtoV0.setEstoqueProduto(new Long(estoque));
-            } catch (Exception e) {
-                produtoV0.setEstoqueProduto(new Long(0));
-            }
-            produtoV0.setCriacaoProduto(new Date());
-            produtoV0.setAtualizacaoProduto(new Date());
+            produtoV0.setMinimoproduto(new BigInteger(minimo));
+            produtoV0.setMaximoproduto(new BigInteger(maximo));
+            
+            
+            produtoV0.setCriacaoproduto(new Date());
+           
 
             GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
             try {
