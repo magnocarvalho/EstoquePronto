@@ -1274,12 +1274,12 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-        if (tbClientes.getSelectedRow() != -1) {
-            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
-            if (painelControleBO.excluirCliente(modelo.getCliente(tbClientes.getSelectedRow()).getIdCliente())) {
-                atualizarTabelas();
-            }
-        }
+//        if (tbClientes.getSelectedRow() != -1) {
+//            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
+//            if (painelControleBO.excluirCliente(modelo.getCliente(tbClientes.getSelectedRow()).getIdCliente())) {
+//                atualizarTabelas();
+//            }
+//        }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     /**
@@ -1289,11 +1289,11 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-        if (tbClientes.getSelectedRow() != -1) {
-            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
-            viewCliente = new ViewCliente(viewPrincipal, true, this, modelo.getCliente(tbClientes.getSelectedRow()), true);
-            viewCliente.setVisible(true);
-        }
+//        if (tbClientes.getSelectedRow() != -1) {
+//            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
+//            viewCliente = new ViewCliente(viewPrincipal, true, this, modelo.getCliente(tbClientes.getSelectedRow()), true);
+//            viewCliente.setVisible(true);
+//        }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
     /**
@@ -1303,11 +1303,11 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnVisualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarClienteActionPerformed
-        if (tbClientes.getSelectedRow() != -1) {
-            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
-            viewCliente = new ViewCliente(viewPrincipal, true, this, modelo.getCliente(tbClientes.getSelectedRow()), false);
-            viewCliente.setVisible(true);
-        }
+//        if (tbClientes.getSelectedRow() != -1) {
+//            TableModelCliente modelo = (TableModelCliente) tbClientes.getModel();
+//            viewCliente = new ViewCliente(viewPrincipal, true, this, modelo.getCliente(tbClientes.getSelectedRow()), false);
+//            viewCliente.setVisible(true);
+//        }
     }//GEN-LAST:event_btnVisualizarClienteActionPerformed
 
     /**
@@ -1316,8 +1316,8 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
-        viewCliente = new ViewCliente(viewPrincipal, true, this);
-        viewCliente.setVisible(true);
+//        viewCliente = new ViewCliente(viewPrincipal, true, this);
+//        viewCliente.setVisible(true);
     }//GEN-LAST:event_btnNovoClienteActionPerformed
 
     /**
