@@ -206,6 +206,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfNomeFornecedor.setText("");
         tfNomeFornecedor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfNomeFornecedor.setNextFocusableComponent(tfNomeContato);
 
@@ -244,6 +245,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfNomeContato.setText("");
         tfNomeContato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -256,6 +258,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfEmail.setText("");
         tfEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbTelefone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -353,6 +356,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfEndereco.setText("");
         tfEndereco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbCep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -377,6 +381,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfComplemento.setText("");
         tfComplemento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -389,6 +394,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfBairro.setText("");
         tfBairro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbNumero.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -409,6 +415,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCidade.setText(" ");
         tfCidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbEstado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
