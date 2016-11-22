@@ -169,6 +169,7 @@ public class FrmProduto extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfDescricao.setText("");
         tfDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnObrigatorioLayout = new javax.swing.GroupLayout(pnObrigatorio);
@@ -214,6 +215,7 @@ public class FrmProduto extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCodigo.setText("");
         tfCodigo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbValorCusto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
