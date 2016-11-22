@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 
 /**
  * @see Classe de objetos de negócios. Métodos: alterarFornecedor(),
@@ -51,6 +53,53 @@ public class FornecedorBO {
      * @return true/false
      */
     /* */   
+    public Boolean inserirFornecedor(String fornecedor, String RazaoSocial, String Cnpj, String email, String telefone, String celular, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado )
+    {
+        try {
+            GenericDAO<Fornecedor> dao = new GenericDAO<>();
+            Fornecedor f = new Fornecedor();
+            f.setBairro(bairro);
+            f.setCep(cep);
+            f.setCelularcontato(celular);
+            f.setTelefonecontato(telefone);
+            f.setCnpjpessoajuridica(Cnpj);
+            f.setCidade(cidade);
+            f.setComplemento(complemento);
+            f.setNomefornecedor(fornecedor);
+            f.setRazaosocialpessoajuridica(RazaoSocial);
+            f.setEmailcontato(email);
+            f.setEstado(estado);
+            f.setNumeroendereco(numero);
+            dao.inserir(f);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        
+    }public Boolean alterarFornecedor(Long id, String fornecedor, String RazaoSocial, String Cnpj, String email, String telefone, String celular, String endereco, String cep, String complemento, String numero, String bairro, String cidade, String estado )
+    {
+        try {
+            GenericDAO<Fornecedor> dao = new GenericDAO<>();
+            Fornecedor f = new Fornecedor(id.intValue());
+            f.setBairro(bairro);
+            f.setCep(cep);
+            f.setCelularcontato(celular);
+            f.setTelefonecontato(telefone);
+            f.setCnpjpessoajuridica(Cnpj);
+            f.setCidade(cidade);
+            f.setComplemento(complemento);
+            f.setNomefornecedor(fornecedor);
+            f.setRazaosocialpessoajuridica(RazaoSocial);
+            f.setEmailcontato(email);
+            f.setEstado(estado);
+            f.setNumeroendereco(numero);
+            dao.atualizar(f);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+     
+    }
     public boolean validarCampos(JPanel panel) {
         Component componentes[] = panel.getComponents();
         boolean erro = true;

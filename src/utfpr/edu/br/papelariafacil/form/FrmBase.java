@@ -30,7 +30,7 @@ public class FrmBase extends javax.swing.JFrame {
         //inialização dos formularios internos do software 
         
         
-        dpnCorpo.add(frmFornecedor = new FrmFornecedor(this));
+        dpnCorpo.add(frmFornecedor = new FrmPainelControle(this));
         dpnCorpo.add(frmEstoque = new FrmEstoque(this));
         dpnCorpo.add(frmRelatorios = new FrmRelatorios(this));
         dpnCorpo.add(frmVendas = new FrmVendas(this));

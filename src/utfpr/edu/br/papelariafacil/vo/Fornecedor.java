@@ -71,6 +71,8 @@ public class Fornecedor implements Serializable {
         this.idfornecedor = idfornecedor;
     }
 
+    
+
     public Integer getIdfornecedor() {
         return idfornecedor;
     }

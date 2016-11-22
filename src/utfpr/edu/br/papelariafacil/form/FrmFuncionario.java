@@ -358,7 +358,7 @@ public class FrmFuncionario extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
         if (funcionarioBO.validarCampos(pnObrigatorio)) {
-            if (funcionarioBO.alterarFuncionario()) {
+            if (funcionarioBO.alterarFuncionario(funcionarioVO.getIdfuncionario().longValue(), tfNomeFuncionario.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }
@@ -377,7 +377,7 @@ public class FrmFuncionario extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
         if (funcionarioBO.validarCampos(pnObrigatorio)) {
-            if (funcionarioBO.inserirFuncionario(tfNomeFuncionario.getText(), tfNomeContato.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText(), tfUsuario.getText(), tfSenha.getText(), tfCpf.getText(), tfRg.getText(), tfNascimento.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
+            if (funcionarioBO.inserirFuncionario(tfNomeFuncionario.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }
@@ -387,11 +387,11 @@ public class FrmFuncionario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     //Declaração de variáveis(View).
-    private final ViewPainelControle viewPainelControle;
+    private final FrmPainelControle viewPainelControle;
 
     //Declaração de variáveis(Value Object).
     private Funcionario funcionarioVO;
-    private Pessoafisica pessoaFisicaVO;
+
 
     //Declaração de variáveis(Business Object).
     private FuncionarioBO funcionarioBO;
