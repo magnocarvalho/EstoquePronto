@@ -41,7 +41,7 @@ public class TableModelFuncionario extends AbstractTableModel {
      */
     public TableModelFuncionario(List<Funcionario> funcionarios) {
         linhas = new ArrayList<>(funcionarios);
-        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Criação", "Atualização"};
+        colunas = new String[]{"Funcionario", "Cargo", "E-mail", "Telefone", "Celular"};
     }
 
     //Gets and Sets

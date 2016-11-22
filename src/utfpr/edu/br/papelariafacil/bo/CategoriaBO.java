@@ -5,6 +5,7 @@ import utfpr.edu.br.papelariafacil.vo.Categoria;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,8 +35,10 @@ public class CategoriaBO {
            
             GenericDAO<Categoria> categoriaDAO = new GenericDAO();
             Categoria categoriaVO = new Categoria();
+            List<Categoria> consultar = categoriaDAO.consultar(categoriaVO);
+            int i = consultar.size();
             categoriaVO.setDescricaocategoria(descricao);
-            
+            categoriaVO.setIdcategoria(i + 1);
             if(categoriaDAO.inserir(categoriaVO))
             {
                JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);

@@ -58,6 +58,9 @@ public class FornecedorBO {
         try {
             GenericDAO<Fornecedor> dao = new GenericDAO<>();
             Fornecedor f = new Fornecedor();
+            List<Fornecedor> consultar = dao.consultar(f);
+            int i = consultar.size();
+            f.setIdfornecedor(i + 1);
             f.setBairro(bairro);
             f.setCep(cep);
             f.setCelularcontato(celular);

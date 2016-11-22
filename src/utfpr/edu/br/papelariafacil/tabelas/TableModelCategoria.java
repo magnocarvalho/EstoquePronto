@@ -76,7 +76,9 @@ public class TableModelCategoria extends AbstractTableModel {
         switch (columnIndex) {
             case descricaoCategoria:
                 return categoria.getDescricaocategoria();
-            
+            case idCategoria:
+                return categoria.getIdcategoria();
+                   
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

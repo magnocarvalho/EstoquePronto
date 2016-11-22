@@ -1,6 +1,6 @@
 package utfpr.edu.br.papelariafacil.dao;
 
-import utfpr.edu.br.papelariafacil.conexao.HibernateUtil;
+import utfpr.edu.br.papelariafacil.util.HibernateUtil2;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 public class GenericDAO<T> {
 
     //Declaração da sessão de conexão ao banco de dados.
-    private final Session session = (Session) HibernateUtil.openConnect();
+    private final Session session = (Session) HibernateUtil2.getSession();
 
     /**
      * @see Método INSERT INTO.

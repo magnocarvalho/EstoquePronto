@@ -428,6 +428,7 @@ public class FrmFornecedor extends javax.swing.JDialog
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfEstado.setText("");
         tfEstado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         javax.swing.GroupLayout pnEnderecoLayout = new javax.swing.GroupLayout(pnEndereco);

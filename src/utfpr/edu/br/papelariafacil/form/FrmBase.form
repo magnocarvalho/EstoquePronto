@@ -94,10 +94,8 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="btnVisaoGeral" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCompras" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnVisaoGeral" min="-2" pref="221" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnVendas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnEstoque" min="-2" max="-2" attributes="0"/>
@@ -119,7 +117,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCompras" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnVendas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRelatorio" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -185,17 +182,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnCompras">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/br/com/resources/imagens/compras.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="COMPRAS"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComprasActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JPanel" name="pnRodape">
 
       <Layout>

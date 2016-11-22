@@ -71,7 +71,6 @@ public class FrmBase extends javax.swing.JFrame {
         btnFornecedor = new javax.swing.JButton();
         dpnCorpo = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
-        btnCompras = new javax.swing.JButton();
         pnRodape = new javax.swing.JPanel();
         sprRodape = new javax.swing.JSeparator();
         lbRodape = new javax.swing.JLabel();
@@ -141,14 +140,6 @@ public class FrmBase extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
-
-        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/compras.png"))); // NOI18N
-        btnCompras.setText("COMPRAS");
-        btnCompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprasActionPerformed(evt);
-            }
-        });
 
         sprRodape.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -228,10 +219,8 @@ public class FrmBase extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
-                        .addComponent(btnVisaoGeral)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCompras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVisaoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnVendas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEstoque)
@@ -249,7 +238,6 @@ public class FrmBase extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFornecedor)
-                    .addComponent(btnCompras)
                     .addComponent(btnVendas)
                     .addComponent(btnEstoque)
                     .addComponent(btnRelatorio)
@@ -296,10 +284,6 @@ public class FrmBase extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVendasActionPerformed
 
-    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnComprasActionPerformed
-
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         // TODO add your handling code here:
         if (!frmEstoque.isVisible()) {
@@ -316,14 +300,17 @@ public class FrmBase extends javax.swing.JFrame {
     private void btnVisaoGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaoGeralActionPerformed
         // TODO add your handling code here:
         
+            LimparDesktop();
+        
+        
     }//GEN-LAST:event_btnVisaoGeralActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Alerta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             LimparDesktop();
-            ocultarMenu();
-            frmAcessologin.setVisible(true);
+            
+            
            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -387,7 +374,6 @@ public class FrmBase extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnFornecedor;
     private javax.swing.JButton btnRelatorio;
@@ -422,19 +408,19 @@ public class FrmBase extends javax.swing.JFrame {
     public final void mostrarMenu()
     {
         btnFornecedor.setVisible(true);
-        btnCompras.setVisible(true);
+        
         
     }
 
     public final void ocultarMenu() 
     {
         btnFornecedor.setVisible(false);
-        btnCompras.setVisible(false);
+     
                 
     }
     public final void LimparDesktop() 
     {
-       
+        
         frmFornecedor.setVisible(false);
         frmEstoque.setVisible(false);
         frmRelatorios.setVisible(false);

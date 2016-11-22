@@ -89,7 +89,7 @@ public class TableModelFornecedor extends AbstractTableModel {
             case nomeFornecedor:
                 return fornecedor.getNomefornecedor();
             case pessoaFornecedor:
-                return fornecedor.getIdfornecedor();
+                return fornecedor.getRazaosocialpessoajuridica();
             case emailFornecedor:
                 return fornecedor.getEmailcontato();
             case telefoneFornecedor:
@@ -108,7 +108,7 @@ public class TableModelFornecedor extends AbstractTableModel {
                 fornecedor.setNomefornecedor((String) aValue);
                 break;
             case pessoaFornecedor:
-                fornecedor.setIdfornecedor((Integer) aValue);
+                fornecedor.setRazaosocialpessoajuridica((String) aValue);
                 break;
             case emailFornecedor:
                 fornecedor.setEmailcontato((String) aValue);

@@ -84,7 +84,7 @@ public class VendaBO {
         try {
             GenericDAO<Venda> vendaDAO = new GenericDAO<>();
             Venda vendaVO = new Venda();
-
+            vendaVO.setIdvenda(1 + (vendaDAO.consultar(vendaVO).size()));
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
             vendaVO.setFuncionario(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
             
