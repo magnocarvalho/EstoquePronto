@@ -19,8 +19,8 @@ public class TableModelCategoria extends AbstractTableModel {
 
     //Declaração de variáveis que compoem os campos da tabela.
     private static final int descricaoCategoria = 0;
-    private static final int criacaoCategoria = 1;
-    private static final int atualizacaoCategoria = 2;
+    private static final int idCategoria = 1;
+
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -28,7 +28,7 @@ public class TableModelCategoria extends AbstractTableModel {
      */
     public TableModelCategoria() {
         linhas = new ArrayList<>();
-        colunas = new String[]{"Categoria", "Criação", "Atualização"};
+        colunas = new String[]{"Categoria", "ID"};
     }
 
     /**
@@ -38,7 +38,7 @@ public class TableModelCategoria extends AbstractTableModel {
      */
     public TableModelCategoria(List<Categoria> categorias) {
         linhas = new ArrayList<>(categorias);
-        colunas = new String[]{"Categoria", "Criação", "Atualização"};
+        colunas = new String[]{"Categoria", "ID"};
     }
 
     //Gets and Sets
@@ -62,10 +62,9 @@ public class TableModelCategoria extends AbstractTableModel {
         switch (columnIndex) {
             case descricaoCategoria:
                 return String.class;
-            case criacaoCategoria:
-                return Date.class;
-            case atualizacaoCategoria:
-                return Date.class;
+            case idCategoria:
+                return Long.class;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
