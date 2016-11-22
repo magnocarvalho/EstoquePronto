@@ -31,15 +31,16 @@ public class CategoriaBO {
      */
     public Boolean inserirCategoria(String descricao) {
        try{
+           
+            GenericDAO<Categoria> categoriaDAO = new GenericDAO();
             Categoria categoriaVO = new Categoria();
             categoriaVO.setDescricaocategoria(descricao);
-                
-                TransactionUtil.beginTransaction();
-                new DaoCategoria().persistir(categoriaVO);
-                TransactionUtil.commit();
-                
-                JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);
-                return true;
+            
+            if(categoriaDAO.inserir(categoriaVO))
+            {
+               JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);
+            }
+            return true;  
        } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao persistir no banco","Messagem", JOptionPane.ERROR_MESSAGE, null);
                 TransactionUtil.rollback();
@@ -61,7 +62,7 @@ public class CategoriaBO {
         try {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO();
            
-             Categoria categoriaVO;
+            Categoria categoriaVO;
             categoriaVO = categoriaDAO.consultar("idcategoria", idCategoria, new Categoria());
             categoriaVO.setDescricaocategoria(descricao);
             
