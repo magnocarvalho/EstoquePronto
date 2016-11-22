@@ -74,8 +74,8 @@ public final class FrmCompra extends javax.swing.JDialog {
         //Definindo Modelo com Fornecedor para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
         String[] Arr = new String[array.size()];
-        if (compra.getFornecedorcompra()!= null) {
-            array.add(compra.getFornecedorcompra().getNomefornecedor());
+        if (compra.getFornecedor()!= null) {
+            array.add(compra.getFornecedor().getNomefornecedor());
         } else {
             array.add("FORNECEDOR");
         }

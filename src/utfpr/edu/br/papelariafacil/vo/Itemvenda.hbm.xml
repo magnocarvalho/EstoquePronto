@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Itemvenda" table="itemvenda" schema="public" optimistic-lock="version">
+        <id name="iditemvenda" type="int">
+            <column name="iditemvenda" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="produto" class="utfpr.edu.br.papelariafacil.vo.Produto" fetch="select">
+            <column name="produtoitemvenda" />
+        </many-to-one>
+        <many-to-one name="venda" class="utfpr.edu.br.papelariafacil.vo.Venda" fetch="select">
+            <column name="vendaitemvenda" />
+        </many-to-one>
+        <property name="quantidade" type="java.lang.Integer">
+            <column name="quantidade" />
+        </property>
+        <property name="valor" type="big_decimal">
+            <column name="valor" precision="10" />
+        </property>
+        <property name="criacaoitemvenda" type="timestamp">
+            <column name="criacaoitemvenda" length="29" />
+        </property>
+    </class>
+</hibernate-mapping>

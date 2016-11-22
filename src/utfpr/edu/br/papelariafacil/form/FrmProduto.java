@@ -51,7 +51,7 @@ public class FrmProduto extends javax.swing.JDialog {
         tfValorVenda.setText(produto.getVendaproduto().toString());
         tfMinimo.setText(produto.getMinimoproduto().toString());
         tfMaximo.setText(produto.getMaximoproduto().toString());
-        tfEstoque.setText(produto.getIdproduto().toString());
+        //tfEstoque.setText(produto.getIdproduto().toString());
 
         //Definindo Modelo com lista de Categorias e Fornecedores para os JComboBox.
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(produtoBO.buscarNomeCategorias()));
@@ -74,16 +74,16 @@ public class FrmProduto extends javax.swing.JDialog {
             //Definindo Modelo com Categoria e Fornecedor para os JComboBox.
             ArrayList<String> array = new ArrayList<>();
             String[] Arr = new String[array.size()];
-            if (produto.getCategoriaproduto()!= null) {
-                array.add(produto.getCategoriaproduto().getDescricaocategoria());
+            if (produto.getCategoria()!= null) {
+                array.add(produto.getCategoria().getDescricaocategoria());
             } else {
                 array.add("CATEGORIA");
             }
             Arr = array.toArray(Arr);
             cbCategoria.setModel(new javax.swing.DefaultComboBoxModel(Arr));
             array.clear();
-            if (produto.getFornecedorproduto()!= null) {
-                array.add(produto.getFornecedorproduto().getNomefornecedor());
+            if (produto.getFornecedor()!= null) {
+                array.add(produto.getFornecedor().getNomefornecedor());
             } else {
                 array.add("FORNECEDOR");
             }
@@ -486,7 +486,8 @@ public class FrmProduto extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         produtoBO = new ProdutoBO();
         if (produtoBO.validarCampos(pnObrigatorio)) {
-            if (produtoBO.alterarProduto(produtoVO.getIdproduto().longValue(), cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText())) {
+            Long l = Long.valueOf(produtoVO.getIdproduto());
+            if (produtoBO.alterarProduto(l, cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }

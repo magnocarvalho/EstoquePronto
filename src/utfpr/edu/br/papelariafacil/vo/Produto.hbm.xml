@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Produto" table="produto" schema="public" optimistic-lock="version">
+        <id name="idproduto" type="int">
+            <column name="idproduto" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categoria" class="utfpr.edu.br.papelariafacil.vo.Categoria" fetch="select">
+            <column name="categoriaproduto" />
+        </many-to-one>
+        <many-to-one name="fornecedor" class="utfpr.edu.br.papelariafacil.vo.Fornecedor" fetch="select">
+            <column name="fornecedorproduto" />
+        </many-to-one>
+        <property name="descricaoproduto" type="string">
+            <column name="descricaoproduto" length="50" />
+        </property>
+        <property name="codigoproduto" type="string">
+            <column name="codigoproduto" length="20" />
+        </property>
+        <property name="custoproduto" type="big_decimal">
+            <column name="custoproduto" precision="10" />
+        </property>
+        <property name="vendaproduto" type="big_decimal">
+            <column name="vendaproduto" precision="10" />
+        </property>
+        <property name="minimoproduto" type="java.lang.Long">
+            <column name="minimoproduto" />
+        </property>
+        <property name="maximoproduto" type="java.lang.Long">
+            <column name="maximoproduto" />
+        </property>
+        <property name="quantidade" type="java.lang.Long">
+            <column name="quantidade" />
+        </property>
+        <property name="criacaoproduto" type="timestamp">
+            <column name="criacaoproduto" length="29" />
+        </property>
+        <set name="itemcompras" table="itemcompra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="produtoitemcompra" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Itemcompra" />
+        </set>
+        <set name="itemvendas" table="itemvenda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="produtoitemvenda" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Itemvenda" />
+        </set>
+    </class>
+</hibernate-mapping>

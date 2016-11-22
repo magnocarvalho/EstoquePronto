@@ -73,7 +73,7 @@ public class TableModelItemVenda extends AbstractTableModel {
         Itemvenda item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
-                return item.getProdutoitemvenda().getDescricaoproduto();
+                return item.getProduto().getDescricaoproduto();
             case valorItem:
                 return item.getValor();
             default:
@@ -86,7 +86,7 @@ public class TableModelItemVenda extends AbstractTableModel {
         Itemvenda item = linhas.get(rowIndex);
         switch (columnIndex) {
             case produtoItem:
-                item.getProdutoitemvenda().setDescricaoproduto((String) aValue);
+                item.getProduto().setDescricaoproduto((String) aValue);
                 break;
             case valorItem:
                 item.setValor((BigDecimal) (aValue));

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Venda" table="venda" schema="public" optimistic-lock="version">
+        <id name="idvenda" type="int">
+            <column name="idvenda" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="funcionario" class="utfpr.edu.br.papelariafacil.vo.Funcionario" fetch="select">
+            <column name="funcionariovenda" />
+        </many-to-one>
+        <property name="valor" type="big_decimal">
+            <column name="valor" precision="10" />
+        </property>
+        <property name="criacaovenda" type="timestamp">
+            <column name="criacaovenda" length="29" />
+        </property>
+        <property name="atualizacaovenda" type="timestamp">
+            <column name="atualizacaovenda" length="29" />
+        </property>
+        <set name="recebimentos" table="recebimento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendarecebimento" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Recebimento" />
+        </set>
+        <set name="itemvendas" table="itemvenda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendaitemvenda" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Itemvenda" />
+        </set>
+    </class>
+</hibernate-mapping>

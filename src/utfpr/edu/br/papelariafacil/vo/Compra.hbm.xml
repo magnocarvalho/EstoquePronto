@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Compra" table="compra" schema="public" optimistic-lock="version">
+        <id name="idcompra" type="int">
+            <column name="idcompra" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="fornecedor" class="utfpr.edu.br.papelariafacil.vo.Fornecedor" fetch="select">
+            <column name="fornecedorcompra" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="utfpr.edu.br.papelariafacil.vo.Funcionario" fetch="select">
+            <column name="funcionariocompra" />
+        </many-to-one>
+        <property name="valorcompra" type="big_decimal">
+            <column name="valorcompra" precision="10" />
+        </property>
+        <property name="criacaocompra" type="timestamp">
+            <column name="criacaocompra" length="29" />
+        </property>
+        <set name="itemcompras" table="itemcompra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="compraitemcompra" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Itemcompra" />
+        </set>
+        <set name="pagamentos" table="pagamento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="comprapagamento" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Pagamento" />
+        </set>
+    </class>
+</hibernate-mapping>

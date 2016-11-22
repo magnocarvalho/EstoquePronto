@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import utfpr.edu.br.papelariafacil.conexao.TransactionUtil;
+import utfpr.edu.br.papelariafacil.dao.DaoCompra;
+import utfpr.edu.br.papelariafacil.dao.DaoItemCompra;
 import utfpr.edu.br.papelariafacil.vo.Compra;
 import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.vo.Funcionario;
@@ -72,32 +75,59 @@ public class CompraBO {
             return false;
         }
     }
-   public Boolean finalizarCompra(Long idFuncionario, Integer idFornecedor, String valor, Integer parcelas, String vencimento, ArrayList<Itemcompra> itens) {
-        try {
-            GenericDAO<Compra> compraDAO = new GenericDAO<>();
-            Compra compraVO = new Compra();
+   public Boolean finalizarCompra(Long idFuncionario, Integer idFornecedor, String valor, ArrayList<Itemcompra> itens) {
+//        try {
+//            GenericDAO<Compra> compraDAO = new GenericDAO<>();
+//            Compra compraVO = new Compra();
+//
+//            GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
+//            compraVO.setFuncionariocompra(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
+//            if (idFornecedor > 0) {
+//                compraVO.setFornecedorcompra(buscarFornecedor(idFornecedor - 1));
+//            }
+//            compraVO.setValorcompra(new BigDecimal(valor));
+//           
+//            compraVO.setCriacaocompra(new Date());
+//            compraDAO.inserir(compraVO);
+//
+//            GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
+//            itens.stream().forEach((iten) -> {
+//                iten.setCompraitemcompra(compraVO);
+//                itemDAO.inserir(iten);
+//            });
+//            JOptionPane.showMessageDialog(null, "Compra finalizada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+//            return true;
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "CompraBO/finalizarCompra/" + e, "Error", JOptionPane.ERROR_MESSAGE);
+//            return false;
+//        }
 
-            GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            compraVO.setFuncionariocompra(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
-            if (idFornecedor > 0) {
-                compraVO.setFornecedorcompra(buscarFornecedor(idFornecedor - 1));
+       Compra c = new Compra();
+       Fornecedor f = new Fornecedor(idFornecedor);
+       Funcionario funcionario = new Funcionario(idFuncionario.intValue());
+       
+       c.setFornecedor(f);
+       c.setFuncionario(funcionario);
+       Long l = Long.valueOf(valor);
+       c.setValorcompra(BigDecimal.valueOf(l));
+       c.setCriacaocompra(new Date());
+       TransactionUtil.beginTransaction();
+            try {
+                new DaoCompra().persistir(c);
+                 
+                    itens.stream().forEach((iten) -> {
+                        iten.setCompra(c);
+                        new DaoItemCompra().persistir(iten);
+                    });
+                TransactionUtil.commit();
+                JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);
+                return true;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao persistir no banco","Messagem", JOptionPane.ERROR_MESSAGE, null);
+                TransactionUtil.rollback();
+            
+               return false;
             }
-            compraVO.setValorcompra(new BigDecimal(valor));
-           
-            compraVO.setCriacaocompra(new Date());
-            compraDAO.inserir(compraVO);
-
-            GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
-            itens.stream().forEach((iten) -> {
-                iten.setCompraitemcompra(compraVO);
-                itemDAO.inserir(iten);
-            });
-            JOptionPane.showMessageDialog(null, "Compra finalizada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            return true;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "CompraBO/finalizarCompra/" + e, "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
     }
 
     public void excluirCompra(Long idCompra, ArrayList<Itemcompra> itens) {
@@ -117,7 +147,7 @@ public class CompraBO {
         GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
         List<Itemcompra> itens = itemDAO.consultar(new Itemcompra());
         ArrayList<Itemcompra> itensVenda = new ArrayList<>();
-        itens.stream().filter((iten) -> (Objects.equals(iten.getCompraitemcompra().getIdcompra(), idVenda))).forEach((iten) -> {
+        itens.stream().filter((iten) -> (Objects.equals(iten.getCompra().getIdcompra(), idVenda))).forEach((iten) -> {
             itensVenda.add(iten);
         });
         return itensVenda;
@@ -126,8 +156,8 @@ public class CompraBO {
     public Boolean verificarEstoque(ArrayList<Itemcompra> itens){
         Boolean retorno = true;
         for (Itemcompra iten : itens) {
-            BigDecimal aux = new BigDecimal(iten.getProdutoitemcompra().getQuantidade()).add(new BigDecimal(iten.getQuantidadeitemcompra()));
-            if (aux.compareTo(new BigDecimal(iten.getProdutoitemcompra().getMaximoproduto())) > 0) {
+            BigDecimal aux = new BigDecimal(iten.getProduto().getQuantidade()).add(new BigDecimal(iten.getQuantidadeitemcompra()));
+            if (aux.compareTo(new BigDecimal(iten.getProduto().getMaximoproduto())) > 0) {
                 retorno = false;
             }
         }

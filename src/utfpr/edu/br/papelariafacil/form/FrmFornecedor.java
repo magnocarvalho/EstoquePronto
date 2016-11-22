@@ -657,7 +657,8 @@ public class FrmFornecedor extends javax.swing.JDialog
         btnAlterar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (fornecedorBO.validarCampos(pnObrigatorio)) {
-            if (fornecedorBO.alterarFornecedor(fornecedorVO.getIdfornecedor().longValue(), tfNomeFornecedor.getText(), tfNomeContato.getText(), tfCnpj.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
+            Long ii = Long.valueOf(fornecedorVO.getIdfornecedor()); 
+            if (fornecedorBO.alterarFornecedor(ii, tfNomeFornecedor.getText(), tfNomeContato.getText(), tfCnpj.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfEndereco.getText(), tfCep.getText(), tfComplemento.getText(), tfNumero.getText(), tfBairro.getText(), tfCidade.getText(), tfEstado.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }

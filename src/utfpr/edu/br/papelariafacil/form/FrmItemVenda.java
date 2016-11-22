@@ -53,8 +53,8 @@ public class FrmItemVenda extends javax.swing.JDialog {
         //Definindo Modelo com Produto para os JComboBox.
         ArrayList<String> array = new ArrayList<>();
         String[] Arr = new String[array.size()];
-        if (item.getProdutoitemvenda()!= null) {
-            array.add(item.getProdutoitemvenda().getDescricaoproduto());
+        if (item.getProduto()!= null) {
+            array.add(item.getProduto().getDescricaoproduto());
         } else {
             array.add("PRODUTO");
         }
@@ -65,7 +65,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
         //Definindo valores quantidade e valor
         tfQuantidade.setText(item.getQuantidade().toString());
         tfValor.setText(item.getValor().toString());
-        tfBuscarProduto.setText(item.getProdutoitemvenda().getCodigoproduto());
+        tfBuscarProduto.setText(item.getProduto().getCodigoproduto());
         tfBuscarProduto.setEditable(false);
         btnBuscarProduto.setEnabled(false);
         if (alterar) {

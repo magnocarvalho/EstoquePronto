@@ -1146,7 +1146,8 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
         if (tbProdutos.getSelectedRow() != -1) {
             TableModelProduto modelo = (TableModelProduto) tbProdutos.getModel();
-            if (painelControleBO.excluirProduto(modelo.getProduto(tbProdutos.getSelectedRow()).getIdproduto().longValue())) {
+            Long l = Long.valueOf(modelo.getProduto(tbProdutos.getSelectedRow()).getIdproduto());
+            if (painelControleBO.excluirProduto(l)) {
                 atualizarTabelas();
             }
         }
@@ -1211,7 +1212,8 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
         if (tbFornecedores.getSelectedRow() != -1) {
             TableModelFornecedor modelo = (TableModelFornecedor) tbFornecedores.getModel();
-            if (painelControleBO.excluirFornecedor(modelo.getFornecedor(tbFornecedores.getSelectedRow()).getIdfornecedor().longValue())) {
+            Long l = Long.valueOf(modelo.getFornecedor(tbFornecedores.getSelectedRow()).getIdfornecedor());
+            if (painelControleBO.excluirFornecedor(l)) {
                 atualizarTabelas();
             }
         }
@@ -1341,7 +1343,7 @@ public class FrmPainelControle extends javax.swing.JInternalFrame {
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         if (tbFuncionarios.getSelectedRow() != -1) {
             TableModelFuncionario modelo = (TableModelFuncionario) tbFuncionarios.getModel();
-            Long i = modelo.getFuncionario(tbFuncionarios.getSelectedRow()).getIdfuncionario().longValue();
+            Long i =  Long.valueOf(modelo.getFuncionario(tbFuncionarios.getSelectedRow()).getIdfuncionario());
             if (painelControleBO.excluirFuncionario(i)) 
             {
                 atualizarTabelas();

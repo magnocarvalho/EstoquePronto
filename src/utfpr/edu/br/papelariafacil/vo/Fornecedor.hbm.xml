@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Fornecedor" table="fornecedor" schema="public" optimistic-lock="version">
+        <id name="idfornecedor" type="int">
+            <column name="idfornecedor" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomefornecedor" type="string">
+            <column name="nomefornecedor" length="50" />
+        </property>
+        <property name="razaosocialpessoajuridica" type="string">
+            <column name="razaosocialpessoajuridica" length="50" />
+        </property>
+        <property name="cnpjpessoajuridica" type="string">
+            <column name="cnpjpessoajuridica" length="20" />
+        </property>
+        <property name="endereco" type="string">
+            <column name="endereco" length="50" />
+        </property>
+        <property name="cep" type="string">
+            <column name="cep" length="10" />
+        </property>
+        <property name="complemento" type="string">
+            <column name="complemento" length="20" />
+        </property>
+        <property name="numeroendereco" type="string">
+            <column name="numeroendereco" length="10" />
+        </property>
+        <property name="cidade" type="string">
+            <column name="cidade" length="20" />
+        </property>
+        <property name="bairro" type="string">
+            <column name="bairro" length="20" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" />
+        </property>
+        <property name="emailcontato" type="string">
+            <column name="emailcontato" length="30" />
+        </property>
+        <property name="telefonecontato" type="string">
+            <column name="telefonecontato" length="20" />
+        </property>
+        <property name="celularcontato" type="string">
+            <column name="celularcontato" length="20" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedorcompra" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Compra" />
+        </set>
+        <set name="produtos" table="produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fornecedorproduto" />
+            </key>
+            <one-to-many class="utfpr.edu.br.papelariafacil.vo.Produto" />
+        </set>
+    </class>
+</hibernate-mapping>

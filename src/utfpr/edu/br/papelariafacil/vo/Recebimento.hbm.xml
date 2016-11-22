@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/11/2016 00:32:59 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="utfpr.edu.br.papelariafacil.vo.Recebimento" table="recebimento" schema="public" optimistic-lock="version">
+        <id name="idrecebimento" type="int">
+            <column name="idrecebimento" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="funcionario" class="utfpr.edu.br.papelariafacil.vo.Funcionario" fetch="select">
+            <column name="funcionariorecebimento" />
+        </many-to-one>
+        <many-to-one name="venda" class="utfpr.edu.br.papelariafacil.vo.Venda" fetch="select">
+            <column name="vendarecebimento" />
+        </many-to-one>
+        <property name="descricao" type="string">
+            <column name="descricao" length="10" />
+        </property>
+        <property name="valor" type="big_decimal">
+            <column name="valor" precision="10" />
+        </property>
+        <property name="criacaorecebimento" type="timestamp">
+            <column name="criacaorecebimento" length="29" />
+        </property>
+    </class>
+</hibernate-mapping>

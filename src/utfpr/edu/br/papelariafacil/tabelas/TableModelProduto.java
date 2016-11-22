@@ -95,14 +95,14 @@ public class TableModelProduto extends AbstractTableModel {
             case descricaoProduto:
                 return produto.getDescricaoproduto();
             case categoriaProduto:
-                if (produto.getCategoriaproduto()!= null) {
-                    return produto.getCategoriaproduto().getDescricaocategoria();
+                if (produto.getCategoria()!= null) {
+                    return produto.getCategoria().getDescricaocategoria();
                 } else {
                     return null;
                 }
             case fornecedorProduto:
-                if (produto.getFornecedorproduto()!= null) {
-                    return produto.getFornecedorproduto().getNomefornecedor();
+                if (produto.getFornecedor()!= null) {
+                    return produto.getFornecedor().getNomefornecedor();
                 } else {
                     return null;
                 }
@@ -129,10 +129,10 @@ public class TableModelProduto extends AbstractTableModel {
                 produto.setDescricaoproduto((String) aValue);
                 break;
             case categoriaProduto:
-                produto.setCategoriaproduto((Categoria) aValue);
+                produto.setCategoria((Categoria) aValue);
                 break;
             case fornecedorProduto:
-                produto.setFornecedorproduto((Fornecedor) aValue);
+                produto.setFornecedor((Fornecedor) aValue);
                 break;
             case codigoProduto:
                 produto.setCodigoproduto((String) aValue);
@@ -144,7 +144,7 @@ public class TableModelProduto extends AbstractTableModel {
                 produto.setVendaproduto((BigDecimal) aValue);
                 break;
             case quantidade:
-                produto.setQuantidade((BigInteger) aValue);
+                produto.setQuantidade((Long) aValue);
                 break;
             
             default:

@@ -86,7 +86,7 @@ public class VendaBO {
             Venda vendaVO = new Venda();
 
             GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            vendaVO.setFuncionariovenda(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
+            vendaVO.setFuncionario(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
             
             vendaVO.setValor(new BigDecimal(valor));
             
@@ -97,7 +97,7 @@ public class VendaBO {
 
             GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
             itens.stream().forEach((iten) -> {
-                iten.setVendaitemvenda(vendaVO);
+                iten.setVenda(vendaVO);
                 itemDAO.inserir(iten);
             });
             JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -128,7 +128,7 @@ public class VendaBO {
         GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
         List<Itemvenda> itens = itemDAO.consultar(new Itemvenda());
         ArrayList<Itemvenda> itensVenda = new ArrayList<>();
-        itens.stream().filter((iten) -> (Objects.equals(iten.getVendaitemvenda().getIdvenda(), idVenda))).forEach((iten) -> {
+        itens.stream().filter((iten) -> (Objects.equals(iten.getVenda().getIdvenda(), idVenda))).forEach((iten) -> {
             itensVenda.add(iten);
         });
         return itensVenda;

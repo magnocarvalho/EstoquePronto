@@ -78,8 +78,8 @@ public class TableModelCompra extends AbstractTableModel {
         Compra compra = linhas.get(rowIndex);
         switch (columnIndex) {
             case fornecedorCompra:
-                if(compra.getFornecedorcompra()!= null){
-                    return compra.getFornecedorcompra().getNomefornecedor();
+                if(compra.getFornecedor()!= null){
+                    return compra.getFornecedor().getNomefornecedor();
                 } else {
                     return "SEM FORNECEDOR";
                 }
@@ -96,7 +96,7 @@ public class TableModelCompra extends AbstractTableModel {
         Compra compra = linhas.get(rowIndex);
         switch (columnIndex) {
             case fornecedorCompra:
-                compra.getFornecedorcompra().setNomefornecedor((String) aValue);
+                compra.getFornecedor().setNomefornecedor((String) aValue);
                 break;
             case valorCompra:
                 compra.setValorcompra((BigDecimal) (aValue));

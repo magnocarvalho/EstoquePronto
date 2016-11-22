@@ -60,8 +60,8 @@ public class ItemCompraBO {
             GenericDAO<Itemcompra> itemDAO = new GenericDAO<>();
             Itemcompra itemVO = new Itemcompra();
 
-            itemVO.setCompraitemcompra(compra);
-            itemVO.setProdutoitemcompra(produto);
+            itemVO.setCompra(compra);
+            itemVO.setProduto(produto);
             try {
                 itemVO.setQuantidadeitemcompra(new Integer(quantidade));
             } catch (Exception e) {
@@ -99,7 +99,7 @@ public class ItemCompraBO {
             try {
                 itemVO.setValoritemcompra(new BigDecimal(valor));
             } catch (Exception e) {
-                itemVO.setValoritemcompra(itemVO.getProdutoitemcompra().getVendaproduto().multiply(new BigDecimal(itemVO.getQuantidadeitemcompra())));
+                itemVO.setValoritemcompra(itemVO.getProduto().getVendaproduto().multiply(new BigDecimal(itemVO.getQuantidadeitemcompra())));
             }
             
             return true;

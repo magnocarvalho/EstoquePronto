@@ -46,6 +46,15 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/dbloja</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">Serial</property>
-    <mapping resource="utfpr/edu/br/papelariafacil/vo/hibernate.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Produto.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Funcionario.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Recebimento.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Itemcompra.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Compra.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Itemvenda.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Pagamento.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Venda.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Categoria.hbm.xml"/>
+    <mapping resource="utfpr/edu/br/papelariafacil/vo/Fornecedor.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

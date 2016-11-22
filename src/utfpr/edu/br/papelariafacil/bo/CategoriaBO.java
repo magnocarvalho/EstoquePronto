@@ -5,11 +5,16 @@ import utfpr.edu.br.papelariafacil.vo.Categoria;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utfpr.edu.br.papelariafacil.conexao.TransactionUtil;
+import utfpr.edu.br.papelariafacil.dao.DaoCategoria;
 import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.form.FrmCategoria;
 
 /**
  * @see Classe de objetos de negócios. Métodos: alterarCategoria(),
@@ -25,20 +30,25 @@ public class CategoriaBO {
      * @return true/false.
      */
     public Boolean inserirCategoria(String descricao) {
-        try {
-            GenericDAO<Categoria> categoriaDAO = new GenericDAO();
+       try{
             Categoria categoriaVO = new Categoria();
             categoriaVO.setDescricaocategoria(descricao);
-            
-            if (categoriaDAO.inserir(categoriaVO)) {
-                JOptionPane.showMessageDialog(null, "Categoria inserida com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                
+                TransactionUtil.beginTransaction();
+                new DaoCategoria().persistir(categoriaVO);
+                TransactionUtil.commit();
+                
+                JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);
+                return true;
+       } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao persistir no banco","Messagem", JOptionPane.ERROR_MESSAGE, null);
+                TransactionUtil.rollback();
+                Logger.getLogger(FrmCategoria.class.getName()).log(Level.SEVERE, null, ex);//erro
+               return false;
             }
-            return true;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+        
+        
         }
-    }
 
     /**
      * @see Método que altera um objeto no banco de dados por meio da

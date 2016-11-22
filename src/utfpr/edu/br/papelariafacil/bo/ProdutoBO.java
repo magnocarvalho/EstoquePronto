@@ -52,8 +52,8 @@ public class ProdutoBO {
             } catch (Exception e) {
                 produtoV0.setVendaproduto(new BigDecimal(0));
             }
-            produtoV0.setMinimoproduto(new BigInteger(minimo));
-            produtoV0.setMaximoproduto(new BigInteger(maximo));
+            produtoV0.setMinimoproduto(new Long(minimo));
+            produtoV0.setMaximoproduto(new Long(maximo));
             
             
             produtoV0.setCriacaoproduto(new Date());
@@ -62,18 +62,18 @@ public class ProdutoBO {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
             try {
                 Categoria categoriaVO = buscarCategoria(idCategoria - 1);
-                produtoV0.setCategoriaproduto(categoriaVO);
+                produtoV0.setCategoria(categoriaVO);
             } catch (Exception e) {
                 Categoria categoriaVO = null;
-                produtoV0.setCategoriaproduto(categoriaVO);
+                produtoV0.setCategoria(categoriaVO);
             }
             GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
             try {
                 Fornecedor fornecedorVO = buscarFornecedor(idFornecedor - 1);
-                produtoV0.setFornecedorproduto(fornecedorVO);
+                produtoV0.setFornecedor(fornecedorVO);
             } catch (Exception e) {
                 Fornecedor fornecedorVO = null;
-                produtoV0.setFornecedorproduto(fornecedorVO);
+                produtoV0.setFornecedor(fornecedorVO);
             }
 
             if (produtoDAO.inserir(produtoV0)) {
@@ -118,16 +118,16 @@ public class ProdutoBO {
                 produtoV0.setVendaproduto(new BigDecimal(0));
             }
             try {
-                produtoV0.setMinimoproduto(new BigInteger(minimo));
+                produtoV0.setMinimoproduto(new Long(minimo));
             } catch (Exception e) {
-                BigInteger bi = BigInteger.ZERO;
-                produtoV0.setMinimoproduto(bi);
+                
+                produtoV0.setMinimoproduto(new Long(0));
             }
             try {
-                produtoV0.setMaximoproduto(new BigInteger(maximo));
+                produtoV0.setMaximoproduto(new Long(maximo));
             } catch (Exception e) {
-                BigInteger bi = BigInteger.ZERO;
-                produtoV0.setMaximoproduto(bi);
+                
+                produtoV0.setMaximoproduto(new Long(0));
             }
             
             
@@ -135,18 +135,18 @@ public class ProdutoBO {
             GenericDAO<Categoria> categoriaDAO = new GenericDAO<>();
             try {
                 Categoria categoriaVO = buscarCategoria(idCategoria - 1);
-                produtoV0.setCategoriaproduto(categoriaVO);
+                produtoV0.setCategoria(categoriaVO);
             } catch (Exception e) {
                 Categoria categoriaVO = null;
-                produtoV0.setCategoriaproduto(categoriaVO);
+                produtoV0.setCategoria(categoriaVO);
             }
             GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
             try {
                 Fornecedor fornecedorVO = buscarFornecedor(idFornecedor - 1);
-                produtoV0.setFornecedorproduto(fornecedorVO);
+                produtoV0.setFornecedor(fornecedorVO);
             } catch (Exception e) {
                 Fornecedor fornecedorVO = null;
-                produtoV0.setFornecedorproduto(fornecedorVO);
+                produtoV0.setFornecedor(fornecedorVO);
             }
 
             if (produtoDAO.atualizar(produtoV0)) {

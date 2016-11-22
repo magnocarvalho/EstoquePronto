@@ -108,13 +108,13 @@ public class TableModelInventario extends AbstractTableModel {
                 produto.setVendaproduto((BigDecimal) aValue);
                 break;
             case minimoProduto:
-                produto.setMinimoproduto((BigInteger) aValue);
+                produto.setMinimoproduto((Long) aValue);
                 break;
             case maximoProduto:
-                produto.setMaximoproduto((BigInteger) aValue);
+                produto.setMaximoproduto((Long) aValue);
                 break;
             case estoqueProduto:
-                produto.setQuantidade((BigInteger) (aValue));
+                produto.setQuantidade((Long) (aValue));
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
