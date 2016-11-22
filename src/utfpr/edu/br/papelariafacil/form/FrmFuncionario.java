@@ -358,7 +358,8 @@ public class FrmFuncionario extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         funcionarioBO = new FuncionarioBO();
         if (funcionarioBO.validarCampos(pnObrigatorio)) {
-            if (funcionarioBO.alterarFuncionario(funcionarioVO.getIdfuncionario().longValue(), tfNomeFuncionario.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText())) {
+            Long ii = Long.valueOf(funcionarioVO.getIdfuncionario());
+            if (funcionarioBO.alterarFuncionario(ii, tfNomeFuncionario.getText(), tfEmail.getText(), tfTelefone.getText(), tfCelular.getText(), tfCargo.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }
