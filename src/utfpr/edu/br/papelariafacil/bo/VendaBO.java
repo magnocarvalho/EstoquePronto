@@ -80,13 +80,13 @@ public class VendaBO {
         }
     }
 
-    public Boolean finalizarVenda(Long idFuncionario, Integer idCliente, String valor, Integer parcelas, String vencimento, ArrayList<Itemvenda> itens) {
+    public Boolean finalizarVenda(Long idFuncionario, String valor, ArrayList<Itemvenda> itens) {
         try {
             GenericDAO<Venda> vendaDAO = new GenericDAO<>();
             Venda vendaVO = new Venda();
             vendaVO.setIdvenda(1 + (vendaDAO.consultar(vendaVO).size()));
-            GenericDAO<Funcionario> funcionarioDAO = new GenericDAO<>();
-            vendaVO.setFuncionario(funcionarioDAO.consultar("idFuncionario", idFuncionario, new Funcionario()));
+            Funcionario fu = new Funcionario(1);
+            vendaVO.setFuncionario(fu);
             
             vendaVO.setValor(new BigDecimal(valor));
             
