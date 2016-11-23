@@ -1,19 +1,17 @@
 package utfpr.edu.br.papelariafacil.tabelas;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import utfpr.edu.br.papelariafacil.vo.Categoria;
 import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.vo.Produto;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Produto.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author 
  */
 public class TableModelProduto extends AbstractTableModel {
 

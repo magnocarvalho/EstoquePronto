@@ -49,9 +49,11 @@ public class FuncionarioBO {
         try{
             GenericDAO<Funcionario> dao = new GenericDAO<>();
             Funcionario f = new Funcionario();
+            f.setIdfuncionario(1 + (dao.consultar(f).size()));
             f.setCargofuncionario(cargo);
             f.setCelular(celular);
             f.setCriacaofuncionario(new Date());
+            f.setEmailcontato(email);
             f.setNomefuncionario(nome);
             f.setTelefone(telefone);
             

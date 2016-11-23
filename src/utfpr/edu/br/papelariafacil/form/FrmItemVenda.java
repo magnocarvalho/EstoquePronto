@@ -5,6 +5,9 @@ import utfpr.edu.br.papelariafacil.vo.Itemvenda;
 import java.awt.Cursor;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import static javafx.scene.input.KeyCode.V;
+import utfpr.edu.br.papelariafacil.dao.GenericDAO;
+import utfpr.edu.br.papelariafacil.vo.Venda;
 
 /**
  * @see Classe visual. JDialog que tem como objetivo cadastrar um novo item de
@@ -145,7 +148,7 @@ public class FrmItemVenda extends javax.swing.JDialog {
         lbQuantidade.setText("Quantidade");
 
         tfQuantidade.setForeground(new java.awt.Color(102, 102, 102));
-        tfQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("########.##"))));
+        tfQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##########"))));
         tfQuantidade.setEnabled(false);
         tfQuantidade.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tfQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -168,6 +171,11 @@ public class FrmItemVenda extends javax.swing.JDialog {
         tfBuscarProduto.setForeground(new java.awt.Color(102, 102, 102));
         tfBuscarProduto.setText("Código");
         tfBuscarProduto.setPreferredSize(new java.awt.Dimension(59, 19));
+        tfBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfBuscarProdutoActionPerformed(evt);
+            }
+        });
 
         btnBuscarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarUP.png"))); // NOI18N
         btnBuscarProduto.setBorder(null);
@@ -176,6 +184,11 @@ public class FrmItemVenda extends javax.swing.JDialog {
         btnBuscarProduto.setFocusable(false);
         btnBuscarProduto.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
         btnBuscarProduto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/resources/imagens/btnBuscarDOWN.png"))); // NOI18N
+        btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnItemLayout = new javax.swing.GroupLayout(pnItem);
         pnItem.setLayout(pnItemLayout);
@@ -335,7 +348,8 @@ public class FrmItemVenda extends javax.swing.JDialog {
         btnCadastrar.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (itemBO.validarCampos(pnItem) && cbProduto.getSelectedIndex() > 0) {
-            itemVO = itemBO.inserirItem(null, itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1), tfQuantidade.getText(), tfValor.getText());
+           
+            itemVO = itemBO.inserirItem((new Venda(1)), itemBO.buscarProduto(cbProduto.getSelectedIndex() - 1), tfQuantidade.getText(), tfValor.getText());
             if (itemVO != null) {
                 itens.add(itemVO);
                 viewVenda.atualizarPagina();
@@ -358,6 +372,14 @@ public class FrmItemVenda extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         btnCadastrar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void tfBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfBuscarProdutoActionPerformed
+
+    private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     //Declaração de variáveis(View).
     private final FrmVenda viewVenda;

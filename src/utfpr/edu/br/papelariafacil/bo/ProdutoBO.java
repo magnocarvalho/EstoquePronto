@@ -32,16 +32,18 @@ public class ProdutoBO {
      * @param custo
      * @param venda
      * @param minimo
-     * @param estoque
+     
      * @param maximo
      * @return true/false.
      */
-    public Boolean inserirProduto(Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo) {
+    public Boolean inserirProduto(Integer idCategoria, Integer idFornecedor, String descricao, String codigo, String custo, String venda, String minimo, String maximo, String Quantidade) {
         try {
             GenericDAO<Produto> produtoDAO = new GenericDAO<>();
             Produto produtoV0 = new Produto();
+            produtoV0.setIdproduto(1 + (produtoDAO.consultar(produtoV0).size()));
             produtoV0.setDescricaoproduto(descricao);
             produtoV0.setCodigoproduto(codigo);
+            produtoV0.setQuantidade(new Long(Quantidade));
             try {
                 produtoV0.setCustoproduto(new BigDecimal(custo));
             } catch (Exception e) {

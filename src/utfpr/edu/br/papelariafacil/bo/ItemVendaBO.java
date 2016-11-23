@@ -60,7 +60,7 @@ public class ItemVendaBO {
         try {
             GenericDAO<Itemvenda> itemDAO = new GenericDAO<>();
             Itemvenda itemVO = new Itemvenda();
-
+            itemVO.setIditemvenda(1 + (itemDAO.consultar(itemVO).size()));
             itemVO.setVenda(venda);
             itemVO.setProduto(produto);
             try {

@@ -20,8 +20,6 @@ public class Conexao {
         String conecaoMysql = "jdbc:postgresql://localhost:5432/dbloja";
         if (conexao == null) {
             mysqlDriver = new org.postgresql.Driver();
-            //conexao = DriverManager.getConnection(conecaoMysql);
-            
             conexao = DriverManager.getConnection(conecaoMysql, HibernateUtil.getUser(), HibernateUtil.getPass());
         }
         return conexao;

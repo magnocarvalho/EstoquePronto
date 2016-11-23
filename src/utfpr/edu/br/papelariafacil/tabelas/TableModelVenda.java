@@ -64,9 +64,8 @@ public class TableModelVenda extends AbstractTableModel {
         switch (columnIndex) {
             case clienteVenda:
                 return String.class;
-            case valorVenda:
-                
-                return Date.class;
+            case valorVenda:   
+                return String.class;
             case criacaoVenda:
                 return Date.class;
             case atualizacaoVenda:

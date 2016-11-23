@@ -24,7 +24,7 @@ public class TableModelFornecedor extends AbstractTableModel {
     private static final int emailFornecedor = 2;
     private static final int telefoneFornecedor = 3;
     private static final int criacaoFornecedor = 4;
-    private static final int atualizacaoFornecedor = 5;
+    
 
     /**
      * @see Construtor padrão. Inicializa as linhas da coluna como nulo e define
@@ -74,8 +74,7 @@ public class TableModelFornecedor extends AbstractTableModel {
                 return String.class;
             case criacaoFornecedor:
                 return Date.class;
-            case atualizacaoFornecedor:
-                return Date.class;
+            
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -94,7 +93,7 @@ public class TableModelFornecedor extends AbstractTableModel {
                 return fornecedor.getEmailcontato();
             case telefoneFornecedor:
                 return fornecedor.getTelefonecontato();
-            
+           
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

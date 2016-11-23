@@ -210,12 +210,9 @@ public class FrmProduto extends javax.swing.JDialog {
         lbCodigo.setText("Codigo");
 
         tfCodigo.setForeground(new java.awt.Color(102, 102, 102));
-        try {
-            tfCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfCodigo.setText("");
+        tfCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        tfCodigo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         tfCodigo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         lbValorCusto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -469,7 +466,7 @@ public class FrmProduto extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         produtoBO = new ProdutoBO();
         if (produtoBO.validarCampos(pnObrigatorio)) {
-            if (produtoBO.inserirProduto(cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText())) {
+            if (produtoBO.inserirProduto(cbCategoria.getSelectedIndex(), cbFornecedor.getSelectedIndex(), tfDescricao.getText(), tfCodigo.getText(), tfValorCusto.getText(), tfValorVenda.getText(), tfMinimo.getText(), tfMaximo.getText(), tfEstoque.getText())) {
                 viewPainelControle.atualizarTabelas();
                 this.dispose();
             }

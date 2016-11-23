@@ -36,6 +36,7 @@ public final class FrmVenda extends javax.swing.JDialog {
         this.vendaBO = new VendaBO();
         this.itens = new ArrayList<>();
         this.recebimentos = new ArrayList<>();
+        
         initComponents();
         rbAVista.doClick();
         btnAlterar.setVisible(false);
@@ -57,7 +58,7 @@ public final class FrmVenda extends javax.swing.JDialog {
         this.viewPrincipal = viewPrincipal;
         this.viewVendas = viewVendas;
         this.vendaBO = new VendaBO();
-        this.vendaVO = venda;
+        this.venda = venda;
         int c = venda.getIdvenda();
         Long d = Long.valueOf(c);
         this.itens = vendaBO.buscarItens(d);
@@ -88,7 +89,7 @@ public final class FrmVenda extends javax.swing.JDialog {
         calcularValores();
         calcularPagamento();
         calcularTroco();
-        gerarRecebimentos();
+
         atualizarTabelas();
         calcularValores();
         calcularPagamento();
@@ -172,42 +173,42 @@ public final class FrmVenda extends javax.swing.JDialog {
     /**
      * @see Método que calcula os valores do pagamento da venda.
      */
-    public void gerarRecebimentos() {
-        recebimentos.clear();
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(new Date());
-            if (rbAPrazo.isSelected()) {
-                for (int cont = 0; cont < (Integer) sldParcelas.getValue(); cont++) {
-                    calendar.add(Calendar.MONTH, +1);
-                    if (((calendar.getTime().getMonth() + 1) == 2) && ((cbVencimento.getSelectedIndex() + 1) > 28)) {
-                        calendar.set(Calendar.DAY_OF_MONTH, 28);
-                    } else {
-                        if (((calendar.getTime().getMonth() + 1) == 4) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
-                            calendar.set(Calendar.DAY_OF_MONTH, 30);
-                        } else {
-                            if (((calendar.getTime().getMonth() + 1) == 6) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
-                                calendar.set(Calendar.DAY_OF_MONTH, 30);
-                            } else {
-                                if (((calendar.getTime().getMonth() + 1) == 9) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
-                                    calendar.set(Calendar.DAY_OF_MONTH, 30);
-                                } else {
-                                    if (((calendar.getTime().getMonth() + 1) == 11) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
-                                        calendar.set(Calendar.DAY_OF_MONTH, 30);
-                                    } else {
-                                        calendar.set(Calendar.DAY_OF_MONTH, cbVencimento.getSelectedIndex() + 1);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                   
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+//    public void gerarRecebimentos() {
+//        recebimentos.clear();
+//        try {
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTime(new Date());
+//            if (rbAPrazo.isSelected()) {
+//                for (int cont = 0; cont < (Integer) sldParcelas.getValue(); cont++) {
+//                    calendar.add(Calendar.MONTH, +1);
+//                    if (((calendar.getTime().getMonth() + 1) == 2) && ((cbVencimento.getSelectedIndex() + 1) > 28)) {
+//                        calendar.set(Calendar.DAY_OF_MONTH, 28);
+//                    } else {
+//                        if (((calendar.getTime().getMonth() + 1) == 4) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+//                            calendar.set(Calendar.DAY_OF_MONTH, 30);
+//                        } else {
+//                            if (((calendar.getTime().getMonth() + 1) == 6) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+//                                calendar.set(Calendar.DAY_OF_MONTH, 30);
+//                            } else {
+//                                if (((calendar.getTime().getMonth() + 1) == 9) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+//                                    calendar.set(Calendar.DAY_OF_MONTH, 30);
+//                                } else {
+//                                    if (((calendar.getTime().getMonth() + 1) == 11) && ((cbVencimento.getSelectedIndex() + 1) > 30)) {
+//                                        calendar.set(Calendar.DAY_OF_MONTH, 30);
+//                                    } else {
+//                                        calendar.set(Calendar.DAY_OF_MONTH, cbVencimento.getSelectedIndex() + 1);
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                   
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 
     //Componentes padrões do JFrame.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -234,12 +235,7 @@ public final class FrmVenda extends javax.swing.JDialog {
         lbPagamento = new javax.swing.JLabel();
         pnPagamento = new javax.swing.JPanel();
         rbAVista = new javax.swing.JRadioButton();
-        rbAPrazo = new javax.swing.JRadioButton();
         pnAPrazo = new javax.swing.JPanel();
-        tfParcelas = new javax.swing.JLabel();
-        sldParcelas = new javax.swing.JSlider();
-        tfVencimento = new javax.swing.JLabel();
-        cbVencimento = new javax.swing.JComboBox();
         spnRecebimentos = new javax.swing.JScrollPane();
         tbRecebimentos = new javax.swing.JTable();
         pnAVista = new javax.swing.JPanel();
@@ -427,7 +423,7 @@ public final class FrmVenda extends javax.swing.JDialog {
                     .addComponent(btnExcluirItem, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnNovoItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spnItens, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(spnItens, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfValorProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,53 +461,7 @@ public final class FrmVenda extends javax.swing.JDialog {
             }
         });
 
-        rbAPrazo.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(rbAPrazo);
-        rbAPrazo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        rbAPrazo.setForeground(new java.awt.Color(102, 102, 102));
-        rbAPrazo.setText("A prazo");
-        rbAPrazo.setFocusable(false);
-        rbAPrazo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAPrazoActionPerformed(evt);
-            }
-        });
-
         pnAPrazo.setBackground(new java.awt.Color(255, 255, 255));
-
-        tfParcelas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfParcelas.setForeground(new java.awt.Color(102, 102, 102));
-        tfParcelas.setText("Parcelas");
-
-        sldParcelas.setBackground(new java.awt.Color(255, 255, 255));
-        sldParcelas.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
-        sldParcelas.setForeground(new java.awt.Color(102, 102, 102));
-        sldParcelas.setMajorTickSpacing(1);
-        sldParcelas.setMaximum(12);
-        sldParcelas.setPaintLabels(true);
-        sldParcelas.setPaintTicks(true);
-        sldParcelas.setSnapToTicks(true);
-        sldParcelas.setValue(0);
-        sldParcelas.setFocusable(false);
-        sldParcelas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                sldParcelasMouseReleased(evt);
-            }
-        });
-
-        tfVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tfVencimento.setForeground(new java.awt.Color(102, 102, 102));
-        tfVencimento.setText("Vencimento nos dias");
-
-        cbVencimento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cbVencimento.setForeground(new java.awt.Color(102, 102, 102));
-        cbVencimento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        cbVencimento.setFocusable(false);
-        cbVencimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbVencimentoActionPerformed(evt);
-            }
-        });
 
         spnRecebimentos.setBackground(new java.awt.Color(255, 255, 255));
         spnRecebimentos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -552,36 +502,14 @@ public final class FrmVenda extends javax.swing.JDialog {
             pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnAPrazoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnAPrazoLayout.createSequentialGroup()
-                        .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(pnAPrazoLayout.createSequentialGroup()
-                        .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnAPrazoLayout.createSequentialGroup()
-                                .addComponent(tfVencimento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnAPrazoLayout.createSequentialGroup()
-                                .addComponent(tfParcelas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sldParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10))))
+                .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnAPrazoLayout.setVerticalGroup(
             pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnAPrazoLayout.createSequentialGroup()
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnAPrazoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tfParcelas))
-                    .addComponent(sldParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnAPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfVencimento)
-                    .addComponent(cbVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(spnRecebimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
 
         pnAVista.setBackground(new java.awt.Color(255, 255, 255));
@@ -666,8 +594,6 @@ public final class FrmVenda extends javax.swing.JDialog {
             .addGroup(pnPagamentoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rbAVista)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbAPrazo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(pnAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -675,9 +601,7 @@ public final class FrmVenda extends javax.swing.JDialog {
             pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnPagamentoLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(pnPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbAPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(rbAVista, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnAPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -815,13 +739,6 @@ public final class FrmVenda extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rbAVistaActionPerformed
 
-    private void rbAPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAPrazoActionPerformed
-        if (rbAPrazo.isSelected()) {
-            pnAPrazo.setVisible(true);
-            atualizarPagina();
-        }
-    }//GEN-LAST:event_rbAPrazoActionPerformed
-
     private void btnNovoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoItemActionPerformed
         viewItem = new FrmItemVenda(viewPrincipal, true, this, itens);
         viewItem.setVisible(true);
@@ -845,22 +762,18 @@ public final class FrmVenda extends javax.swing.JDialog {
         calcularTroco();
     }//GEN-LAST:event_tfTotalPagoKeyReleased
 
-    private void sldParcelasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sldParcelasMouseReleased
-        sldParcelas.setEnabled(false);
-        atualizarPagina();
-        sldParcelas.setEnabled(true);
-    }//GEN-LAST:event_sldParcelasMouseReleased
-
-    private void cbVencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVencimentoActionPerformed
-        atualizarPagina();
-    }//GEN-LAST:event_cbVencimentoActionPerformed
-
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
         btnFinalizarVenda.setEnabled(false);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (tbItens.getModel().getRowCount() > 0) {
-                 viewVendas.atualizarTabelas();
-                this.dispose();
+                  Long l = Long.valueOf(1);
+                   
+                 if(vendaBO.finalizarVenda( l, tfTotalVenda.getText(), itens)) 
+                 {
+                    viewVendas.atualizarTabelas();
+                    this.dispose();
+                 }
+                 
             
         } else {
             JOptionPane.showMessageDialog(null, "Insira itens para a venda primeiro.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -883,7 +796,7 @@ public final class FrmVenda extends javax.swing.JDialog {
     private FrmItemVenda viewItem;
 
     //Declaração de variáveis(Value Object).
-    private Venda vendaVO;
+    private Venda venda;;
     private final ArrayList<Itemvenda> itens;
     private final ArrayList<Recebimento> recebimentos;
 
@@ -901,7 +814,6 @@ public final class FrmVenda extends javax.swing.JDialog {
     private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnNovoItem;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox cbVencimento;
     private javax.swing.JLabel lbDesconto;
     private javax.swing.JLabel lbOpcional2;
     private javax.swing.JLabel lbPagamento;
@@ -918,9 +830,7 @@ public final class FrmVenda extends javax.swing.JDialog {
     private javax.swing.JPanel pnPagamento;
     private javax.swing.JPanel pnPedido;
     private javax.swing.JPanel pnTitulo;
-    private javax.swing.JRadioButton rbAPrazo;
     private javax.swing.JRadioButton rbAVista;
-    private javax.swing.JSlider sldParcelas;
     private javax.swing.JScrollPane spnItens;
     private javax.swing.JScrollPane spnRecebimentos;
     private javax.swing.JSeparator sprDireita;
@@ -929,12 +839,10 @@ public final class FrmVenda extends javax.swing.JDialog {
     private javax.swing.table.JTableHeader cabecalho;
     private javax.swing.JTable tbRecebimentos;
     private javax.swing.JFormattedTextField tfDesconto;
-    private javax.swing.JLabel tfParcelas;
     private javax.swing.JFormattedTextField tfTotalAVista;
     private javax.swing.JFormattedTextField tfTotalPago;
     private javax.swing.JFormattedTextField tfTotalVenda;
     private javax.swing.JFormattedTextField tfTroco;
     private javax.swing.JFormattedTextField tfValorProdutos;
-    private javax.swing.JLabel tfVencimento;
     // End of variables declaration//GEN-END:variables
 }

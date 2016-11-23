@@ -167,8 +167,17 @@ public class CompraBO {
         return retorno;
     }
 
-    public Object[] buscarNomeFornecedores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   public String[] buscarNomeFornecedores() {
+        GenericDAO<Fornecedor> fornecedorDAO = new GenericDAO<>();
+        ArrayList<Fornecedor> fornecedoresVO = new ArrayList<>(fornecedorDAO.consultar(new Fornecedor()));
+        ArrayList<String> array = new ArrayList<>();
+        array.add("FORNECEDOR");
+        fornecedoresVO.stream().forEach((categoriasVO1) -> {
+            array.add(categoriasVO1.getNomefornecedor());
+        });
+        String[] Arr = new String[array.size()];
+        Arr = array.toArray(Arr);
+        return Arr;
     }
 
     

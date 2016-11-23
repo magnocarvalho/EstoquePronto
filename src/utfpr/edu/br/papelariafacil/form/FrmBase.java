@@ -34,17 +34,6 @@ public class FrmBase extends javax.swing.JFrame {
         dpnCorpo.add(frmEstoque = new FrmEstoque(this));
         dpnCorpo.add(frmRelatorios = new FrmRelatorios(this));
         dpnCorpo.add(frmVendas = new FrmVendas(this));
-        
-
-     
-
-        
-        
-       
-        //Condição try que tenta definir a viewAcesso com tamanho máximo.
-
-        
-        //OCUTAR O MENU
       
         this.getGraphics().drawImage(null, 10, 10, 10, 10, 10, 10, 10, 10, Color.yellow, null);
         
@@ -265,10 +254,7 @@ public class FrmBase extends javax.swing.JFrame {
                 Logger.getLogger(FrmBase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-//
-//            FrmFornecedora f = new FrmFornecedora();
-//            f.setVisible(true);
-//            this.dispose();
+
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -398,12 +384,10 @@ public class FrmBase extends javax.swing.JFrame {
     
 
     private FrmPainelControle frmFornecedor;
-    private FrmVenda frmVenda;
     private FrmVendas frmVendas;
     private FrmEstoque frmEstoque;
-    private FrmCompra frmCompra;
     private FrmRelatorios frmRelatorios;
-    private FrmAcessoLogin frmAcessologin;
+
    
     public final void mostrarMenu()
     {

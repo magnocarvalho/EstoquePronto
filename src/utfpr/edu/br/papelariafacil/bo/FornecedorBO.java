@@ -17,7 +17,7 @@ import utfpr.edu.br.papelariafacil.vo.Fornecedor;
  * @see Classe de objetos de negócios. Métodos: alterarFornecedor(),
  * inserirFornecedor(), buscarPessoaFisica(), buscarPessoaJuridica(),
  * validarCampos().
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author 
  */
 public class FornecedorBO {
 
