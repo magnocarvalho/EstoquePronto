@@ -17,8 +17,10 @@ import utfpr.edu.br.papelariafacil.vo.Produto;
  * buscarPessoaFisica(), buscarPessoaJuridica(), buscarProdutos(),
  * excluirCategoria(), excluirCliente(), excluirFornecedor(),
  * excluirFuncionario(), excluirProduto().
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
- */
+ * @author 
+ * /
+ * */
+
 public class PainelControleBO {
 
     /**
