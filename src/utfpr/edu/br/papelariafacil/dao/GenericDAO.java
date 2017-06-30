@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 /**
  * @see @see Classe de objetos de acesso ao banco de dados. Métodos: inserir(),
  * atualizar(), apagar(), consultar().
- * @author nori, rodrigo.
+ * @author Magno
  * @param <T> obejeto genérico que substitui como parâmetro todos os objetos de
  * valores do sistema.
  */
@@ -142,35 +142,3 @@ public class GenericDAO<T> {
     }
 }
 
-//    c.add(Restrictions.eq("idPessoa", obj.getClass()));
-//    c.add(Restrictions.ne("String propertyName", "Object value"));
-//    c.add(Restrictions.isNull("String propertyName"));
-//
-//    c.add(Restrictions.like("String propertyName","Object value%"));
-//    c.add(Restrictions.ilike("String propertyName","Object value%"));
-//    c.add(Restrictions.ilike("String propertyName","Object value", MatchMode.ANYWHERE));
-//    c.add(Restrictions.ilike("String propertyName","Object value", MatchMode.END));
-//    c.add(Restrictions.ilike("String propertyName","Object value", MatchMode.EXACT));
-//    c.add(Restrictions.ilike("String propertyName","Object value", MatchMode.START));
-//
-//    c.add(Restrictions.gt("String propertyName",new Double(30.0)));//maior que 30
-//    c.add(Restrictions.ge("String propertyName",new Double(30.0)));//maior ou igual a 30
-//    c.add(Restrictions.lt("String propertyName",new Double(30.0)));//menor que 30
-//    c.add(Restrictions.le("String propertyName",new Double(30.0)));//menor ou igual a 30
-//
-//    //Consultas com expressão lógica OU
-//    LogicalExpression orExp = Restrictions.or(criteria1,criteria2);
-//
-//    //Consultas com SQLs que o hibernate não possui por padrão
-//    c.add(Restrictions.sqlRestriction("SQL"));//usar {alias} para tabelas genericas
-//
-//    //Paginando Resultados das consultas
-//    c.setFirstResult(1);
-//    c.setMaxResults(1);
-//
-//    //Retornando consultas únicas
-//    obj = (T) c.uniqueResult();
-//
-//    //Odenando consultas
-//    c.addOrder(Order.desc("String propertyName"));
-//    c.addOrder(Order.asc("String propertyName"));

@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * da classe Recebimento.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author 
  */
 public class TableModelRecebimento extends AbstractTableModel {
 

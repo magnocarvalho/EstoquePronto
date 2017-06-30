@@ -189,9 +189,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="sprRodape" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="384" max="32767" attributes="0"/>
+                  <EmptySpace pref="379" max="32767" attributes="0"/>
                   <Component id="lbRodape" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="384" max="32767" attributes="0"/>
+                  <EmptySpace pref="378" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,12 +217,12 @@
         <Component class="javax.swing.JLabel" name="lbRodape">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri" size="18" style="0"/>
+              <Font name="Candara" size="18" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+              <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="UTFPR - CP (ENGENHARIA DE SOFTWARE) 2016"/>
+            <Property name="text" type="java.lang.String" value="UTFPR - CP (ENGENHARIA DE SOFTWARE) 2017"/>
           </Properties>
         </Component>
       </SubComponents>

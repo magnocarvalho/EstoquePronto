@@ -26,9 +26,9 @@
     <class>utfpr.edu.br.papelariafacil.vo.Produto</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dbloja"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.user" value="utpfr"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="Serial"/>
+      <property name="javax.persistence.jdbc.password" value="123"/>
     </properties>
   </persistence-unit>
 </persistence>

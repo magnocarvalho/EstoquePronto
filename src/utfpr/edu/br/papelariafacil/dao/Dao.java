@@ -7,7 +7,7 @@ package utfpr.edu.br.papelariafacil.dao;
 
 /**
  *
- * @author rodrigo
+ * @author joao
  * dao clase de persistencia de dados no framework 
  * 
  * 

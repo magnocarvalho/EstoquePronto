@@ -18,7 +18,7 @@ import utfpr.edu.br.papelariafacil.vo.Produto;
 
 /**
  * @see Classe de objetos de negócios. Métodos:
- * @author 
+ * @author magno carvalho
  */
 public class ProdutoBO {
 

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JoaoPaulo
+ * @author Ykaro
  */
 public class Util {
 

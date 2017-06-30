@@ -4,16 +4,11 @@ import utfpr.edu.br.papelariafacil.dao.GenericDAO;
 
 import utfpr.edu.br.papelariafacil.vo.Produto;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.JOptionPane;
-import utfpr.edu.br.papelariafacil.conexao.TransactionUtil;
-import utfpr.edu.br.papelariafacil.dao.DaoCompra;
-import utfpr.edu.br.papelariafacil.dao.DaoItemCompra;
 import utfpr.edu.br.papelariafacil.vo.Compra;
 import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 import utfpr.edu.br.papelariafacil.vo.Funcionario;
@@ -105,32 +100,7 @@ public class CompraBO {
             return false;
         }
 
-//       Compra c = new Compra();
-//       Fornecedor f = new Fornecedor(idFornecedor);
-//       Funcionario funcionario = new Funcionario(idFuncionario.intValue());
-//       
-//       c.setFornecedor(f);
-//       c.setFuncionario(funcionario);
-//       Long l = Long.valueOf(valor);
-//       c.setValorcompra(BigDecimal.valueOf(l));
-//       c.setCriacaocompra(new Date());
-//       TransactionUtil.beginTransaction();
-//            try {
-//                new DaoCompra().persistir(c);
-//                 
-//                    itens.stream().forEach((iten) -> {
-//                        iten.setCompra(c);
-//                        new DaoItemCompra().persistir(iten);
-//                    });
-//                TransactionUtil.commit();
-//                JOptionPane.showMessageDialog(null, "Cadastrado Com sucesso","Messagem", JOptionPane.INFORMATION_MESSAGE, null);
-//                return true;
-//            } catch (Exception ex) {
-//                JOptionPane.showMessageDialog(null, "Erro ao persistir no banco","Messagem", JOptionPane.ERROR_MESSAGE, null);
-//                TransactionUtil.rollback();
-//            
-//               return false;
-//            }
+
     }
 
     public void excluirCompra(Long idCompra, ArrayList<Itemcompra> itens) {

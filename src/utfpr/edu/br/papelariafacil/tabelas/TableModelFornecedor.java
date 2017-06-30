@@ -10,7 +10,7 @@ import utfpr.edu.br.papelariafacil.vo.Fornecedor;
 /**
  * @see Classe modelo. Modela uma tabela para possuir todos os campos de valores
  * do Fornecedor.
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author ykaro
  */
 public class TableModelFornecedor extends AbstractTableModel {
 

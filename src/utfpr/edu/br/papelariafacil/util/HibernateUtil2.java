@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 /**
  * @see Classe modelo. Fábrica de sessões. Métodos: getSession(),
  * getSessionFactory(), setSession().
- * @author Bruna Danieli Ribeiro Gonçalves, Márlon Ândrel Coelho Freitas
+ * @author 
  */
 public class HibernateUtil2 {
 

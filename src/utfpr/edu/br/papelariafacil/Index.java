@@ -11,7 +11,7 @@ import utfpr.edu.br.papelariafacil.util.Util;
 
 /**
  *
- * @author magno
+ * @author Ykaro
  */
 public class Index {
 
@@ -19,9 +19,7 @@ public class Index {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-         
-      
+
         //primeiro formulario a ser carregado pelo software.
         FrmAcessoLogin fr = new FrmAcessoLogin();
         //função de centralização do formulario

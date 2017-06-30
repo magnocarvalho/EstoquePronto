@@ -132,9 +132,9 @@ public class FrmBase extends javax.swing.JFrame {
 
         sprRodape.setForeground(new java.awt.Color(204, 204, 204));
 
-        lbRodape.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        lbRodape.setForeground(new java.awt.Color(204, 204, 204));
-        lbRodape.setText("UTFPR - CP (ENGENHARIA DE SOFTWARE) 2016");
+        lbRodape.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lbRodape.setForeground(new java.awt.Color(0, 0, 204));
+        lbRodape.setText("UTFPR - CP (ENGENHARIA DE SOFTWARE) 2017");
 
         javax.swing.GroupLayout pnRodapeLayout = new javax.swing.GroupLayout(pnRodape);
         pnRodape.setLayout(pnRodapeLayout);
@@ -142,9 +142,9 @@ public class FrmBase extends javax.swing.JFrame {
             pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sprRodape, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(pnRodapeLayout.createSequentialGroup()
-                .addContainerGap(384, Short.MAX_VALUE)
+                .addContainerGap(379, Short.MAX_VALUE)
                 .addComponent(lbRodape)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         pnRodapeLayout.setVerticalGroup(
             pnRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

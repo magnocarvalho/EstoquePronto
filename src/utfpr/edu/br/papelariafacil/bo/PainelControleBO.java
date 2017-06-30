@@ -3,7 +3,6 @@ package utfpr.edu.br.papelariafacil.bo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.swing.JOptionPane;
 import utfpr.edu.br.papelariafacil.dao.GenericDAO;
 import utfpr.edu.br.papelariafacil.vo.Categoria;
@@ -79,39 +78,7 @@ public class PainelControleBO {
         return produtosVO;
     }
 
-    /**
-     * @see Método que retorna PessoaFisica que possua o atributo Pessoa passado
-     * como parâmetro.
-     * @param idPessoa
-     * @return Pessoafisica/null.
-     */
-//    public Pessoafisica buscarPessoaFisica(Long idPessoa) {
-//        GenericDAO<Pessoafisica> pessoaFisicaDAO = new GenericDAO<>();
-//        List<Pessoafisica> pessoaFisicaVO = pessoaFisicaDAO.consultar(new Pessoafisica());
-//        for (Pessoafisica pessoaFisicaVO1 : pessoaFisicaVO) {
-//            if (Objects.equals(pessoaFisicaVO1.getPessoa().getIdPessoa(), idPessoa)) {
-//                return pessoaFisicaVO1;
-//            }
-//        }
-//        return null;
-   // }
-
-    /**
-     * @see Método que retorna PessoaJuridica que possua o atributo Pessoa
-     * passado como parâmetro.
-     * @param idPessoa
-     * @return Pessoafisica/null.
-     */
-//    public Pessoajuridica buscarPessoaJuridica(Long idPessoa) {
-//        GenericDAO<Pessoajuridica> pessoaJuridicaDAO = new GenericDAO<>();
-//        List<Pessoajuridica> pessoaJuridicaVO = pessoaJuridicaDAO.consultar(new Pessoajuridica());
-//        for (Pessoajuridica pessoaJuridicaVO1 : pessoaJuridicaVO) {
-//            if (Objects.equals(pessoaJuridicaVO1.getPessoa().getIdPessoa(), idPessoa)) {
-//                return pessoaJuridicaVO1;
-//            }
-//        }
-//        return null;
-//    }
+   
 
     /**
      * @see Método que exclui um objeto no banco de dados por meio da
